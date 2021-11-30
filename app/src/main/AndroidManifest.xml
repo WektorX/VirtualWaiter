@@ -12,6 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.VirtualWaiter">
         <activity
+            android:name=".ChooseTableActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ManagerMainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ChefMainActivity"
+            android:exported="false" />
+        <activity
             android:name=".WaiterMainActivity"
             android:exported="false" />
         <activity
