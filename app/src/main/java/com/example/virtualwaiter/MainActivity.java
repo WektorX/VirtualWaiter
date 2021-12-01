@@ -4,48 +4,55 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.virtualwaiter.DB.DB;
 import com.example.virtualwaiter.UI.Login;
 
 public class MainActivity extends AppCompatActivity {
 
-
-
+    private static int SPLASH_SCREEN = 4000;
+    Animation logoAnim;
+    TextView appName;
+    ImageView logo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
-        final Button btnLogin =  (Button) findViewById(R.id.btnLogin);
-        final Button btnTable =  (Button) findViewById(R.id.btnTable);
-        final EditText etlogin = (EditText) findViewById(R.id.etLogin);
-        final EditText etPassword = (EditText) findViewById(R.id.etPassword);
-        Login l = new Login(MainActivity.this);
+        // set full screen (delete menu bar at the top)
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        appName = findViewById(R.id.tvAppName);
+        logo = findViewById(R.id.ivLogo);
+        logoAnim = AnimationUtils.loadAnimation(this, R.anim.logo_and_appname_animation );
+
+        logo.setAnimation(logoAnim);
+        appName.setAnimation(logoAnim);
 
 
-        btnLogin.setOnClickListener(new View.OnClickListener() {
+        new Handler().postDelayed(new Runnable() {
             @Override
-            public void onClick(View v) {
-                Log.d("tag" , "Siema");
-                String login = etlogin.getText().toString();
-                String password  = etPassword.getText().toString();
-                l.login(login,password);
+            public void run() {
+                Intent i = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(i);
+                finish();
             }
-        });
-
-        btnTable.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, ChooseTableActivity.class);
-                MainActivity.this.startActivity(i);
-            }
-        });
+        },SPLASH_SCREEN);
 
     }
+
+
+
 }

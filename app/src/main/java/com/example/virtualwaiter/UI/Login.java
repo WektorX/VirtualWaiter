@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 
 import com.example.virtualwaiter.ChefMainActivity;
+import com.example.virtualwaiter.DB.DB;
 import com.example.virtualwaiter.ManagerMainActivity;
 import com.example.virtualwaiter.WaiterMainActivity;
 
@@ -27,14 +28,12 @@ public Login(Context c){
     this.context = c;
 }
 
-    public Connection con;
-    public Statement state;
+
 
 public void login(String userName, String password){
     this.password = password;
     this.userName = userName;
-
-    new asynTaskLoggedIn().execute();
+    new loginDB().execute();
 
 }
 
@@ -77,67 +76,20 @@ private void loginResult(String status, Boolean succesfulLogin, String workerTyp
 }
 
 
-    public class asynTaskLoggedIn extends AsyncTask<Void, Void, Map<String, String>> {
+    public class loginDB extends AsyncTask<Void, Void, Map<String, String>>{
 
-        public Connection con;
-        public Statement state;
-        Map<String, String> info = new HashMap<>();
 
         @Override
         protected Map<String, String> doInBackground(Void... voids) {
-            try{
-                Class.forName("com.mysql.jdbc.Driver");
-                con= DriverManager.getConnection(
-                        "jdbc:mysql://192.168.1.104:3306/projekt","root","");
-                Log.d("DB", "tutaj");
-                state = con.createStatement();
-                Log.d("DB","Connected");
-                ResultSet s = state.executeQuery("SELECT EXISTS(SELECT id FROM worker WHERE login='"+userName+"' AND password='"+password+"');");
-
-                if(s.next()){
-                    info.put("status", "success");
-                    if(s.getInt(1) == 1){
-                        ResultSet worker = state.executeQuery("SELECT type FROM worker WHERE login='"+userName+"'");
-                        if(worker.next()){
-
-                            info.put("login" ,  "true");
-                            info.put("type",worker.getString(1));
-                        }
-                        else {
-                            info.put("login", "true");
-                            info.put("type" ,  "unknown ");
-                        }
-                    }
-                    else{
-                        info.put("login" ,  "false");
-                        info.put("type" ,  "unknown ");
-                    }
-                }
-                else{
-                    info.put("status" ,"unknown user");
-                    info.put("login" ,  "false");
-                    info.put("type" ,  "unknown ");
-                }
-
-
-            }catch(Exception e){
-                Log.d("DB","Connection Failed " + e.toString());
-                info.put("status", "Error");
-                info.put("error", e.toString());
-            }
-            return info;
+            return DB.login(userName,password);
         }
-
 
         @Override
         protected void onPostExecute(Map<String, String> result) {
-            Log.d("Result" ,"ok");
             String status = result.get("status");
             Boolean login = Boolean.valueOf(result.get("login"));
-            Log.d(result.get("login") , login.toString());
             String type = result.get("type");
             Login.this.loginResult(status,login,type);
-
         }
     }
 }

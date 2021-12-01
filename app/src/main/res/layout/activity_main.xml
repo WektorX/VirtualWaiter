@@ -1,65 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+    android:background="@color/black"
     tools:context=".MainActivity">
 
-    <EditText
-        android:id="@+id/etLogin"
-        android:layout_width="600px"
+    <TextView
+        android:id="@+id/tvAppName"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="91dp"
-        android:layout_marginTop="240dp"
-        android:layout_marginEnd="91dp"
-        android:layout_marginBottom="8dp"
-        android:ems="10"
-        android:hint="@string/login_placeholder"
-        android:inputType="textPersonName"
-        android:minHeight="48dp" />
+        android:layout_marginBottom="236dp"
+        android:fontFamily="@font/courgette"
+        android:text="@string/app_name"
+        android:textColor="@color/white"
+        android:textColorHighlight="@color/teal_700"
+        android:textSize="@dimen/AppNameTitle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <EditText
-        android:id="@+id/etPassword"
-        android:layout_width="600px"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/etLogin"
-        android:layout_alignStart="@+id/etLogin"
-        android:layout_alignEnd="@+id/etLogin"
-        android:layout_marginStart="-1dp"
-        android:layout_marginTop="18dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="15dp"
-        android:ems="10"
-        android:hint="@string/password_placeholder"
-        android:inputType="textPassword"
-        android:minHeight="48dp" />
+    <ImageView
+        android:id="@+id/ivLogo"
+        android:layout_width="408dp"
+        android:layout_height="440dp"
+        android:src="@drawable/icon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/app_name"/>
 
-    <Button
-        android:id="@+id/btnLogin"
-        android:layout_width="400px"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/etPassword"
-        android:layout_alignStart="@+id/etPassword"
-        android:layout_alignEnd="@+id/etPassword"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="32dp"
-        android:text="@string/login_btn" />
-
-    <Button
-        android:id="@+id/btnTable"
-        android:layout_width="400px"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btnLogin"
-        android:layout_alignStart="@+id/btnLogin"
-        android:layout_alignEnd="@+id/btnLogin"
-        android:layout_marginStart="7dp"
-        android:layout_marginTop="7dp"
-        android:layout_marginEnd="6dp"
-        android:text="@string/table_btn" />
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
