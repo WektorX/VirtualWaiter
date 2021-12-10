@@ -3,17 +3,14 @@ package com.example.virtualwaiter.UI;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.util.*;
+import android.util.Log;
 import android.widget.Toast;
-
 
 import com.example.virtualwaiter.ChefMainActivity;
 import com.example.virtualwaiter.DB.DB;
 import com.example.virtualwaiter.ManagerMainActivity;
 import com.example.virtualwaiter.WaiterMainActivity;
 
-import java.sql.*;
-import java.util.HashMap;
 import java.util.Map;
 
 public class Login {

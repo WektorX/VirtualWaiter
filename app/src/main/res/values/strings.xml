@@ -5,4 +5,6 @@
     <string name="login_placeholder">Login</string>
     <string name="password_placeholder">Password</string>
     <string name="waiter">Waiter</string>
+    <string name="menu">MENU</string>
+    <string name="choose_table">Choose Table</string>
 </resources>

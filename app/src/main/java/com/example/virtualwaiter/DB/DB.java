@@ -1,14 +1,15 @@
 package com.example.virtualwaiter.DB;
 
 import android.util.Log;
-import android.widget.Toast;
 
-import com.example.virtualwaiter.MainActivity;
+import com.example.virtualwaiter.CommonClasses.Food;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,7 +21,7 @@ public class DB {
     private static String dbName = "projekt";
 
     public static String initConnection(){
-        String status = null;
+        String status;
         try{
             Class.forName("com.mysql.jdbc.Driver");
             con= DriverManager.getConnection(
@@ -76,6 +77,26 @@ public class DB {
         return info;
     }
 
+    public static ArrayList<Food> getMenu(int menuId) throws SQLException {
+        ArrayList<Food> menu_items = new ArrayList<>();
+        ResultSet rs = state.executeQuery("SELECT name, price, type, description, photoName FROM Food f INNER JOIN Menu_Food mf ON f.id = mf.FoodId WHERE mf.MenuId=" + menuId);
+        while (rs.next()) {
+            menu_items.add(new Food(rs.getString("name"), rs.getString("photoName"), rs.getDouble("price"), rs.getString("type"), rs.getString("description")));
+        }
+        return menu_items;
+    }
 
+    public static ArrayList<Integer> getFreeTables() throws SQLException {
+        ArrayList<Integer> freeTables = new ArrayList<>();
+        ResultSet rs = state.executeQuery("SELECT id FROM Table WHERE WorkerId IS NULL");
+        while (rs.next()) {
+            freeTables.add(rs.getInt("id"));
+        }
+        return freeTables;
+    }
+
+    public static void setWaiterToTable(Integer waiterId) throws SQLException {
+        state.executeQuery("UPDATE Table ON WorkerId = " + waiterId);
+    }
 
 }
