@@ -37,7 +37,7 @@ public class DB {
     }
 
 
-    public static Map<String, String> login(String username, String password){
+    public static Map<String, String> login(String username, String password, Boolean table){
 
         Map<String, String> info = new HashMap<>();
         try{
@@ -47,13 +47,22 @@ public class DB {
                 if(s.getInt(1) == 1){
                     ResultSet worker = state.executeQuery("SELECT type FROM worker WHERE login='"+username+"'");
                     if(worker.next()){
-
                         info.put("login" ,  "true");
-                        info.put("type",worker.getString(1));
+                        if (table) {
+                            info.put("type", "table");
+                        }
+                        else {
+                            info.put("type",worker.getString(1));
+                        }
                     }
                     else {
                         info.put("login", "true");
-                        info.put("type" ,  "unknown ");
+                        if (table) {
+                            info.put("type", "table");
+                        }
+                        else {
+                            info.put("type", "unknown ");
+                        }
                     }
                 }
                 else{

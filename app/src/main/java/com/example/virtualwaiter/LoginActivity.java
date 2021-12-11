@@ -1,5 +1,6 @@
 package com.example.virtualwaiter;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -13,6 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.virtualwaiter.DB.DB;
 import com.example.virtualwaiter.UI.Login;
+
+import java.lang.ref.WeakReference;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -32,13 +35,12 @@ public class LoginActivity extends AppCompatActivity {
         etPassword = findViewById(R.id.etPassword);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         Login l = new Login(LoginActivity.this);
-        new initDB().execute();
+        new initDB(LoginActivity.this).execute();
 
         btnLogin.setOnClickListener(v -> {
-
             String login = etlogin.getText().toString();
             String password  = etPassword.getText().toString();
-            l.login(login,password);
+            l.login(login,password, false);
         });
 
         btnTable.setOnClickListener(v -> {
@@ -49,14 +51,22 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-    public class initDB extends AsyncTask {
+    public static class initDB extends AsyncTask {
+        private WeakReference<Context> contextRef;
+
+        public initDB(Context context) {
+            contextRef = new WeakReference<>(context);
+        }
 
         @Override
         protected Object doInBackground(Object[] objects) {
             String status = DB.initConnection();
-            if(status.equals("error")){
-                Toast toast = Toast.makeText(LoginActivity.this, "Connection error! Try again later!", Toast.LENGTH_LONG);
-                toast.show();
+            Context context = contextRef.get();
+            if (context != null) {
+                if (status.equals("error")) {
+                    Toast toast = Toast.makeText(context, "Connection error! Try again later!", Toast.LENGTH_LONG);
+                    toast.show();
+                }
             }
 
             return null;

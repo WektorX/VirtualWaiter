@@ -7,4 +7,8 @@
     <string name="waiter">Waiter</string>
     <string name="menu">MENU</string>
     <string name="choose_table">Choose Table</string>
+    <string name="username">waiter username</string>
+    <string name="password">password</string>
+    <string name="signin">Sign in</string>
+    <string name="cancel">Cancel</string>
 </resources>

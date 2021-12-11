@@ -8,15 +8,18 @@ import android.widget.Toast;
 
 import com.example.virtualwaiter.ChefMainActivity;
 import com.example.virtualwaiter.DB.DB;
+import com.example.virtualwaiter.FoodMenuActivity;
 import com.example.virtualwaiter.ManagerMainActivity;
 import com.example.virtualwaiter.WaiterMainActivity;
 
+import java.sql.SQLException;
 import java.util.Map;
 
 public class Login {
 
 private String userName;
 private String password;
+private boolean table;
 private Context context;
 
 
@@ -27,16 +30,16 @@ public Login(Context c){
 
 
 
-public void login(String userName, String password){
+public void login(String userName, String password, boolean table){
     this.password = password;
     this.userName = userName;
+    this.table = table;
     new loginDB().execute();
-
 }
 
 
 
-private void loginResult(String status, Boolean succesfulLogin, String workerType){
+private void loginResult(String status, Boolean succesfulLogin, String workerType) throws SQLException {
     Log.d("Result Func", status +" "+ succesfulLogin+ " "+ workerType);
     if(status.equals("success")){
         if(succesfulLogin){
@@ -50,9 +53,13 @@ private void loginResult(String status, Boolean succesfulLogin, String workerTyp
                     i = new Intent(context, ChefMainActivity.class);
                     Log.d("Worker type", workerType);
                     break;
-
                 case "manager":
                     i = new Intent(context, ManagerMainActivity.class);
+                    Log.d("Worker type", workerType);
+                    break;
+                case "table":
+                    DB.setWaiterToTable(420);
+                    i = new Intent(context, FoodMenuActivity.class);
                     Log.d("Worker type", workerType);
                     break;
                 default:
@@ -78,7 +85,7 @@ private void loginResult(String status, Boolean succesfulLogin, String workerTyp
 
         @Override
         protected Map<String, String> doInBackground(Void... voids) {
-            return DB.login(userName,password);
+            return DB.login(userName,password, table);
         }
 
         @Override
@@ -86,7 +93,12 @@ private void loginResult(String status, Boolean succesfulLogin, String workerTyp
             String status = result.get("status");
             Boolean login = Boolean.valueOf(result.get("login"));
             String type = result.get("type");
-            Login.this.loginResult(status,login,type);
+            try {
+                assert status != null;
+                Login.this.loginResult(status,login,type);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
         }
     }
 }
