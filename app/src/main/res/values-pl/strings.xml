@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="login_btn">Zaloguj</string>
+    <string name="table_btn">Stoliki</string>
+    <string name="password_placeholder">Hasło</string>
+    <string name="chooseTableInfo">Wybierz numer stolika:</string>
+    <string name="waiter">Kelner</string>
+    <string name="chooseWaiter">Wybierz kelnera:</string>
+</resources>

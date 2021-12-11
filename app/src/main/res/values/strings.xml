@@ -1,8 +1,10 @@
 <resources>
-    <string name="app_name">VirtualWaiter</string>
+    <string name="app_name" translatable="false">VirtualWaiter</string>
     <string name="login_btn">Log in</string>
-    <string name="table_btn">Table</string>
-    <string name="login_placeholder">Login</string>
+    <string name="table_btn">Tables</string>
+    <string name="login_placeholder" translatable="false">Login</string>
     <string name="password_placeholder">Password</string>
     <string name="waiter">Waiter</string>
+    <string name="chooseTableInfo">Please choose table ID:</string>
+    <string name="chooseWaiter">Choose waiter:</string>
 </resources>
