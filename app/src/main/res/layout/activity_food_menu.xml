@@ -4,8 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#AA0505"
-    tools:context=".ChooseTableActivity"
     android:orientation="horizontal">
 
     <TextView
@@ -15,16 +13,20 @@
 
         android:layout_marginTop="20dp"
         android:fontFamily="@font/courgette"
-        android:text="@string/choose_table"
+        android:text="@string/menu"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:visibility="visible" />
 
     <ScrollView
-        android:id="@+id/choose_table"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:id="@+id/food_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#B60505"
+        android:fillViewport="true"
+        android:scrollbarStyle="outsideInset"
+        android:visibility="visible">
 
     </ScrollView>
 

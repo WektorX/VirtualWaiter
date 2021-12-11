@@ -1,21 +1,21 @@
 package com.example.virtualwaiter;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.virtualwaiter.DB.DB;
 import com.example.virtualwaiter.UI.Login;
+
+import java.lang.ref.WeakReference;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -29,43 +29,44 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
-        btnLogin =  (Button) findViewById(R.id.btnLogin);
-        btnTable =  (Button) findViewById(R.id.btnTable);
-        etlogin = (EditText) findViewById(R.id.etLogin);
-        etPassword = (EditText) findViewById(R.id.etPassword);
+        btnLogin = findViewById(R.id.btnLogin);
+        btnTable = findViewById(R.id.btnTable);
+        etlogin = findViewById(R.id.etLogin);
+        etPassword = findViewById(R.id.etPassword);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         Login l = new Login(LoginActivity.this);
-        new initDB().execute();
+        new initDB(LoginActivity.this).execute();
 
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                String login = etlogin.getText().toString();
-                String password  = etPassword.getText().toString();
-                l.login(login,password);
-            }
+        btnLogin.setOnClickListener(v -> {
+            String login = etlogin.getText().toString();
+            String password  = etPassword.getText().toString();
+            l.login(login,password, false);
         });
 
-        btnTable.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(LoginActivity.this, ChooseTableActivity.class);
-                LoginActivity.this.startActivity(i);
-            }
+        btnTable.setOnClickListener(v -> {
+            Intent i = new Intent(LoginActivity.this, ChooseTableActivity.class);
+            LoginActivity.this.startActivity(i);
         });
 
     }
 
 
-    public class initDB extends AsyncTask {
+    public static class initDB extends AsyncTask {
+        private WeakReference<Context> contextRef;
+
+        public initDB(Context context) {
+            contextRef = new WeakReference<>(context);
+        }
 
         @Override
         protected Object doInBackground(Object[] objects) {
             String status = DB.initConnection();
-            if(status.equals("error")){
-                Toast toast = Toast.makeText(LoginActivity.this, "Connection error! Try again later!", Toast.LENGTH_LONG);
-                toast.show();
+            Context context = contextRef.get();
+            if (context != null) {
+                if (status.equals("error")) {
+                    Toast toast = Toast.makeText(context, "Connection error! Try again later!", Toast.LENGTH_LONG);
+                    toast.show();
+                }
             }
 
             return null;

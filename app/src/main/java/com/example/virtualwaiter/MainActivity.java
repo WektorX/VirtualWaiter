@@ -1,25 +1,15 @@
 package com.example.virtualwaiter;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.Activity;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
-import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.virtualwaiter.DB.DB;
-import com.example.virtualwaiter.UI.Login;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -42,13 +32,10 @@ public class MainActivity extends AppCompatActivity {
         appName.setAnimation(logoAnim);
 
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent i = new Intent(MainActivity.this, LoginActivity.class);
-                startActivity(i);
-                finish();
-            }
+        new Handler().postDelayed(() -> {
+            Intent i = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(i);
+            finish();
         },SPLASH_SCREEN);
 
     }
