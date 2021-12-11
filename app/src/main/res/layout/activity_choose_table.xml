@@ -6,26 +6,32 @@
     android:layout_height="match_parent"
     android:background="#AA0505"
     tools:context=".ChooseTableActivity"
-    android:orientation="horizontal">
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/courgette"
-        android:text="@string/choose_table"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        android:visibility="visible" />
-
-    <ScrollView
+        <ScrollView
         android:id="@+id/choose_table"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/buttons_view"
+            android:orientation="vertical" >
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/courgette"
+            android:text="@string/choose_table"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:visibility="visible" />
+    </LinearLayout>
     </ScrollView>
 
 </LinearLayout>

@@ -35,7 +35,7 @@ public class LoginActivity extends AppCompatActivity {
         etPassword = findViewById(R.id.etPassword);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         Login l = new Login(LoginActivity.this);
-        new initDB(LoginActivity.this).execute();
+        new initDB().execute();
 
         btnLogin.setOnClickListener(v -> {
             String login = etlogin.getText().toString();
@@ -51,25 +51,36 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-    public static class initDB extends AsyncTask {
-        private WeakReference<Context> contextRef;
-
-        public initDB(Context context) {
-            contextRef = new WeakReference<>(context);
-        }
+    public class initDB extends AsyncTask {
+//        private WeakReference<Context> contextRef;
+//
+//        public initDB(Context context) {
+//            contextRef = new WeakReference<>(context);
+//        }
 
         @Override
         protected Object doInBackground(Object[] objects) {
             String status = DB.initConnection();
-            Context context = contextRef.get();
+            Context context = LoginActivity.this;
             if (context != null) {
                 if (status.equals("error")) {
-                    Toast toast = Toast.makeText(context, "Connection error! Try again later!", Toast.LENGTH_LONG);
-                    toast.show();
+                    return "error";
+                }
+                else{
+                    return "ok";
                 }
             }
 
-            return null;
+            return "error";
+        }
+
+        @Override
+        protected void onPostExecute(Object o){
+            String response = (String) o;
+            if(response.equals("error")){
+                Toast toast = Toast.makeText(LoginActivity.this, "Connection to database failed! Try again later!", Toast.LENGTH_LONG);
+                toast.show();
+            }
         }
     }
 }

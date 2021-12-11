@@ -6,4 +6,13 @@
     <string name="chooseTableInfo">Wybierz numer stolika:</string>
     <string name="waiter">Kelner</string>
     <string name="chooseWaiter">Wybierz kelnera:</string>
+
+
+
+    <string name="menu">MENU</string>
+    <string name="choose_table">Wybierz stolik</string>
+    <string name="username">Kelner</string>
+    <string name="password">Hasło</string>
+    <string name="signin">Zaloguj</string>
+    <string name="cancel">Anuluj</string>
 </resources>

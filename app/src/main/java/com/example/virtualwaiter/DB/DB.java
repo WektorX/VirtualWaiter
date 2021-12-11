@@ -95,12 +95,20 @@ public class DB {
         return menu_items;
     }
 
-    public static ArrayList<Integer> getFreeTables() throws SQLException {
+    public static ArrayList<Integer> getFreeTables() {
         ArrayList<Integer> freeTables = new ArrayList<>();
-        ResultSet rs = state.executeQuery("SELECT id FROM Table WHERE WorkerId IS NULL");
-        while (rs.next()) {
-            freeTables.add(rs.getInt("id"));
+        try{
+            ResultSet rs = state.executeQuery("SELECT id FROM `table`");
+            Log.d("Stoliki", "siema");
+            while (rs.next()) {
+                freeTables.add(rs.getInt("id"));
+                Log.d("Stolik", String.valueOf(rs.getInt("id")));
+            }
         }
+        catch(Exception e){
+            Log.d("Error stoliki", e.toString());
+        }
+
         return freeTables;
     }
 
