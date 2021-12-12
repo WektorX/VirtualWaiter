@@ -5,38 +5,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".ChooseTableActivity"
-    android:orientation="vertical">
-<!--    android:background="#AA0505"-->
+    tools:context=".ChooseWaiter">
+
 
     <ScrollView
-        android:id="@+id/choose_table"
+        android:id="@+id/choose_waiter"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
 
         <LinearLayout
-            android:id="@+id/buttons_view"
+            android:id="@+id/waiter_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:gravity="center"            >
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/textView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
                 android:layout_marginTop="25dp"
                 android:fontFamily="@font/courgette"
-                android:text="@string/choose_table"
+                android:text="@string/choose_waiter"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="25sp"
                 android:visibility="visible" />
 
             <ProgressBar
-                android:id="@+id/pbTables"
+                android:id="@+id/pbWaiters"
                 style="?android:attr/progressBarStyle"
                 android:layout_width="match_parent"
                 android:layout_height="77dp"
@@ -46,5 +44,6 @@
 
         </LinearLayout>
     </ScrollView>
+
 
 </LinearLayout>

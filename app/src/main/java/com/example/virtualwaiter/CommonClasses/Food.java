@@ -1,6 +1,6 @@
 package com.example.virtualwaiter.CommonClasses;
 
-public class Food {
+public class Food extends Object{
     private String name;
     private String photoName;
     private double price;

@@ -99,10 +99,8 @@ public class DB {
         ArrayList<Integer> freeTables = new ArrayList<>();
         try{
             ResultSet rs = state.executeQuery("SELECT id FROM `table`");
-            Log.d("Stoliki", "siema");
             while (rs.next()) {
                 freeTables.add(rs.getInt("id"));
-                Log.d("Stolik", String.valueOf(rs.getInt("id")));
             }
         }
         catch(Exception e){
@@ -116,4 +114,66 @@ public class DB {
         state.executeQuery("UPDATE Table ON WorkerId = " + waiterId);
     }
 
+    public static Map<String, ArrayList<Object>> getWaitersList() {
+
+        ArrayList<Object> waitersID = new ArrayList<>();
+        ArrayList<Object> waitersName = new ArrayList<>();
+        ArrayList<Object> status = new ArrayList<>();
+        HashMap<String, ArrayList<Object>> waiters = new HashMap<>();
+
+        try{
+            ResultSet rs = state.executeQuery("SELECT id, name FROM worker WHERE type = 'waiter'");
+            while (rs.next()) {
+                Log.d("waiters", "jest cos" + rs.getInt("id"));
+                waitersID.add(rs.getInt("id"));
+                waitersName.add(rs.getString("name"));
+            }
+            waiters.put("id", waitersID);
+            waiters.put("name", waitersName);
+            status.add("success");
+            waiters.put("status", status);
+            return  waiters;
+        }
+        catch(Exception e){
+            Log.d("Error kelnerzy", e.toString());
+            status.add("error");
+            waiters.put("status", status);
+            return waiters;
+        }
+
+    }
+
+    public static Map<String, ArrayList<Object>> getFood() {
+
+        ArrayList<Object> foodList = new ArrayList<>();
+        ArrayList<Object> status = new ArrayList<>();
+        HashMap<String, ArrayList<Object>> food = new HashMap<>();
+
+        try{
+            ResultSet rs = state.executeQuery("SELECT * FROM food");
+            while (rs.next()) {
+                Log.d("waiters", "jest cos" + rs.getInt("id"));
+                Food temp = new Food(rs.getString("name_pl"),
+                        rs.getString("photoName"),
+                        rs.getDouble("price"),
+                        rs.getString("type"),
+                        rs.getString("description_pl"));
+                foodList.add(temp);
+            }
+            status.add("success");
+            food.put("status", status);
+            food.put("food", foodList);
+
+            return  food;
+        }
+        catch(Exception e){
+            Log.d("Error food", e.toString());
+            status.add("error");
+            food.put("status", status);
+            return food;
+        }
+
+
+
+    }
 }

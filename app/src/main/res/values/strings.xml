@@ -6,14 +6,15 @@
     <string name="password_placeholder">Password</string>
     <string name="waiter">Waiter</string>
 
-    <string name="chooseTableInfo">Please choose table ID:</string>
-    <string name="chooseWaiter">Choose waiter:</string>
-
     <string name="menu">MENU</string>
     <string name="choose_table">Choose Table</string>
     <string name="username">waiter username</string>
     <string name="password">password</string>
     <string name="signin">Sign in</string>
     <string name="cancel">Cancel</string>
+    <string name="btnTableLabel">Table</string>
+    <string name="plLanguage">PL</string>
+    <string name="enLanguage">EN</string>
+    <string name="choose_waiter">Choose waiter</string>
 
 </resources>

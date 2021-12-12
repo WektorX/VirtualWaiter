@@ -1,24 +1,24 @@
 package com.example.virtualwaiter;
 
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.Gravity;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
+import android.widget.ProgressBar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.virtualwaiter.DB.DB;
-import com.example.virtualwaiter.UI.Login;
+import com.example.virtualwaiter.DB.StaticData;
+import com.example.virtualwaiter.UI.Actions.Login;
+import com.example.virtualwaiter.UI.Components.TableButton;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Map;
 
 public class ChooseTableActivity extends AppCompatActivity {
 
@@ -31,49 +31,33 @@ public class ChooseTableActivity extends AppCompatActivity {
     }
 
     private void generateButtons(ArrayList<Integer> tables){
+        ProgressBar pb = findViewById(R.id.pbTables);
+        pb.setVisibility(View.GONE);
+
         for (Integer tableId : tables) {
-            Button button = new Button(ChooseTableActivity.this);
-            button.setText("Table "+tableId);
+           // Button button = new Button(ChooseTableActivity.this);
+            Button button = new TableButton(ChooseTableActivity.this);
+            button.setText(getString(R.string.btnTableLabel)+" "+tableId);
             button.setId(tableId);
             button.setOnClickListener(v -> {
-                Log.d("Klik", String.valueOf(button.getId()));
-                AlertDialog.Builder builder = new AlertDialog.Builder(ChooseTableActivity.this);
-                builder.setView(findViewById(R.id.waiter_login_table_dialog));
-                builder.setPositiveButton(R.string.signin, (dialog, id) -> {
-                    // Waiter clicked Sign In button
-                    Login l = new Login(ChooseTableActivity.this);
-//                        new LoginActivity.initDB(ChooseTableActivity.this).execute();
-                    EditText etlogin = findViewById(R.id.waiter_table_username);
-                    EditText etpassword = findViewById(R.id.waiter_table_password);
-                    String login = etlogin.getText().toString();
-                    String password  = etpassword.getText().toString();
-                    l.login(login,password, true);
-                });
-                builder.setNegativeButton(R.string.cancel, (dialog, id) -> {
-                    // Waiter cancelled the dialog
-                });
 
-                AlertDialog dialog = builder.create();
-                dialog.show();
+                StaticData.TABLE_NUMBER = button.getId();
+                Intent i = new Intent(ChooseTableActivity.this, ChooseWaiter.class);
+                ChooseTableActivity.this.startActivity(i);
             });
 
-
-            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             LinearLayout l = findViewById(R.id.buttons_view);
-            l.addView(button, lp);
+            l.addView(button);
+
         }
-        Log.d("Stoliki", "Dodano");
     }
 
 
     public class getTablesDB extends AsyncTask {
 
-
         @Override
         protected Object doInBackground(Object[] objects) {
             return DB.getFreeTables();
-
-
         }
 
         @Override
@@ -82,6 +66,5 @@ public class ChooseTableActivity extends AppCompatActivity {
             generateButtons(tables);
         }
     }
-
 
 }

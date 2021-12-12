@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.VirtualWaiter">
         <activity
+            android:name=".OrderMenuActicity"
+            android:exported="false" />
+        <activity
+            android:name=".ChooseWaiter"
+            android:exported="false" />
+        <activity
             android:name=".LoginActivity"
             android:exported="false" />
         <activity

@@ -2,9 +2,12 @@ package com.example.virtualwaiter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.View;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,17 +16,19 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.virtualwaiter.DB.DB;
-import com.example.virtualwaiter.UI.Login;
+import com.example.virtualwaiter.UI.Actions.Login;
 
-import java.lang.ref.WeakReference;
+import java.util.Locale;
 
 public class LoginActivity extends AppCompatActivity {
 
-    public Button btnLogin;
-    public Button btnTable;
-    public EditText etlogin;
-    public EditText etPassword;
-
+    private Button btnLogin;
+    private Button btnTable;
+    private EditText etlogin;
+    private EditText etPassword;
+    private Button btnPl;
+    private Button btnEn;
+    private String lang;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,8 +38,11 @@ public class LoginActivity extends AppCompatActivity {
         btnTable = findViewById(R.id.btnTable);
         etlogin = findViewById(R.id.etLogin);
         etPassword = findViewById(R.id.etPassword);
+        btnPl = findViewById(R.id.btnPl);
+        btnEn = findViewById(R.id.btnEn);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         Login l = new Login(LoginActivity.this);
+        lang = Locale.getDefault().getLanguage();
         new initDB().execute();
 
         btnLogin.setOnClickListener(v -> {
@@ -46,6 +54,28 @@ public class LoginActivity extends AppCompatActivity {
         btnTable.setOnClickListener(v -> {
             Intent i = new Intent(LoginActivity.this, ChooseTableActivity.class);
             LoginActivity.this.startActivity(i);
+        });
+
+        btnPl.setOnClickListener(v->{
+            Locale locale = new Locale("pl");
+            Locale.setDefault(locale);
+            Configuration config = new Configuration();
+            config.setLocale(locale);
+            LoginActivity.this.getResources().updateConfiguration(config, LoginActivity.this.getResources().getDisplayMetrics());
+            Intent intent = new Intent(LoginActivity.this, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        });
+
+        btnEn.setOnClickListener(v->{
+            Locale locale = new Locale("en");
+            Locale.setDefault(locale);
+            Configuration config = new Configuration();
+            config.setLocale(locale);
+            LoginActivity.this.getResources().updateConfiguration(config, LoginActivity.this.getResources().getDisplayMetrics());
+            Intent intent = new Intent(LoginActivity.this, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
         });
 
     }

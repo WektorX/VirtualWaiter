@@ -1,4 +1,4 @@
-package com.example.virtualwaiter.UI;
+package com.example.virtualwaiter.UI.Actions;
 
 import android.content.Context;
 import android.content.Intent;

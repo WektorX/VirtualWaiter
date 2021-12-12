@@ -3,16 +3,15 @@
     <string name="login_btn">Zaloguj</string>
     <string name="table_btn">Stoliki</string>
     <string name="password_placeholder">Hasło</string>
-    <string name="chooseTableInfo">Wybierz numer stolika:</string>
     <string name="waiter">Kelner</string>
-    <string name="chooseWaiter">Wybierz kelnera:</string>
-
-
-
     <string name="menu">MENU</string>
     <string name="choose_table">Wybierz stolik</string>
     <string name="username">Kelner</string>
     <string name="password">Hasło</string>
     <string name="signin">Zaloguj</string>
     <string name="cancel">Anuluj</string>
+    <string name="btnTableLabel">Stolik</string>
+    <string name="plLanguage">PL</string>
+    <string name="enLanguage">EN</string>
+    <string name="choose_waiter">Wybierz kelnera</string>
 </resources>
