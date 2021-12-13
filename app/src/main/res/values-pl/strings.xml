@@ -14,4 +14,6 @@
     <string name="plLanguage">PL</string>
     <string name="enLanguage">EN</string>
     <string name="choose_waiter">Wybierz kelnera</string>
+    <string name="menu_dish_label">Potrawy</string>
+    <string name="menu_drink_label">Napoje</string>
 </resources>

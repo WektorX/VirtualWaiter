@@ -4,6 +4,7 @@ import static com.example.virtualwaiter.Net.StaticData.IP;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -11,21 +12,28 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.res.ResourcesCompat;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.virtualwaiter.CommonClasses.Food;
 import com.example.virtualwaiter.R;
 
+import java.text.DecimalFormat;
+
 public class MenuItem  extends CardView {
 
     private TextView foodName;
     private LinearLayout ly;
     private Context context;
+    private LinearLayout additionalInfo;
+    private LinearLayout stampsView;
+    private static final DecimalFormat df = new DecimalFormat("0.00");
+
     public MenuItem(@NonNull Context context, Food f) {
         super(context);
         this.context = context;
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(1000, ViewGroup.LayoutParams.WRAP_CONTENT);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         params.topMargin = 50;
         this.setBackgroundColor(context.getColor(R.color.FoodItem_background));
         this.setLayoutParams(params);
@@ -33,7 +41,20 @@ public class MenuItem  extends CardView {
         setFoodImage(f.getPhotoName());
         setFoodName(f.getName());
         setFoodDescription(f.getDescription());
+
         setPrice(f.getPrice());
+        if(f.getGlutenFree()){
+            setStamp("gluten");
+        }
+        if(f.getVegan()){
+            setStamp("vegan");
+        }
+        if(f.getType().equals("drink") && !f.getAlcoholic()){
+            setStamp("alcoholic");
+        }
+
+
+     //   ly.addView(additionalInfo);
     }
 
 
@@ -83,6 +104,9 @@ public class MenuItem  extends CardView {
         foodName.setLayoutParams(params);
         foodName.setTextAlignment(TEXT_ALIGNMENT_CENTER);
         foodName.setTextSize(20);
+        Typeface tf = ResourcesCompat.getFont(context, R.font.nova_flat);
+
+        foodName.setTypeface(tf);
 //        foodName.setText
         ly.addView(foodName);
     }
@@ -100,17 +124,55 @@ public class MenuItem  extends CardView {
     }
 
     private void setPrice(double price) {
+        additionalInfo = new LinearLayout(context);
+        additionalInfo.setOrientation(LinearLayout.HORIZONTAL);
+        LinearLayout.LayoutParams pr = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        pr.weight = 1;
+        additionalInfo.setPadding(20,20,20,20);
+        additionalInfo.setLayoutParams(pr);
+
+
+        stampsView = new LinearLayout(context);
+        stampsView.setOrientation(LinearLayout.HORIZONTAL);
+        stampsView.setLayoutParams(pr);
+        additionalInfo.addView(stampsView);
+
+
         TextView foodPrice = new TextView(context);
-        foodPrice.setText(price +" zł");
+        foodPrice.setText(df.format(price) +" zł");
         foodPrice.setTextColor(context.getColor(R.color.black));
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         params.topMargin = 10;
+        params.weight = 1;
+        foodPrice.setTextSize(15);
         foodPrice.setLayoutParams(params);
         foodPrice.setTextAlignment(TEXT_ALIGNMENT_TEXT_END);
-        foodPrice.setPadding(25,25,25,25);
-        ly.addView(foodPrice);
+        additionalInfo.addView(foodPrice);
 
+        ly.addView(additionalInfo);
 
     }
+
+    private void setStamp(String stamp) {
+
+        ImageView icon = new ImageView(context);
+        if(stamp.equals("vegan")){
+            icon.setImageDrawable(context.getDrawable(R.drawable.vegan));
+        }
+        else if(stamp.equals("alcoholic")){
+            icon.setImageDrawable(context.getDrawable(R.drawable.non_alcohol));
+        }
+        else{
+            icon.setImageDrawable(context.getDrawable(R.drawable.gluten_free));
+        }
+
+        icon.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        LinearLayout.LayoutParams pr = new LinearLayout.LayoutParams(100,100);
+    //    pr.weight = 1;
+        icon.setLayoutParams(pr);
+        stampsView.addView(icon);
+    }
+
+
 
 }

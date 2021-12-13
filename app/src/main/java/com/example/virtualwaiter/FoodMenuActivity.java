@@ -19,20 +19,20 @@ public class FoodMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_menu);
 
-        try {
-            ArrayList<Food> menu_items = ConnectDB.getMenu(1);
-
-            for (Food f : menu_items
-            ) {
-                Button button = new Button(this);
-                button.setText(String.format("%s\n%s", f.getName(), f.getPrice()));
-
-                ScrollView scrollView = findViewById(R.id.food_menu);
-                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                scrollView.addView(button, lp);
-            }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
+//        try {
+//            ArrayList<Food> menu_items = ConnectDB.getMenu(1);
+//
+//            for (Food f : menu_items
+//            ) {
+//                Button button = new Button(this);
+//                button.setText(String.format("%s\n%s", f.getName(), f.getPrice()));
+//
+//                ScrollView scrollView = findViewById(R.id.food_menu);
+//                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+//                scrollView.addView(button, lp);
+//            }
+//        } catch (SQLException throwables) {
+//            throwables.printStackTrace();
+//        }
     }
 }

@@ -10,6 +10,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import static com.example.virtualwaiter.Net.StaticData.LANGUAGE;
+
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         logo.setAnimation(logoAnim);
         appName.setAnimation(logoAnim);
 
-
+        LANGUAGE = Locale.getDefault().getLanguage();
         new Handler().postDelayed(() -> {
             Intent i = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(i);

@@ -16,7 +16,7 @@ import com.example.virtualwaiter.Net.ConnectDB;
 import com.example.virtualwaiter.UI.Actions.Login;
 
 import java.util.Locale;
-
+import static com.example.virtualwaiter.Net.StaticData.LANGUAGE;
 public class LoginActivity extends AppCompatActivity {
 
     private Button btnLogin;
@@ -55,6 +55,7 @@ public class LoginActivity extends AppCompatActivity {
 
         btnPl.setOnClickListener(v->{
             Locale locale = new Locale("pl");
+            LANGUAGE = "pl";
             Locale.setDefault(locale);
             Configuration config = new Configuration();
             config.setLocale(locale);
@@ -66,6 +67,7 @@ public class LoginActivity extends AppCompatActivity {
 
         btnEn.setOnClickListener(v->{
             Locale locale = new Locale("en");
+            LANGUAGE = "en";
             Locale.setDefault(locale);
             Configuration config = new Configuration();
             config.setLocale(locale);

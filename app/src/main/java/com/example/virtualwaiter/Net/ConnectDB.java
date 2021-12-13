@@ -2,6 +2,8 @@ package com.example.virtualwaiter.Net;
 
 import static com.example.virtualwaiter.Net.StaticData.IP;
 import static com.example.virtualwaiter.Net.StaticData.DB_NAME;
+import static com.example.virtualwaiter.Net.StaticData.LANGUAGE;
+
 import android.util.Log;
 
 import com.example.virtualwaiter.CommonClasses.Food;
@@ -87,14 +89,14 @@ public class ConnectDB {
         return info;
     }
 
-    public static ArrayList<Food> getMenu(int menuId) throws SQLException {
-        ArrayList<Food> menu_items = new ArrayList<>();
-        ResultSet rs = state.executeQuery("SELECT name, price, type, description, photoName FROM Food f INNER JOIN Menu_Food mf ON f.id = mf.FoodId WHERE mf.MenuId=" + menuId);
-        while (rs.next()) {
-            menu_items.add(new Food(rs.getString("name"), rs.getString("photoName"), rs.getDouble("price"), rs.getString("type"), rs.getString("description")));
-        }
-        return menu_items;
-    }
+//    public static ArrayList<Food> getMenu(int menuId) throws SQLException {
+//        ArrayList<Food> menu_items = new ArrayList<>();
+//        ResultSet rs = state.executeQuery("SELECT name, price, type, description, photoName FROM Food f INNER JOIN Menu_Food mf ON f.id = mf.FoodId WHERE mf.MenuId=" + menuId);
+//        while (rs.next()) {
+//            menu_items.add(new Food(rs.getString("name"), rs.getString("photoName"), rs.getDouble("price"), rs.getString("type"), rs.getString("description")));
+//        }
+//        return menu_items;
+//    }
 
     public static ArrayList<Integer> getFreeTables() {
         ArrayList<Integer> freeTables = new ArrayList<>();
@@ -125,7 +127,6 @@ public class ConnectDB {
         try{
             ResultSet rs = state.executeQuery("SELECT id, name FROM worker WHERE type = 'waiter'");
             while (rs.next()) {
-                Log.d("waiters", "jest cos" + rs.getInt("id"));
                 waitersID.add(rs.getInt("id"));
                 waitersName.add(rs.getString("name"));
             }
@@ -154,11 +155,14 @@ public class ConnectDB {
             ResultSet rs = state.executeQuery("SELECT * FROM food");
             while (rs.next()) {
                 Log.d("waiters", "jest cos" + rs.getInt("id"));
-                Food temp = new Food(rs.getString("name_pl"),
+                Food temp = new Food(rs.getString("name_"+LANGUAGE),
                         rs.getString("photoName"),
                         rs.getDouble("price"),
                         rs.getString("type"),
-                        rs.getString("description_pl"));
+                        rs.getString("description_"+LANGUAGE),
+                        rs.getInt("isVegan"),
+                        rs.getInt("isGlutenFree"),
+                        rs.getInt("isAlcoholic"));
                 foodList.add(temp);
             }
             status.add("success");

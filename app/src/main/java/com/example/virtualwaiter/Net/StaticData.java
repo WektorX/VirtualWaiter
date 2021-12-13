@@ -6,5 +6,6 @@ public class StaticData {
     public static  int WAITER_ID;
     public static String IP = "192.168.1.104";
     public static String DB_NAME = "projekt";
+    public static String LANGUAGE;
 
 }

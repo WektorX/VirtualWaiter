@@ -16,5 +16,7 @@
     <string name="plLanguage">PL</string>
     <string name="enLanguage">EN</string>
     <string name="choose_waiter">Choose waiter</string>
+    <string name="menu_dish_label">Dishes</string>
+    <string name="menu_drink_label">Drinks</string>
 
 </resources>

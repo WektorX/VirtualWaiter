@@ -11,15 +11,54 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
         <LinearLayout
-            android:id="@+id/MenuList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:background="@color/white"
             android:orientation="vertical">
 
+            <LinearLayout
+                android:id="@+id/MenuDishesList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:padding="15dp"
+                >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/menu_dish_label"
+                    android:fontFamily="@font/courgette"
+                    android:textSize="30sp"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    />
 
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/MenuDrinksList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:padding="15dp"
+                >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/menu_drink_label"
+                    android:fontFamily="@font/courgette"
+                    android:textSize="30sp"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    />
+
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 

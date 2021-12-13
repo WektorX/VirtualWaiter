@@ -19,12 +19,12 @@ public class OrderMenuActicity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_menu_acticity);
-        new getMenu().execute();
+        new getMenuDishes().execute();
 
     }
 
 
-    public class getMenu extends AsyncTask<Void, Void, Map<String, ArrayList<Object>>> {
+    public class getMenuDishes extends AsyncTask<Void, Void, Map<String, ArrayList<Object>>> {
 
         @Override
         protected Map<String, ArrayList<Object>> doInBackground(Void... voids) {
@@ -35,13 +35,19 @@ public class OrderMenuActicity extends AppCompatActivity {
         protected void onPostExecute(Map<String, ArrayList<Object>> o) {
 
             ArrayList<Object> food = o.get("food");
-            LinearLayout lv = findViewById(R.id.MenuList);
+            LinearLayout lvDishes = findViewById(R.id.MenuDishesList);
+            LinearLayout lvDrinks = findViewById(R.id.MenuDrinksList);
             for(Object f : food){
                 Food temp = (Food)f;
 
                 MenuItem tx = new MenuItem(OrderMenuActicity.this, (Food)f);
-              //  tx.setFoodName(((Food) f).getName());
-                lv.addView(tx);
+                if(((Food) f).getType().equals("dish")){
+                    lvDishes.addView(tx);
+                }
+                else{
+                    lvDrinks.addView(tx);
+                }
+
             }
 
         }
