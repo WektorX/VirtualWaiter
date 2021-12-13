@@ -1,5 +1,7 @@
-package com.example.virtualwaiter.DB;
+package com.example.virtualwaiter.Net;
 
+import static com.example.virtualwaiter.Net.StaticData.IP;
+import static com.example.virtualwaiter.Net.StaticData.DB_NAME;
 import android.util.Log;
 
 import com.example.virtualwaiter.CommonClasses.Food;
@@ -13,24 +15,23 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DB {
+public class ConnectDB {
 
     private static Connection con;
     private static Statement state;
-    private static String ip = "192.168.1.104";
-    private static String dbName = "projekt";
+
 
     public static String initConnection(){
         String status;
         try{
             Class.forName("com.mysql.jdbc.Driver");
             con= DriverManager.getConnection(
-                    "jdbc:mysql://"+ip+":3306/"+dbName,"root","");
+                    "jdbc:mysql://"+IP+":3306/"+DB_NAME,"root","");
             state = con.createStatement();
             status = "ok";
         }
         catch (Exception e){
-            Log.d("DB connection error" , e.toString());
+            Log.d("ConnectDB connection error" , e.toString());
             status = "error";
         }
         return status;
@@ -79,7 +80,7 @@ public class DB {
 
         }
         catch (Exception e){
-            Log.d("DB","Connection Failed " + e.toString());
+            Log.d("ConnectDB","Connection Failed " + e.toString());
             info.put("status", "Error");
             info.put("error", e.toString());
         }

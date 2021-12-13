@@ -4,14 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.TextView;
 
 import com.example.virtualwaiter.CommonClasses.Food;
-import com.example.virtualwaiter.DB.DB;
-import com.example.virtualwaiter.DB.StaticData;
+import com.example.virtualwaiter.Net.ConnectDB;
 import com.example.virtualwaiter.UI.Components.MenuItem;
 
 import java.util.ArrayList;
@@ -32,7 +28,7 @@ public class OrderMenuActicity extends AppCompatActivity {
 
         @Override
         protected Map<String, ArrayList<Object>> doInBackground(Void... voids) {
-            return DB.getFood();
+            return ConnectDB.getFood();
         }
 
         @Override
@@ -43,8 +39,8 @@ public class OrderMenuActicity extends AppCompatActivity {
             for(Object f : food){
                 Food temp = (Food)f;
 
-                MenuItem tx = new MenuItem(OrderMenuActicity.this);
-                tx.setFoodName(((Food) f).getName());
+                MenuItem tx = new MenuItem(OrderMenuActicity.this, (Food)f);
+              //  tx.setFoodName(((Food) f).getName());
                 lv.addView(tx);
             }
 

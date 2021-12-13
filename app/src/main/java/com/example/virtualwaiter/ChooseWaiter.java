@@ -11,13 +11,11 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
-import com.example.virtualwaiter.DB.DB;
-import com.example.virtualwaiter.DB.StaticData;
-import com.example.virtualwaiter.UI.Components.TableButton;
+import com.example.virtualwaiter.Net.ConnectDB;
+import com.example.virtualwaiter.Net.StaticData;
 import com.example.virtualwaiter.UI.Components.WaiterButton;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 
 public class ChooseWaiter extends AppCompatActivity {
@@ -64,7 +62,7 @@ public class ChooseWaiter extends AppCompatActivity {
 
         @Override
         protected Map<String, ArrayList<Object>> doInBackground(Void... voids) {
-            return DB.getWaitersList();
+            return ConnectDB.getWaitersList();
         }
 
         @Override

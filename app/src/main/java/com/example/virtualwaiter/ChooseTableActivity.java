@@ -1,21 +1,17 @@
 package com.example.virtualwaiter;
 
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.virtualwaiter.DB.DB;
-import com.example.virtualwaiter.DB.StaticData;
-import com.example.virtualwaiter.UI.Actions.Login;
+import com.example.virtualwaiter.Net.ConnectDB;
+import com.example.virtualwaiter.Net.StaticData;
 import com.example.virtualwaiter.UI.Components.TableButton;
 
 import java.util.ArrayList;
@@ -57,7 +53,7 @@ public class ChooseTableActivity extends AppCompatActivity {
 
         @Override
         protected Object doInBackground(Object[] objects) {
-            return DB.getFreeTables();
+            return ConnectDB.getFreeTables();
         }
 
         @Override

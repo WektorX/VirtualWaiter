@@ -8,7 +8,7 @@ import android.widget.ScrollView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.virtualwaiter.CommonClasses.Food;
-import com.example.virtualwaiter.DB.DB;
+import com.example.virtualwaiter.Net.ConnectDB;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -20,7 +20,7 @@ public class FoodMenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_food_menu);
 
         try {
-            ArrayList<Food> menu_items = DB.getMenu(1);
+            ArrayList<Food> menu_items = ConnectDB.getMenu(1);
 
             for (Food f : menu_items
             ) {

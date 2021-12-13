@@ -3,11 +3,8 @@ package com.example.virtualwaiter;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,7 +12,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.virtualwaiter.DB.DB;
+import com.example.virtualwaiter.Net.ConnectDB;
 import com.example.virtualwaiter.UI.Actions.Login;
 
 import java.util.Locale;
@@ -90,7 +87,7 @@ public class LoginActivity extends AppCompatActivity {
 
         @Override
         protected Object doInBackground(Object[] objects) {
-            String status = DB.initConnection();
+            String status = ConnectDB.initConnection();
             Context context = LoginActivity.this;
             if (context != null) {
                 if (status.equals("error")) {

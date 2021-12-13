@@ -7,7 +7,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.example.virtualwaiter.ChefMainActivity;
-import com.example.virtualwaiter.DB.DB;
+import com.example.virtualwaiter.Net.ConnectDB;
 import com.example.virtualwaiter.FoodMenuActivity;
 import com.example.virtualwaiter.ManagerMainActivity;
 import com.example.virtualwaiter.WaiterMainActivity;
@@ -58,7 +58,7 @@ private void loginResult(String status, Boolean succesfulLogin, String workerTyp
                     Log.d("Worker type", workerType);
                     break;
                 case "table":
-                    DB.setWaiterToTable(420);
+                    ConnectDB.setWaiterToTable(420);
                     i = new Intent(context, FoodMenuActivity.class);
                     Log.d("Worker type", workerType);
                     break;
@@ -85,7 +85,7 @@ private void loginResult(String status, Boolean succesfulLogin, String workerTyp
 
         @Override
         protected Map<String, String> doInBackground(Void... voids) {
-            return DB.login(userName,password, table);
+            return ConnectDB.login(userName,password, table);
         }
 
         @Override

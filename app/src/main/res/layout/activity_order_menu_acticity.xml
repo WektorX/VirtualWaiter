@@ -7,13 +7,21 @@
     android:orientation="vertical"
     tools:context=".OrderMenuActicity">
 
-
-    <LinearLayout
-        android:id="@+id/MenuList"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-    </LinearLayout>
+        <LinearLayout
+            android:id="@+id/MenuList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
 </LinearLayout>
