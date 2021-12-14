@@ -16,6 +16,8 @@ import androidx.core.content.res.ResourcesCompat;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.virtualwaiter.CommonClasses.Dish;
+import com.example.virtualwaiter.CommonClasses.Drink;
 import com.example.virtualwaiter.CommonClasses.Food;
 import com.example.virtualwaiter.R;
 
@@ -40,21 +42,26 @@ public class MenuItem  extends CardView {
         setLayout();
         setFoodImage(f.getPhotoName());
         setFoodName(f.getName());
-        setFoodDescription(f.getDescription());
+        if(f instanceof Dish){
+            setFoodDescription(((Dish) f).getDescription());
+        }
 
         setPrice(f.getPrice());
-        if(f.getGlutenFree()){
-            setStamp("gluten");
+
+        if(f instanceof  Dish){
+            if(((Dish)f).getGlutenFree()){
+                setStamp("gluten");
+            }
+            if(((Dish)f).getVegan()){
+                setStamp("vegan");
+            }
         }
-        if(f.getVegan()){
-            setStamp("vegan");
-        }
-        if(f.getType().equals("drink") && !f.getAlcoholic()){
-            setStamp("alcoholic");
+    else{
+            if(!((Drink)f).getAlcoholic()){
+                setStamp("alcoholic");
+            }
         }
 
-
-     //   ly.addView(additionalInfo);
     }
 
 

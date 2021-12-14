@@ -37,7 +37,8 @@ public class ChooseTableActivity extends AppCompatActivity {
             button.setId(tableId);
             button.setOnClickListener(v -> {
 
-                StaticData.TABLE_NUMBER = button.getId();
+//                StaticData.TABLE_NUMBER = button.getId();
+                StaticData.TABLE.setTableId(button.getId());
                 Intent i = new Intent(ChooseTableActivity.this, ChooseWaiter.class);
                 ChooseTableActivity.this.startActivity(i);
             });

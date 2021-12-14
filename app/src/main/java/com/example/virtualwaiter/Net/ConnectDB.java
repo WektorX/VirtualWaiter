@@ -3,10 +3,14 @@ package com.example.virtualwaiter.Net;
 import static com.example.virtualwaiter.Net.StaticData.IP;
 import static com.example.virtualwaiter.Net.StaticData.DB_NAME;
 import static com.example.virtualwaiter.Net.StaticData.LANGUAGE;
+import static com.example.virtualwaiter.Net.StaticData.MENU;
 
 import android.util.Log;
 
+import com.example.virtualwaiter.CommonClasses.Dish;
+import com.example.virtualwaiter.CommonClasses.Drink;
 import com.example.virtualwaiter.CommonClasses.Food;
+import com.example.virtualwaiter.CommonClasses.Menu;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -145,37 +149,36 @@ public class ConnectDB {
 
     }
 
-    public static Map<String, ArrayList<Object>> getFood() {
+    public static String getFood() {
 
-        ArrayList<Object> foodList = new ArrayList<>();
-        ArrayList<Object> status = new ArrayList<>();
-        HashMap<String, ArrayList<Object>> food = new HashMap<>();
-
+        MENU = new Menu();
         try{
             ResultSet rs = state.executeQuery("SELECT * FROM food");
             while (rs.next()) {
-                Log.d("waiters", "jest cos" + rs.getInt("id"));
-                Food temp = new Food(rs.getString("name_"+LANGUAGE),
-                        rs.getString("photoName"),
-                        rs.getDouble("price"),
-                        rs.getString("type"),
-                        rs.getString("description_"+LANGUAGE),
-                        rs.getInt("isVegan"),
-                        rs.getInt("isGlutenFree"),
-                        rs.getInt("isAlcoholic"));
-                foodList.add(temp);
-            }
-            status.add("success");
-            food.put("status", status);
-            food.put("food", foodList);
 
-            return  food;
+                if(rs.getString("type").equals("dish")){
+                    Dish d = new Dish(rs.getString("name_" + LANGUAGE),
+                            rs.getString("photoName"),
+                            rs.getDouble("price"),
+                            rs.getString("description_" + LANGUAGE),
+                            rs.getInt("isVegan"),
+                            rs.getInt("isGlutenFree"));
+                    MENU.addDish(d);
+                }
+                else{
+                    Drink d = new Drink(rs.getString("name_" + LANGUAGE),
+                            rs.getString("photoName"),
+                            rs.getDouble("price"),
+                            rs.getInt("isAlcoholic"));
+                    MENU.addDrink(d);
+                }
+            }
+
+            return  "success";
         }
         catch(Exception e){
             Log.d("Error food", e.toString());
-            status.add("error");
-            food.put("status", status);
-            return food;
+            return "error";
         }
 
 

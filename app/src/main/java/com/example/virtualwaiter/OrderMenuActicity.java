@@ -4,14 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.LinearLayout;
-
-import com.example.virtualwaiter.CommonClasses.Food;
+import static com.example.virtualwaiter.Net.StaticData.MENU;
 import com.example.virtualwaiter.Net.ConnectDB;
 import com.example.virtualwaiter.UI.Components.MenuItem;
-
-import java.util.ArrayList;
-import java.util.Map;
 
 public class OrderMenuActicity extends AppCompatActivity {
 
@@ -24,31 +21,34 @@ public class OrderMenuActicity extends AppCompatActivity {
     }
 
 
-    public class getMenuDishes extends AsyncTask<Void, Void, Map<String, ArrayList<Object>>> {
+    public class getMenuDishes extends AsyncTask {
 
         @Override
-        protected Map<String, ArrayList<Object>> doInBackground(Void... voids) {
+        protected String doInBackground(Object... objects) {
             return ConnectDB.getFood();
         }
 
         @Override
-        protected void onPostExecute(Map<String, ArrayList<Object>> o) {
-
-            ArrayList<Object> food = o.get("food");
+        protected void onPostExecute(Object o) {
+            Log.d("menu", (String) o);
+            if(o.equals("success")){
             LinearLayout lvDishes = findViewById(R.id.MenuDishesList);
             LinearLayout lvDrinks = findViewById(R.id.MenuDrinksList);
-            for(Object f : food){
-                Food temp = (Food)f;
+            Log.d("dish", MENU.getDishList().toString());
+                Log.d("dish", MENU.getDrinksList().toString());
 
-                MenuItem tx = new MenuItem(OrderMenuActicity.this, (Food)f);
-                if(((Food) f).getType().equals("dish")){
-                    lvDishes.addView(tx);
-                }
-                else{
-                    lvDrinks.addView(tx);
-                }
+            for(int i =0;i<MENU.getDishList().size();i++){
+                MenuItem tx = new MenuItem(OrderMenuActicity.this, MENU.getDishList().get(i));
+                lvDishes.addView(tx);
+            }
+
+            for(int i =0;i<MENU.getDrinksList().size();i++){
+                MenuItem tx = new MenuItem(OrderMenuActicity.this, MENU.getDrinksList().get(i));
+                lvDrinks.addView(tx);
+            }
 
             }
+
 
         }
 

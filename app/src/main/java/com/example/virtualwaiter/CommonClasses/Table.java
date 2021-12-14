@@ -1,0 +1,34 @@
+package com.example.virtualwaiter.CommonClasses;
+
+public class Table {
+
+    private int tableId;
+    private int numberOfSeats;
+    private int waiterId;
+
+    public Table(){};
+
+    public int getTableId() {
+        return tableId;
+    }
+
+    public void setTableId(int tableId) {
+        this.tableId = tableId;
+    }
+
+    public int getNumberOfSeats() {
+        return numberOfSeats;
+    }
+
+    public void setNumberOfSeats(int numberOfSeats) {
+        this.numberOfSeats = numberOfSeats;
+    }
+
+    public int getWaiterId() {
+        return waiterId;
+    }
+
+    public void setWaiterId(int waiterId) {
+        this.waiterId = waiterId;
+    }
+}

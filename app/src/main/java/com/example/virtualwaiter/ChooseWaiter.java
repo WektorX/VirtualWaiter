@@ -30,7 +30,6 @@ public class ChooseWaiter extends AppCompatActivity {
 
     private void generateButtons(Map<String, ArrayList<Object>> waiters){
         if(waiters.get("status").get(0).toString().equals("success")){
-            Log.d("waiters", "tworze buttony");
             ProgressBar pb = findViewById(R.id.pbWaiters);
             pb.setVisibility(View.GONE);
             ArrayList<Object> waitersName = waiters.get("name");
@@ -42,7 +41,8 @@ public class ChooseWaiter extends AppCompatActivity {
                 button.setId((Integer) waitersId.get(i));
                 button.setOnClickListener(v -> {
 
-                    StaticData.WAITER_ID = v.getId();
+//                    StaticData.WAITER_ID = v.getId();
+                    StaticData.TABLE.setWaiterId(v.getId());
                     Intent intent = new Intent(ChooseWaiter.this, OrderMenuActicity.class);
                     startActivity(intent);
 
