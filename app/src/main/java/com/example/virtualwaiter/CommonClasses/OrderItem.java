@@ -1,14 +1,16 @@
 package com.example.virtualwaiter.CommonClasses;
 
+import java.math.BigDecimal;
+
 public class OrderItem {
 
     private Food item;
     private int amount;
-    private double total;
+    private BigDecimal total;
 
 
     public OrderItem(){
-        this.total = 0.0;
+        this.total = BigDecimal.valueOf(0);
         this.amount = 0;
     }
 
@@ -37,7 +39,7 @@ public class OrderItem {
     }
 
     private void calculateTotal(){
-        this.total = (this.item.getPrice() * amount);
+        this.total = (this.item.getPrice().multiply(BigDecimal.valueOf(amount)));
     }
 
     public String getItemName(){
@@ -48,7 +50,11 @@ public class OrderItem {
         return amount;
     }
 
-    public double getTotal() {
+    public String getFoodName(){
+        return  item.getName();
+    }
+
+    public BigDecimal getTotal() {
         return total;
     }
 }

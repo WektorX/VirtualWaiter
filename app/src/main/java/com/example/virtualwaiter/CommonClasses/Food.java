@@ -1,15 +1,20 @@
 package com.example.virtualwaiter.CommonClasses;
 
+import android.util.Log;
+
+import java.math.BigDecimal;
+
 public class Food extends Object{
     private String name;
     private String photoName;
-    private double price;
+    private BigDecimal price;
 
 
     public Food(String name, String photoName, double price) {
         this.name = name;
         this.photoName = photoName;
-        this.price = price;
+        this.price = BigDecimal.valueOf(price);
+        Log.d("item" , price +"zł");
 
     }
 
@@ -17,7 +22,7 @@ public class Food extends Object{
         return name;
     }
 
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 

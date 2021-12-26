@@ -9,4 +9,8 @@
     <color name="white">#FFFFFFFF</color>
     <color name="transparent">#00000000</color>
     <color name="FoodItem_background">#F5F8FF</color>
+    <color name="orange">#FFB145</color>
+    <color name="orange_light">#FFDE79</color>
+    <color name="remove_btn_color">#FA4F65</color>
+    <color name="remove_btn_color_dark">#B53645</color>
 </resources>

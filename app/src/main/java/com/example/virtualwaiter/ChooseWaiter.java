@@ -41,7 +41,6 @@ public class ChooseWaiter extends AppCompatActivity {
                 button.setId((Integer) waitersId.get(i));
                 button.setOnClickListener(v -> {
 
-//                    StaticData.WAITER_ID = v.getId();
                     StaticData.TABLE.setWaiterId(v.getId());
                     Intent intent = new Intent(ChooseWaiter.this, OrderMenuActicity.class);
                     startActivity(intent);

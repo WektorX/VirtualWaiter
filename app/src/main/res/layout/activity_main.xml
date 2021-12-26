@@ -11,7 +11,7 @@
         android:id="@+id/tvAppName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="236dp"
+        android:layout_marginBottom="220dp"
         android:fontFamily="@font/courgette"
         android:text="@string/app_name"
         android:textColor="@color/white"
@@ -26,11 +26,13 @@
         android:id="@+id/ivLogo"
         android:layout_width="408dp"
         android:layout_height="440dp"
+        android:contentDescription="@string/app_name"
         android:src="@drawable/icon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="@string/app_name"/>
+        app:layout_constraintVertical_bias="0.498" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
