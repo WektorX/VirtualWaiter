@@ -8,7 +8,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -80,8 +79,6 @@ public class MenuItem  extends CardView {
     }
 
 
-
-
     private void setLayout() {
         ly = new LinearLayout(context);
         ly.setGravity(TEXT_ALIGNMENT_CENTER);
@@ -97,9 +94,7 @@ public class MenuItem  extends CardView {
             ImageView img = new ImageView(context);
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 400);
             img.setScaleType(ImageView.ScaleType.CENTER_CROP);
-
             img.setLayoutParams(params);
-
             RequestOptions rqOpt = new RequestOptions();
             rqOpt.placeholder(R.drawable.waiter_icon);
             rqOpt.error(R.drawable.waiter_icon);
@@ -109,10 +104,7 @@ public class MenuItem  extends CardView {
                     .apply(rqOpt)
                     .into(img);
             ly.addView(img);
-
         }
-
-
     }
 
 
@@ -127,9 +119,7 @@ public class MenuItem  extends CardView {
         foodName.setTextAlignment(TEXT_ALIGNMENT_CENTER);
         foodName.setTextSize(20);
         Typeface tf = ResourcesCompat.getFont(context, R.font.nova_flat);
-
         foodName.setTypeface(tf);
-//        foodName.setText
         ly.addView(foodName);
     }
 
@@ -141,7 +131,6 @@ public class MenuItem  extends CardView {
         params.topMargin = 10;
         foodDescription.setLayoutParams(params);
         foodDescription.setPadding(15,15,15,15);
-//        foodDescription.setTextAlignment(TEXT_ALIGNMENT_CENTER);
         ly.addView(foodDescription);
     }
 
@@ -152,14 +141,10 @@ public class MenuItem  extends CardView {
         pr.weight = 1;
         additionalInfo.setPadding(20,20,20,20);
         additionalInfo.setLayoutParams(pr);
-
-
         stampsView = new LinearLayout(context);
         stampsView.setOrientation(LinearLayout.HORIZONTAL);
         stampsView.setLayoutParams(pr);
         additionalInfo.addView(stampsView);
-
-
         TextView foodPrice = new TextView(context);
         foodPrice.setText(df.format(price) +" zł");
         foodPrice.setTextColor(context.getColor(R.color.black));
@@ -170,9 +155,7 @@ public class MenuItem  extends CardView {
         foodPrice.setLayoutParams(params);
         foodPrice.setTextAlignment(TEXT_ALIGNMENT_TEXT_END);
         additionalInfo.addView(foodPrice);
-
         ly.addView(additionalInfo);
-
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")
@@ -191,7 +174,6 @@ public class MenuItem  extends CardView {
 
         icon.setScaleType(ImageView.ScaleType.FIT_CENTER);
         LinearLayout.LayoutParams pr = new LinearLayout.LayoutParams(100,100);
-    //    pr.weight = 1;
         icon.setLayoutParams(pr);
         stampsView.addView(icon);
     }

@@ -16,4 +16,6 @@
     <string name="choose_waiter">Wybierz kelnera</string>
     <string name="menu_dish_label">Potrawy</string>
     <string name="menu_drink_label">Napoje</string>
+    <string name="menu_tab">Lista dań</string>
+    <string name="order_tab">Zamówienie</string>
 </resources>

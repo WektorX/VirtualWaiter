@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.virtualwaiter" >
+    package="com.example.virtualwaiter">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -11,11 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.VirtualWaiter"
-        android:usesCleartextTraffic="true" >
-
+        android:usesCleartextTraffic="true">
         <activity
-            android:name=".OrderMenuActicity"
+            android:name=".MenuAndOrderActivity"
             android:exported="false" />
+
         <activity
             android:name=".ChooseWaiter"
             android:exported="false" />
@@ -36,7 +36,7 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

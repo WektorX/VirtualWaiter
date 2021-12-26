@@ -14,8 +14,6 @@ public class Food extends Object{
         this.name = name;
         this.photoName = photoName;
         this.price = BigDecimal.valueOf(price);
-        Log.d("item" , price +"zł");
-
     }
 
     public String getName() {

@@ -39,7 +39,6 @@ public class Order {
             itemsList.get(itemIndex).addToOrder();
         }
         total = new BigDecimal(this.total.doubleValue()).add(item.getPrice());
-        Log.d("Order" , " dodano");
 
     }
 
@@ -58,7 +57,6 @@ public class Order {
             if(itemsList.get(itemIndex).getAmount() == 0){
                 itemsList.remove(itemIndex);
             }
-
             total = new BigDecimal(total.doubleValue()).subtract(item.getPrice());
         }
     }
