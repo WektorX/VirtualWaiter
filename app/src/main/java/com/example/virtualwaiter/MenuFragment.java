@@ -37,9 +37,7 @@ public class MenuFragment extends Fragment {
         this.context = c;
     }
 
-    public MenuFragment(){
-
-    }
+    public MenuFragment(){}
 
     /**
      * Use this factory method to create a new instance of

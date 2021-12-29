@@ -75,4 +75,8 @@ public class Order {
     public ArrayList<OrderItem> getList(){
         return this.itemsList;
     }
+
+    public BigDecimal getTotal(){
+        return  total;
+    }
 }

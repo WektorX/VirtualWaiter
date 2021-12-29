@@ -13,4 +13,5 @@
     <color name="orange_light">#FFDE79</color>
     <color name="remove_btn_color">#FA4F65</color>
     <color name="remove_btn_color_dark">#B53645</color>
+    <color name="order_card_background">#47000000</color>
 </resources>

@@ -18,4 +18,7 @@
     <string name="menu_drink_label">Napoje</string>
     <string name="menu_tab">Lista dań</string>
     <string name="order_tab">Zamówienie</string>
+    <string name="table_capacity">osobowy</string>
+    <string name="total_label">Suma:</string>
+    <string name="place_order_btn">Złóż zamówienie</string>
 </resources>

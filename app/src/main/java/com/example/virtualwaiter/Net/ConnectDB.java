@@ -11,6 +11,7 @@ import com.example.virtualwaiter.CommonClasses.Dish;
 import com.example.virtualwaiter.CommonClasses.Drink;
 import com.example.virtualwaiter.CommonClasses.Food;
 import com.example.virtualwaiter.CommonClasses.Menu;
+import com.example.virtualwaiter.CommonClasses.Table;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -102,12 +103,13 @@ public class ConnectDB {
 //        return menu_items;
 //    }
 
-    public static ArrayList<Integer> getFreeTables() {
-        ArrayList<Integer> freeTables = new ArrayList<>();
+    public static ArrayList<Table> getFreeTables() {
+        ArrayList<Table> freeTables = new ArrayList<>();
         try{
-            ResultSet rs = state.executeQuery("SELECT id FROM `table`");
+            ResultSet rs = state.executeQuery("SELECT id, numberOfSeats FROM `table`");
             while (rs.next()) {
-                freeTables.add(rs.getInt("id"));
+                Table temp = new Table(rs.getInt("id"), rs.getInt("numberOfSeats"));
+                freeTables.add(temp);
             }
         }
         catch(Exception e){

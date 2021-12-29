@@ -12,4 +12,6 @@ public class StaticData {
     public static Menu MENU = new Menu();
     public static Table TABLE = new Table();
     public static Order ORDER = new Order();
+    public static int DEVICE_WIDTH;
+    public static int DEVICE_HEIGHT;
 }

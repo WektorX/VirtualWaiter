@@ -3,6 +3,7 @@ package com.example.virtualwaiter;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.DisplayMetrics;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -10,9 +11,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import static com.example.virtualwaiter.Net.StaticData.DEVICE_HEIGHT;
+import static com.example.virtualwaiter.Net.StaticData.DEVICE_WIDTH;
 import static com.example.virtualwaiter.Net.StaticData.LANGUAGE;
 
 import java.util.Locale;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -41,6 +46,13 @@ public class MainActivity extends AppCompatActivity {
             finish();
         },SPLASH_SCREEN);
 
+
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        int height = displayMetrics.heightPixels;
+        int width = displayMetrics.widthPixels;
+        DEVICE_HEIGHT = height;
+        DEVICE_WIDTH = width;
     }
 
 

@@ -18,7 +18,7 @@
         <LinearLayout
             android:id="@+id/buttons_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center"            >
 
@@ -42,9 +42,16 @@
                 android:layout_height="77dp"
                 android:layout_marginTop="250dp" />
 
-
-
+            <GridLayout
+                android:id="@+id/tables_gallery"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="2"
+                android:stretchMode="columnWidth"
+                android:gravity="center"
+                />
         </LinearLayout>
+
     </ScrollView>
 
 </LinearLayout>

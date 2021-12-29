@@ -7,7 +7,10 @@ public class Table {
     private int waiterId;
 
     public Table(){};
-
+    public Table(int id, int number){
+        this.tableId = id;
+        this.numberOfSeats = number;
+    }
     public int getTableId() {
         return tableId;
     }

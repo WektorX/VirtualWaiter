@@ -42,6 +42,10 @@ public class OrderItem {
         this.total = (this.item.getPrice().multiply(BigDecimal.valueOf(amount)));
     }
 
+    public BigDecimal getPriceOfItem(){
+        return  item.getPrice();
+    }
+
     public String getItemName(){
         return this.item.getName();
     }

@@ -23,7 +23,7 @@ public class ViewPagerAdapter extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         switch (position){
             case 1:
-                return new OrderFragment();
+                return new OrderFragment(context);
             default:
                 return new MenuFragment(context);
         }
