@@ -61,4 +61,8 @@ public class OrderItem {
     public BigDecimal getTotal() {
         return total;
     }
+
+    public int getFoodId(){
+        return item.getId();
+    }
 }

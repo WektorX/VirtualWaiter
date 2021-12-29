@@ -30,8 +30,8 @@ public class Dish extends Food{
     private Boolean isVegan;
     private Boolean glutenFree;
 
-    public Dish(String name, String photoName, double price, String description, Integer vegan, Integer gluten) {
-        super(name, photoName, price);
+    public Dish(String name, String photoName, double price, String description, Integer vegan, Integer gluten, Integer id) {
+        super(name, photoName, price, id);
         this.description = description;
         this.isVegan = (vegan == 1);
         this.glutenFree = (gluten == 1);

@@ -14,4 +14,7 @@
     <color name="remove_btn_color">#FA4F65</color>
     <color name="remove_btn_color_dark">#B53645</color>
     <color name="order_card_background">#47000000</color>
+    <color name="order_status_ready">#237710</color>
+    <color name="order_status_await">#FF9800</color>
+
 </resources>

@@ -13,9 +13,11 @@
         android:theme="@style/Theme.VirtualWaiter"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".OrderStatusActivity"
+            android:exported="false" />
+        <activity
             android:name=".MenuAndOrderActivity"
             android:exported="false" />
-
         <activity
             android:name=".ChooseWaiter"
             android:exported="false" />

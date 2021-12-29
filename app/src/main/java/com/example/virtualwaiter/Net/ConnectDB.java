@@ -11,14 +11,22 @@ import com.example.virtualwaiter.CommonClasses.Dish;
 import com.example.virtualwaiter.CommonClasses.Drink;
 import com.example.virtualwaiter.CommonClasses.Food;
 import com.example.virtualwaiter.CommonClasses.Menu;
+import com.example.virtualwaiter.CommonClasses.OrderItem;
 import com.example.virtualwaiter.CommonClasses.Table;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -94,14 +102,6 @@ public class ConnectDB {
         return info;
     }
 
-//    public static ArrayList<Food> getMenu(int menuId) throws SQLException {
-//        ArrayList<Food> menu_items = new ArrayList<>();
-//        ResultSet rs = state.executeQuery("SELECT name, price, type, description, photoName FROM Food f INNER JOIN Menu_Food mf ON f.id = mf.FoodId WHERE mf.MenuId=" + menuId);
-//        while (rs.next()) {
-//            menu_items.add(new Food(rs.getString("name"), rs.getString("photoName"), rs.getDouble("price"), rs.getString("type"), rs.getString("description")));
-//        }
-//        return menu_items;
-//    }
 
     public static ArrayList<Table> getFreeTables() {
         ArrayList<Table> freeTables = new ArrayList<>();
@@ -164,14 +164,16 @@ public class ConnectDB {
                             rs.getDouble("price"),
                             rs.getString("description_" + LANGUAGE),
                             rs.getInt("isVegan"),
-                            rs.getInt("isGlutenFree"));
+                            rs.getInt("isGlutenFree"),
+                            rs.getInt("id"));
                     MENU.addDish(d);
                 }
                 else{
                     Drink d = new Drink(rs.getString("name_" + LANGUAGE),
                             rs.getString("photoName"),
                             rs.getDouble("price"),
-                            rs.getInt("isAlcoholic"));
+                            rs.getInt("isAlcoholic"),
+                            rs.getInt("id"));
                     MENU.addDrink(d);
                 }
             }
@@ -183,7 +185,72 @@ public class ConnectDB {
             return "error";
         }
 
+    }
 
+
+    public static String placeOrder() {
+
+
+        try{
+            DecimalFormat df = new DecimalFormat("0.00");
+            double total = StaticData.ORDER.getTotal().doubleValue();
+            java.sql.Timestamp now = new java.sql.Timestamp(new Date().getTime());
+
+
+            int tableId = StaticData.ORDER.getTable().getTableId();
+            int waiterId = StaticData.ORDER.getTable().getWaiterId();
+
+            String quertUpdate = "UPDATE `table` SET WaiterId = "+waiterId+" WHERE `table`.id = "+tableId+";";
+            state.executeUpdate(quertUpdate);
+            String queryInser = "" +
+                    "INSERT INTO `order` " +
+                    "(id, totalPrice, status, splitBillTo, date, Tableid, WaiterId)" +
+                    " VALUES (NULL,"+total+", 'received', NULL,'"+now+"', "+tableId+", "+waiterId+");";
+
+
+            Log.d("query", queryInser);
+            state.executeUpdate(queryInser);
+            ResultSet rs = state.executeQuery("SELECT id FROM `order` WHERE tableid ="+tableId+" ORDER BY id DESC LIMIT 1;");
+            int orderId = 0;
+            while (rs.next()) {
+                orderId = rs.getInt("id");
+
+            }
+            StaticData.ORDER.setId(orderId);
+            Log.d("order id" , orderId + " ");
+
+            for(OrderItem item : StaticData.ORDER.getList()){
+                state.executeUpdate("INSERT INTO `order item` (Orderid, Foodid, amount) " +
+                        "VALUES ("+orderId+","+item.getFoodId()+","+item.getAmount()+");");
+            }
+
+
+            return  "success";
+        }
+        catch(Exception e){
+            Log.d("Error place order", e.toString());
+            return "error";
+        }
+
+    }
+
+
+    public static String getOrderStatus() {
+
+        try{
+
+            ResultSet rs = state.executeQuery("SELECT status FROM `order` WHERE id ="+StaticData.ORDER.getId()+"");
+            String status = null;
+            while (rs.next()) {
+                status = rs.getString("status");
+            }
+
+            return  status;
+        }
+        catch(Exception e){
+            Log.d("Error place order", e.toString());
+            return "error";
+        }
 
     }
 }

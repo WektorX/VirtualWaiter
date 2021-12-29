@@ -2,6 +2,8 @@ package com.example.virtualwaiter.CommonClasses;
 
 import android.util.Log;
 
+import com.google.android.material.tabs.TabLayout;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
@@ -20,8 +22,19 @@ public class Order {
         this.total = BigDecimal.valueOf(0.0);
     }
 
+    public void setId(int id){
+        this.id = id;
+    }
+    public int getId(){
+        return id;
+    }
+
     public  void setTable(Table t){
         table = t;
+    }
+
+    public Table getTable(){
+        return table;
     }
 
     public void addToOrder(Food item){

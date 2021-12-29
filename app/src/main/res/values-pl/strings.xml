@@ -21,4 +21,7 @@
     <string name="table_capacity">osobowy</string>
     <string name="total_label">Suma:</string>
     <string name="place_order_btn">Złóż zamówienie</string>
+    <string name="status_order_placed">Złożono zamówienie</string>
+    <string name="status_order_in_progress">Przygotowywanie zamówienia</string>
+    <string name="status_order_ready">Gotowe</string>
 </resources>

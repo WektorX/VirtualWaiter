@@ -30,5 +30,8 @@
     <string name="table_capacity">person</string>
     <string name="total_label">Total:</string>
     <string name="place_order_btn">Place order</string>
+    <string name="status_order_placed">Order placed</string>
+    <string name="status_order_in_progress">In progress</string>
+    <string name="status_order_ready">Ready</string>
 
 </resources>

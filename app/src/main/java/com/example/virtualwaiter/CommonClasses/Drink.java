@@ -2,8 +2,8 @@ package com.example.virtualwaiter.CommonClasses;
 
 public class Drink extends Food{
     private Boolean isAlcoholic;
-    public Drink(String name, String photoName, double price, Integer alcoholic) {
-        super(name, photoName, price);
+    public Drink(String name, String photoName, double price, Integer alcoholic, Integer id) {
+        super(name, photoName, price, id);
         this.isAlcoholic= (alcoholic == 1);
     }
 
