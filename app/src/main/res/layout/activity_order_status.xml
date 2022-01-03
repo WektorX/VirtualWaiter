@@ -23,7 +23,7 @@
         android:layout_weight="1"
         android:textSize="@dimen/order_status_text_size"
         android:background="@color/order_status_ready"
-        ></TextView>
+        />
 
     <TextView
         android:layout_width="match_parent"
@@ -37,7 +37,7 @@
         android:textSize="@dimen/order_status_text_size"
         android:background="@color/order_status_await"
 
-        ></TextView>
+        />
 
     <TextView
         android:layout_width="match_parent"
@@ -51,7 +51,7 @@
         android:textSize="@dimen/order_status_text_size"
         android:background="@color/order_status_await"
 
-        ></TextView>
+        />
 
 
 </LinearLayout>

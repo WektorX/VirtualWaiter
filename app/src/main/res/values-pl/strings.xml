@@ -24,4 +24,8 @@
     <string name="status_order_placed">Złożono zamówienie</string>
     <string name="status_order_in_progress">Przygotowywanie zamówienia</string>
     <string name="status_order_ready">Gotowe</string>
+    <string name="waiter_tab_current">Aktywne zamówienia</string>
+    <string name="waiter_tab_past">Zrealizowane zamówienia</string>
+    <string name="waiter_delivered">Dostarczone</string>
+    <string name="waiter_paid">Opłacone</string>
 </resources>

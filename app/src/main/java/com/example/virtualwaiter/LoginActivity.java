@@ -81,11 +81,6 @@ public class LoginActivity extends AppCompatActivity {
 
 
     public class initDB extends AsyncTask {
-//        private WeakReference<Context> contextRef;
-//
-//        public initDB(Context context) {
-//            contextRef = new WeakReference<>(context);
-//        }
 
         @Override
         protected Object doInBackground(Object[] objects) {

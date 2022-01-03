@@ -10,6 +10,7 @@ import com.example.virtualwaiter.ChefMainActivity;
 import com.example.virtualwaiter.Net.ConnectDB;
 import com.example.virtualwaiter.FoodMenuActivity;
 import com.example.virtualwaiter.ManagerMainActivity;
+import com.example.virtualwaiter.Net.StaticData;
 import com.example.virtualwaiter.WaiterMainActivity;
 
 import java.sql.SQLException;
@@ -58,7 +59,7 @@ private void loginResult(String status, Boolean succesfulLogin, String workerTyp
                     Log.d("Worker type", workerType);
                     break;
                 case "table":
-                    ConnectDB.setWaiterToTable(420);
+                   // ConnectDB.setWaiterToTable(420);
                     i = new Intent(context, FoodMenuActivity.class);
                     Log.d("Worker type", workerType);
                     break;
@@ -91,14 +92,17 @@ private void loginResult(String status, Boolean succesfulLogin, String workerTyp
         @Override
         protected void onPostExecute(Map<String, String> result) {
             String status = result.get("status");
-            Boolean login = Boolean.valueOf(result.get("login"));
-            String type = result.get("type");
-            try {
-                assert status != null;
-                Login.this.loginResult(status,login,type);
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
+            Log.d("status", status);
+                Boolean login = Boolean.valueOf(result.get("login"));
+                String type = result.get("type");
+                int id = Integer.valueOf(result.get("id"));
+                StaticData.WORKER_ID = id;
+                try {
+                    assert status != null;
+                    Login.this.loginResult(status,login,type);
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
         }
     }
 }

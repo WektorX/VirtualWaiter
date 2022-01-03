@@ -11,6 +11,7 @@ import com.example.virtualwaiter.CommonClasses.Dish;
 import com.example.virtualwaiter.CommonClasses.Drink;
 import com.example.virtualwaiter.CommonClasses.Food;
 import com.example.virtualwaiter.CommonClasses.Menu;
+import com.example.virtualwaiter.CommonClasses.Order;
 import com.example.virtualwaiter.CommonClasses.OrderItem;
 import com.example.virtualwaiter.CommonClasses.Table;
 
@@ -57,38 +58,49 @@ public class ConnectDB {
 
         Map<String, String> info = new HashMap<>();
         try{
-            ResultSet s = state.executeQuery("SELECT EXISTS(SELECT id FROM worker WHERE login='"+username+"' AND password='"+password+"');");
+            ResultSet s = state.executeQuery("SELECT EXISTS(SELECT id FROM worker WHERE login='"+username+"' AND password='"+password+"') AS loggedIn;");
             if(s.next()){
-                info.put("status", "success");
-                if(s.getInt(1) == 1){
-                    ResultSet worker = state.executeQuery("SELECT type FROM worker WHERE login='"+username+"'");
-                    if(worker.next()){
-                        info.put("login" ,  "true");
-                        if (table) {
-                            info.put("type", "table");
+                if(s.getInt("loggedIn") == 1){
+                    info.put("status", "success");
+                    if(s.getInt(1) == 1){
+                        ResultSet worker = state.executeQuery("SELECT type,id FROM worker WHERE login='"+username+"'");
+                        if(worker.next()){
+                            info.put("login" ,  "true");
+                            if (table) {
+                                info.put("type", "table");
+
+                            }
+                            else {
+                                info.put("type",worker.getString("type"));
+                                info.put("id", worker.getInt("id")+"");
+                            }
                         }
                         else {
-                            info.put("type",worker.getString(1));
+                            info.put("login", "true");
+                            if (table) {
+                                info.put("type", "table");
+                            }
+                            else {
+                                info.put("type", "unknown ");
+                            }
                         }
                     }
-                    else {
-                        info.put("login", "true");
-                        if (table) {
-                            info.put("type", "table");
-                        }
-                        else {
-                            info.put("type", "unknown ");
-                        }
+                    else{
+                        info.put("login" ,  "false");
+                        info.put("type" ,  "unknown ");
                     }
                 }
                 else{
+                    info.put("status", "unknown user");
                     info.put("login" ,  "false");
+                    info.put("id" ,  "-1");
                     info.put("type" ,  "unknown ");
                 }
             }
             else{
                 info.put("status" ,"unknown user");
                 info.put("login" ,  "false");
+                info.put("id" ,  "-1");
                 info.put("type" ,  "unknown ");
             }
 
@@ -119,9 +131,9 @@ public class ConnectDB {
         return freeTables;
     }
 
-    public static void setWaiterToTable(Integer waiterId) throws SQLException {
-        state.executeQuery("UPDATE Table ON WorkerId = " + waiterId);
-    }
+//    public static void setWaiterToTable(Integer waiterId) throws SQLException {
+//        state.executeQuery("UPDATE Table ON WorkerId = " + waiterId);
+//    }
 
     public static Map<String, ArrayList<Object>> getWaitersList() {
 
@@ -253,4 +265,94 @@ public class ConnectDB {
         }
 
     }
+
+
+
+    public static String getCurrentOrdersWaiter() {
+
+        try{
+            ArrayList<Order> tempOrderList = new ArrayList<>();
+            ResultSet rs = state.executeQuery("SELECT * FROM `order` WHERE Waiterid ="+StaticData.WORKER_ID+" AND status NOT IN ('paid', 'canceled') ");
+
+            while (rs.next()) {
+                Order o = new Order();
+                o.setId(rs.getInt("id"));
+                o.setTable(new Table(rs.getInt("Tableid")));
+                o.setStatus(rs.getString("status"));
+                tempOrderList.add(o);
+
+            }
+            for(Order o : tempOrderList){
+                ResultSet rs2 = state.executeQuery("SELECT `order item`.*, `food`.* FROM `order item` JOIN food ON(food.id = `order item`.`Foodid`) WHERE Orderid = "+ o.getId());
+                while (rs2.next()){
+                    OrderItem tempItem = new OrderItem(
+                            new Food(rs2.getString("name_"+ LANGUAGE),
+                                    rs2.getString("photoName"),
+                                    rs2.getDouble("price"),
+                                    rs2.getInt("id") ), rs2.getInt("amount"));
+                    o.addToOrder(tempItem);
+                }
+            }
+
+            StaticData.CURRENT_WAITER_ORDERS.clear();
+            StaticData.CURRENT_WAITER_ORDERS = tempOrderList;
+            return  "success";
+        }
+        catch(Exception e){
+            Log.d("Error place order", e.toString());
+            return "error";
+        }
+
+    }
+
+
+    public static String getPastOrdersWaiter() {
+
+        try{
+            ArrayList<Order> tempOrderList = new ArrayList<>();
+            ResultSet rs = state.executeQuery("SELECT * FROM `order` WHERE Waiterid ="+StaticData.WORKER_ID+" AND status IN ('paid', 'canceled') ");
+
+            while (rs.next()) {
+                Order o = new Order();
+                o.setId(rs.getInt("id"));
+                o.setTable(new Table(rs.getInt("Tableid")));
+                o.setStatus(rs.getString("status"));
+                tempOrderList.add(o);
+
+            }
+            for(Order o : tempOrderList){
+                ResultSet rs2 = state.executeQuery("SELECT `order item`.*, `food`.* FROM `order item` JOIN food ON(food.id = `order item`.`Foodid`) WHERE Orderid = "+ o.getId());
+                while (rs2.next()){
+                    OrderItem tempItem = new OrderItem(
+                            new Food(rs2.getString("name_"+ LANGUAGE),
+                                    rs2.getString("photoName"),
+                                    rs2.getDouble("price"),
+                                    rs2.getInt("id") ), rs2.getInt("amount"));
+                    o.addToOrder(tempItem);
+                }
+            }
+
+            StaticData.PAST_WAITER_ORDERS.clear();
+            StaticData.PAST_WAITER_ORDERS = tempOrderList;
+            return  "success";
+        }
+        catch(Exception e){
+            Log.d("Error place order", e.toString());
+            return "error";
+        }
+
+    }
+
+
+    public static String changeStatus(String status, int id){
+        try{
+            state.executeUpdate("UPDATE `order` SET `status` = '"+status+"' WHERE `order`.`id` = "+id);
+            return "success";
+        }
+        catch (Exception e){
+            Log.d("Error", e.toString());
+            return "error";
+        }
+    }
+
 }

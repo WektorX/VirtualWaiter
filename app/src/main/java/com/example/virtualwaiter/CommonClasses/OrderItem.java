@@ -20,6 +20,13 @@ public class OrderItem {
         this.total = f.getPrice();
     }
 
+    public OrderItem(Food f, int amount){
+        this.item = f;
+        this.amount = amount;
+        this.total = (f.getPrice().multiply(new BigDecimal(amount)));
+    }
+
+
     public void setFood(Food f){
         this.item = f;
         this.amount = 1;

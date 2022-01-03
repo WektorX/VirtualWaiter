@@ -32,6 +32,11 @@ public class Order {
     public  void setTable(Table t){
         table = t;
     }
+    public void setStatus(String s){status = s;};
+
+    public String getStatus(){
+        return status;
+    }
 
     public Table getTable(){
         return table;
@@ -52,6 +57,11 @@ public class Order {
             itemsList.get(itemIndex).addToOrder();
         }
         total = new BigDecimal(this.total.doubleValue()).add(item.getPrice());
+
+    }
+    public void addToOrder(OrderItem item){
+        this.itemsList.add(item);
+        total = new BigDecimal(this.total.doubleValue()).add(item.getTotal());
 
     }
 

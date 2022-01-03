@@ -7,6 +7,11 @@ public class Table {
     private int waiterId;
 
     public Table(){};
+
+    public Table(int id){
+        tableId = id;
+    }
+
     public Table(int id, int number){
         this.tableId = id;
         this.numberOfSeats = number;
@@ -15,8 +20,8 @@ public class Table {
         return tableId;
     }
 
-    public void setTableId(int tableId) {
-        this.tableId = tableId;
+    public void setTableId(int id){
+        this.tableId = id;
     }
 
     public int getNumberOfSeats() {
