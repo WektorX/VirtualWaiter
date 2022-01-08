@@ -268,22 +268,53 @@ public class ConnectDB {
 
 
 
-    public static String getCurrentOrders() {
+    public static  String getOrder(String type){
+
+
 
         try{
             ArrayList<Order> tempOrderList = new ArrayList<>();
+            String query = "SELECT * FROM `order` WHERE";
 
-            ResultSet rs;
-            if(StaticData.WORKER_TYPE.equals("waiter")) {
-                rs = state.executeQuery("SELECT * FROM `order` WHERE Waiterid =" + StaticData.WORKER_ID + " AND status NOT IN ('paid', 'canceled') AND DATE(`date`) = CURDATE()");
-            }
-            else if(StaticData.WORKER_TYPE.equals("chef")){
-                rs = state.executeQuery("SELECT * FROM `order` WHERE status IN ('placed','received' ,'in progress') AND DATE(`date`) = CURDATE()");
-            }
-            else {
-                rs = state.executeQuery("SELECT * FROM `order` WHERE status NOT IN ('paid', 'canceled') AND DATE(`date`) = CURDATE()");
 
+            switch (StaticData.WORKER_TYPE){
+                case "waiter":
+                    query += " Waiterid = " + StaticData.WORKER_ID;
+                    if(type.equals("current")){
+                        query +=  " AND status NOT IN ('paid', 'canceled') AND DATE(`date`) = CURDATE()";
+                    }
+                    else{
+                        query +=  " AND status IN ('paid', 'canceled') AND DATE(`date`) = CURDATE()";
+                    }
+                    break;
+
+                case "chef":
+
+                    if(type.equals("current")){
+                        query +=  " status IN ('placed','received' ,'in progress') AND DATE(`date`) = CURDATE()";
+                    }
+                    else if(type.equals("closed")){
+                        query +=  " status NOT IN ('placed','received' ,'in progress') AND DATE(`date`) = CURDATE()";
+                    }
+                    else{
+                        query += " DATE(`date`) < CURDATE()";
+                    }
+                    break;
+
+                default:
+                    if(type.equals("current")){
+                        query +=  " status NOT IN ('paid','canceled') AND DATE(`date`) = CURDATE()";
+                    }
+                    else if(type.equals("closed")){
+                        query +=  " status IN ('paid','canceled') AND DATE(`date`) = CURDATE()";
+                    }
+                    else{
+                        query += " DATE(`date`) < CURDATE()";
+                    }
+                    break;
             }
+
+            ResultSet rs = state.executeQuery(query);
             while (rs.next()) {
                 Order o = new Order();
                 o.setId(rs.getInt("id"));
@@ -291,8 +322,8 @@ public class ConnectDB {
                 o.setStatus(rs.getString("status"));
                 o.setDate(rs.getDate("date"));
                 tempOrderList.add(o);
-
             }
+
             for(Order o : tempOrderList){
                 ResultSet rs2 = state.executeQuery("SELECT `order item`.*, `food`.* FROM `order item` JOIN food ON(food.id = `order item`.`Foodid`) WHERE Orderid = "+ o.getId());
                 while (rs2.next()){
@@ -305,104 +336,24 @@ public class ConnectDB {
                 }
             }
 
-            StaticData.CURRENT_ORDERS.clear();
-            StaticData.CURRENT_ORDERS = tempOrderList;
-            return  "success";
+            switch (type){
+                case "current":
+                    StaticData.CURRENT_ORDERS.clear();
+                    StaticData.CURRENT_ORDERS = tempOrderList;
+                    break;
+                case "closed":
+                    StaticData.PAST_ORDERS.clear();
+                    StaticData.PAST_ORDERS = tempOrderList;
+                    break;
+                default:
+                    StaticData.HISTORY_ORDERS.clear();
+                    StaticData.HISTORY_ORDERS = tempOrderList;
+                    break;
+            }
+            return "success";
         }
-        catch(Exception e){
-            Log.d("Error get current order", e.toString());
-            return "error";
-        }
-
-    }
-
-
-    public static String getPastOrders() {
-
-        try{
-            ArrayList<Order> tempOrderList = new ArrayList<>();
-            ResultSet rs;
-            if(StaticData.WORKER_TYPE.equals("waiter")) {
-                rs = state.executeQuery("SELECT * FROM `order` WHERE Waiterid =" + StaticData.WORKER_ID + " AND status IN ('paid', 'canceled') AND DATE(`date`) = CURDATE() ");
-            }
-            else if(StaticData.WORKER_TYPE.equals("chef")){
-                rs = state.executeQuery("SELECT * FROM `order` WHERE status NOT IN ('placed','received' ,'in progress') AND DATE(`date`) = CURDATE()");
-
-            }
-            else{
-                rs = state.executeQuery("SELECT * FROM `order` WHERE status IN ('paid', 'canceled') AND DATE(`date`) = CURDATE() ");
-            }
-            while (rs.next()) {
-                Order o = new Order();
-                o.setId(rs.getInt("id"));
-                o.setTable(new Table(rs.getInt("Tableid")));
-                o.setStatus(rs.getString("status"));
-                o.setDate(rs.getDate("date"));
-                tempOrderList.add(o);
-
-            }
-            for(Order o : tempOrderList){
-                ResultSet rs2 = state.executeQuery("SELECT `order item`.*, `food`.* FROM `order item` JOIN food ON(food.id = `order item`.`Foodid`) WHERE Orderid = "+ o.getId());
-                while (rs2.next()){
-                    OrderItem tempItem = new OrderItem(
-                            new Food(rs2.getString("name_"+ LANGUAGE),
-                                    rs2.getString("photoName"),
-                                    rs2.getDouble("price"),
-                                    rs2.getInt("id") ), rs2.getInt("amount"));
-                    o.addToOrder(tempItem);
-                }
-            }
-
-            StaticData.PAST_ORDERS.clear();
-            StaticData.PAST_ORDERS = tempOrderList;
-            return  "success";
-        }
-        catch(Exception e){
-            Log.d("Error get previous order", e.toString());
-            return "error";
-        }
-
-    }
-
-    public static String getHistoryOrders() {
-
-        try{
-            ArrayList<Order> tempOrderList = new ArrayList<>();
-            ResultSet rs;
-            if(StaticData.WORKER_TYPE.equals("waiter")){
-                rs = state.executeQuery("SELECT * FROM `order` WHERE Waiterid ="+StaticData.WORKER_ID+" AND status IN ('paid', 'canceled') AND DATE(`date`) < CURDATE() ");
-            }
-            else{
-                rs = state.executeQuery("SELECT * FROM `order` WHERE DATE(`date`) < CURDATE() ");
-            }
-
-            while (rs.next()) {
-                Order o = new Order();
-                o.setId(rs.getInt("id"));
-                o.setTable(new Table(rs.getInt("Tableid")));
-                o.setStatus(rs.getString("status"));
-                o.setDate(rs.getDate("date"));
-                tempOrderList.add(o);
-
-            }
-            for(Order o : tempOrderList){
-                ResultSet rs2 = state.executeQuery("SELECT `order item`.*, `food`.* FROM `order item` JOIN food ON(food.id = `order item`.`Foodid`) WHERE Orderid = "+ o.getId());
-                while (rs2.next()){
-                    OrderItem tempItem = new OrderItem(
-                            new Food(rs2.getString("name_"+ LANGUAGE),
-                                    rs2.getString("photoName"),
-                                    rs2.getDouble("price"),
-                                    rs2.getInt("id") ), rs2.getInt("amount"));
-                    o.addToOrder(tempItem);
-                }
-            }
-
-            StaticData.HISTORY_ORDERS.clear();
-            StaticData.HISTORY_ORDERS = tempOrderList;
-            return  "success";
-        }
-        catch(Exception e){
-            Log.d("Error get history order", e.toString());
+        catch (Exception e){
+            Log.d("Error get order list", e.toString());
             return "error";
         }
 

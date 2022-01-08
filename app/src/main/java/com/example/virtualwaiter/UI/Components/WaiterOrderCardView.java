@@ -109,6 +109,9 @@ public class WaiterOrderCardView extends CardView {
         if(!o.getStatus().equals("ready")){
             btn.setEnabled(false);
         }
+        if(o.getStatus().equals("delivered")){
+            btn.setText(context.getString(R.string.waiter_paid));
+        }
         if(o.getStatus().equals("ready to pay")){
             btn.setEnabled(true);
             btn.setText(context.getString(R.string.waiter_paid));
@@ -120,7 +123,9 @@ public class WaiterOrderCardView extends CardView {
 
             if(o.getStatus().equals("ready")){
                 action = "delivered";
-                status.setText("Status: delivered");
+                btn.setText(context.getString(R.string.waiter_paid));
+                btn.setEnabled(false);
+                status.setText("Status: " + context.getString(R.string.status_delivered));
 
             }
             if(o.getStatus().equals("ready to pay")){

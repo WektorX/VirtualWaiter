@@ -23,6 +23,7 @@ import android.widget.LinearLayout;
 import com.example.virtualwaiter.CommonClasses.Order;
 import com.example.virtualwaiter.Net.ConnectDB;
 import com.example.virtualwaiter.Net.StaticData;
+import com.example.virtualwaiter.UI.Actions.ShowOrdersList;
 import com.example.virtualwaiter.UI.Components.WaiterOrderCardView;
 import com.example.virtualwaiter.UI.Components.ViewPagerAdapterWaiter;
 import com.google.android.material.tabs.TabLayout;
@@ -144,86 +145,18 @@ public class WaiterMainActivity extends AppCompatActivity {
     }
 
 
-    private void showOrderList(Boolean current){
-
-        if(current){
-
-            if(currentOrderAmount < StaticData.CURRENT_ORDERS.size()){
-
-                try {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-                        NotificationChannel channel = new NotificationChannel(
-                                "ch_0",
-                                "ch_0",
-                                NotificationManager.IMPORTANCE_HIGH);
-
-                        channel.setDescription("Channel for notifying the customer about a new order!");
-                        channel.enableLights(true);
-                        channel.enableVibration(true);
-                        channel.setShowBadge(true);
-
-                        NotificationManager manager = getSystemService(NotificationManager.class);
-                        manager.createNotificationChannel(channel);
-                    }
-
-                    NotificationCompat.Builder mBuilder =
-                            new NotificationCompat.Builder(context, "ch_0")
-                                    .setSmallIcon(R.drawable.icon)
-                                    .setContentTitle(getString(R.string.notification_title))
-                                    .setContentText(getString(R.string.notification_body))
-                                    .setAutoCancel(false)
-                                    .setDefaults(Notification.DEFAULT_VIBRATE | Notification.DEFAULT_SOUND | Notification.FLAG_SHOW_LIGHTS)
-                                    .setPriority(NotificationCompat.PRIORITY_HIGH);
-
-                    NotificationManagerCompat mNotificationMgr = NotificationManagerCompat.from(context);
-                    mNotificationMgr.notify(NOTIFICATION_ID, mBuilder.build());
-                    NOTIFICATION_ID += 1;
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-
-            LinearLayout ly =null;
-            ly = findViewById(R.id.lyCurrentOrders);
-            if(ly != null){
-                ly.removeAllViews();
-                for(Order o : StaticData.CURRENT_ORDERS){
-                    WaiterOrderCardView card = new WaiterOrderCardView(context, o);
-                    ly.addView(card);
-                }
-            }
-        }
-        else{
-            LinearLayout ly =null;
-            ly = findViewById(R.id.lyPastOrders);
-            if(ly != null){
-                ly.removeAllViews();
-                for(Order o : StaticData.PAST_ORDERS){
-                    WaiterOrderCardView card = new WaiterOrderCardView(context, o);
-                    ly.addView(card);
-                }
-            }
-
-        }
-
-    }
-
-
-
-
     public class getCurrentOrderList extends AsyncTask {
 
         @Override
         protected String doInBackground(Object... objects) {
             currentOrderAmount = StaticData.CURRENT_ORDERS.size();
-            return ConnectDB.getCurrentOrders();
+            return ConnectDB.getOrder("current");
         }
 
         @Override
         protected void onPostExecute(Object o) {
             if(o.equals("success")){
-               showOrderList(true);
+                ShowOrdersList.show("current", context, currentOrderAmount, NOTIFICATION_ID, WaiterMainActivity.this);
             }
         }
     }
@@ -232,18 +165,14 @@ public class WaiterMainActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(Object... objects) {
-            return ConnectDB.getPastOrders();
+            return ConnectDB.getOrder("closed");
         }
 
         @Override
         protected void onPostExecute(Object o) {
             if(o.equals("success")){
-                showOrderList(false);
+                ShowOrdersList.show("closed", context, currentOrderAmount, NOTIFICATION_ID, WaiterMainActivity.this);
             }
         }
     }
-
-
-
-
 }

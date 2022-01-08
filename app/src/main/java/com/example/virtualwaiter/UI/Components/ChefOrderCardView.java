@@ -3,6 +3,7 @@ package com.example.virtualwaiter.UI.Components;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -92,11 +93,7 @@ public class ChefOrderCardView extends CardView {
         dishList.setTextColor(context.getColor(R.color.white));
         ly.addView(dishList);
 
-
-
-        Date today = new Date( new java.util.Date().getTime());
-
-        if ((statusName.equals("placed") || statusName.equals("received") || statusName.equals("in progress") )&& !o.getDate().before(today)) {
+        if ((statusName.equals("placed") || statusName.equals("received") || statusName.equals("in progress") ) &&  DateUtils.isToday(o.getDate().getTime())) {
             View line2 = new View(context);
             line2.setBackgroundColor(context.getColor(R.color.white));
             line2.setLayoutParams(lineParams);
