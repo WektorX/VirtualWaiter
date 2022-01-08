@@ -5,6 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Context;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Looper;
@@ -29,6 +32,7 @@ public class WaiterMainActivity extends AppCompatActivity {
     private ViewPager2 vp2Waiter;
     private TabLayout tabsWaiter;
     private Context context = this;
+    private int currentOrderAmount;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -135,6 +139,17 @@ public class WaiterMainActivity extends AppCompatActivity {
     private void showOrderList(Boolean current){
 
         if(current){
+
+            if(currentOrderAmount < StaticData.CURRENT_WAITER_ORDERS.size()){
+                try {
+                    Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+                    Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), notification);
+                    r.play();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
             LinearLayout ly =null;
             ly = findViewById(R.id.lyWaiterCurrentOrders);
             if(ly != null){
@@ -167,6 +182,7 @@ public class WaiterMainActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(Object... objects) {
+            currentOrderAmount = StaticData.CURRENT_WAITER_ORDERS.size();
             return ConnectDB.getCurrentOrdersWaiter();
         }
 
