@@ -33,8 +33,9 @@
     <string name="status_order_placed">Order placed</string>
     <string name="status_order_in_progress">In progress</string>
     <string name="status_order_ready">Ready</string>
-    <string name="waiter_tab_current">Current orders</string>
-    <string name="waiter_tab_past" >Closed orders</string>
+    <string name="tab_current">Current</string>
+    <string name="tab_past">Closed</string>
+    <string name="tab_history">History</string>
     <string name="waiter_delivered">Delivered</string>
     <string name="waiter_paid">Paid</string>
     <string name="notification_title">New order</string>
@@ -47,5 +48,6 @@
     <string name="status_ready_to_pay">ready to pay</string>
     <string name="status_paid">paid</string>
     <string name="status_canceled">canceled</string>
+    <string name="order_label">Order</string>
 
 </resources>

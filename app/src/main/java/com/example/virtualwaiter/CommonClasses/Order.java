@@ -5,6 +5,7 @@ import android.util.Log;
 import com.google.android.material.tabs.TabLayout;
 
 import java.math.BigDecimal;
+import java.sql.Date;
 import java.util.ArrayList;
 
 public class Order {
@@ -14,6 +15,7 @@ public class Order {
     private String status;
     private int id;
     private Table table;
+    private Date date;
     private int splitBillBetween;
 
 
@@ -29,6 +31,12 @@ public class Order {
         return id;
     }
 
+    public void setDate(Date d){
+        date = d;
+    }
+    public Date getDate(){
+        return date;
+    }
     public  void setTable(Table t){
         table = t;
     }

@@ -16,8 +16,8 @@ import java.util.concurrent.TimeUnit;
 
 public class OrderStatusActivity extends AppCompatActivity {
 
-    private int requestInterval = 5;
-    private TimeUnit intervalTimeUnit = TimeUnit.MINUTES;
+    private int requestInterval = 10;
+    private TimeUnit intervalTimeUnit = TimeUnit.SECONDS;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,8 +53,6 @@ public class OrderStatusActivity extends AppCompatActivity {
                 else if(status.equals("ready")){
                     TextView tv = findViewById(R.id.status_ready);
                     tv.setBackgroundColor(getColor(R.color.order_status_ready));
-                    intervalTimeUnit = TimeUnit.SECONDS;
-                    requestInterval = 30;
                 }
                 else if(status.equals("delivered")){
 //                    przejdź do kolejnej activity

@@ -57,10 +57,10 @@ public class WaiterMainActivity extends AppCompatActivity {
             public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
                 switch (position){
                     case 0:
-                        tab.setText(WaiterMainActivity.this.getText(R.string.waiter_tab_current));
+                        tab.setText(WaiterMainActivity.this.getText(R.string.tab_current));
                         break;
                     case 1:
-                        tab.setText(WaiterMainActivity.this.getText(R.string.waiter_tab_past));
+                        tab.setText(WaiterMainActivity.this.getText(R.string.tab_past));
                         break;
                 }
             }
@@ -148,13 +148,9 @@ public class WaiterMainActivity extends AppCompatActivity {
 
         if(current){
 
-            if(currentOrderAmount < StaticData.CURRENT_WAITER_ORDERS.size()){
+            if(currentOrderAmount < StaticData.CURRENT_ORDERS.size()){
 
                 try {
-//                    Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-//                    Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), notification);
-//                    r.play();
-
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
                         NotificationChannel channel = new NotificationChannel(
                                 "ch_0",
@@ -170,7 +166,6 @@ public class WaiterMainActivity extends AppCompatActivity {
                         manager.createNotificationChannel(channel);
                     }
 
-// send notification
                     NotificationCompat.Builder mBuilder =
                             new NotificationCompat.Builder(context, "ch_0")
                                     .setSmallIcon(R.drawable.icon)
@@ -190,10 +185,10 @@ public class WaiterMainActivity extends AppCompatActivity {
             }
 
             LinearLayout ly =null;
-            ly = findViewById(R.id.lyWaiterCurrentOrders);
+            ly = findViewById(R.id.lyCurrentOrders);
             if(ly != null){
                 ly.removeAllViews();
-                for(Order o : StaticData.CURRENT_WAITER_ORDERS){
+                for(Order o : StaticData.CURRENT_ORDERS){
                     WaiterOrderCardView card = new WaiterOrderCardView(context, o);
                     ly.addView(card);
                 }
@@ -201,10 +196,10 @@ public class WaiterMainActivity extends AppCompatActivity {
         }
         else{
             LinearLayout ly =null;
-            ly = findViewById(R.id.lyWaiterPastOrders);
+            ly = findViewById(R.id.lyPastOrders);
             if(ly != null){
                 ly.removeAllViews();
-                for(Order o : StaticData.PAST_WAITER_ORDERS){
+                for(Order o : StaticData.PAST_ORDERS){
                     WaiterOrderCardView card = new WaiterOrderCardView(context, o);
                     ly.addView(card);
                 }
@@ -221,8 +216,8 @@ public class WaiterMainActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(Object... objects) {
-            currentOrderAmount = StaticData.CURRENT_WAITER_ORDERS.size();
-            return ConnectDB.getCurrentOrdersWaiter();
+            currentOrderAmount = StaticData.CURRENT_ORDERS.size();
+            return ConnectDB.getCurrentOrders();
         }
 
         @Override
@@ -237,7 +232,7 @@ public class WaiterMainActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(Object... objects) {
-            return ConnectDB.getPastOrdersWaiter();
+            return ConnectDB.getPastOrders();
         }
 
         @Override

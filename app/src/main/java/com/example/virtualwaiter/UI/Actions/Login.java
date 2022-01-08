@@ -97,6 +97,7 @@ private void loginResult(String status, Boolean succesfulLogin, String workerTyp
                 String type = result.get("type");
                 int id = Integer.valueOf(result.get("id"));
                 StaticData.WORKER_ID = id;
+                StaticData.WORKER_TYPE = type;
                 try {
                     assert status != null;
                     Login.this.loginResult(status,login,type);

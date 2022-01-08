@@ -23,7 +23,7 @@
 
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/lyWaiterCurrentOrders"
+        android:id="@+id/lyCurrentOrders"
         android:gravity="top|center"
         android:orientation="vertical">
 
