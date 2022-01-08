@@ -2,15 +2,22 @@ package com.example.virtualwaiter;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
+import android.util.Log;
 import android.widget.LinearLayout;
 
 import com.example.virtualwaiter.CommonClasses.Order;
@@ -33,6 +40,7 @@ public class WaiterMainActivity extends AppCompatActivity {
     private TabLayout tabsWaiter;
     private Context context = this;
     private int currentOrderAmount;
+    private int NOTIFICATION_ID = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -141,10 +149,41 @@ public class WaiterMainActivity extends AppCompatActivity {
         if(current){
 
             if(currentOrderAmount < StaticData.CURRENT_WAITER_ORDERS.size()){
+
                 try {
-                    Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-                    Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), notification);
-                    r.play();
+//                    Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+//                    Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), notification);
+//                    r.play();
+
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+                        NotificationChannel channel = new NotificationChannel(
+                                "ch_0",
+                                "ch_0",
+                                NotificationManager.IMPORTANCE_HIGH);
+
+                        channel.setDescription("Channel for notifying the customer about a new order!");
+                        channel.enableLights(true);
+                        channel.enableVibration(true);
+                        channel.setShowBadge(true);
+
+                        NotificationManager manager = getSystemService(NotificationManager.class);
+                        manager.createNotificationChannel(channel);
+                    }
+
+// send notification
+                    NotificationCompat.Builder mBuilder =
+                            new NotificationCompat.Builder(context, "ch_0")
+                                    .setSmallIcon(R.drawable.icon)
+                                    .setContentTitle(getString(R.string.notification_title))
+                                    .setContentText(getString(R.string.notification_body))
+                                    .setAutoCancel(false)
+                                    .setDefaults(Notification.DEFAULT_VIBRATE | Notification.DEFAULT_SOUND | Notification.FLAG_SHOW_LIGHTS)
+                                    .setPriority(NotificationCompat.PRIORITY_HIGH);
+
+                    NotificationManagerCompat mNotificationMgr = NotificationManagerCompat.from(context);
+                    mNotificationMgr.notify(NOTIFICATION_ID, mBuilder.build());
+                    NOTIFICATION_ID += 1;
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

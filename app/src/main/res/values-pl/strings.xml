@@ -25,7 +25,17 @@
     <string name="status_order_in_progress">Przygotowywanie zamówienia</string>
     <string name="status_order_ready">Gotowe</string>
     <string name="waiter_tab_current">Aktywne zamówienia</string>
-    <string name="waiter_tab_past">Zrealizowane zamówienia</string>
+    <string name="waiter_tab_past">Zamknięte zamówienia</string>
     <string name="waiter_delivered">Dostarczone</string>
     <string name="waiter_paid">Opłacone</string>
+    <string name="notification_title">Nowe zamówienie</string>
+    <string name="notification_body">Złożono nowe zamówienie!</string>
+    <string name="status_placed">złożono</string>
+    <string name="status_received">przyjęto</string>
+    <string name="status_in_progress">w przygotowaniu</string>
+    <string name="status_ready">gotowe do wydania</string>
+    <string name="status_delivered">wydano</string>
+    <string name="status_ready_to_pay">chce zapłacić</string>
+    <string name="status_paid">opłacone</string>
+    <string name="status_canceled">anulowane</string>
 </resources>

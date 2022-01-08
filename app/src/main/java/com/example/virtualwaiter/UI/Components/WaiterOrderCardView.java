@@ -59,7 +59,10 @@ public class WaiterOrderCardView extends CardView {
         ly.addView(table);
 
         TextView status = new TextView(context);
-        status.setText("Status: " + o.getStatus());
+        String packageName = context.getPackageName();
+        String id = "status_" + o.getStatus().replace(" ", "_");
+        int resId = getResources().getIdentifier(id, "string", packageName);
+        status.setText("Status: " + context.getString(resId));
         status.setTextSize(20);
         status.setTextAlignment(TEXT_ALIGNMENT_CENTER);
         status.setLayoutParams(componentParams);
@@ -106,7 +109,7 @@ public class WaiterOrderCardView extends CardView {
         if(!o.getStatus().equals("ready")){
             btn.setEnabled(false);
         }
-        if(o.getStatus().equals("delivered")){
+        if(o.getStatus().equals("ready to pay")){
             btn.setEnabled(true);
             btn.setText(context.getString(R.string.waiter_paid));
         }
@@ -120,7 +123,7 @@ public class WaiterOrderCardView extends CardView {
                 status.setText("Status: delivered");
 
             }
-            if(o.getStatus().equals("delivered")){
+            if(o.getStatus().equals("ready to pay")){
                 action = "paid";
                 status.setText("paid");
                 WaiterOrderCardView.this.removeAllViews();

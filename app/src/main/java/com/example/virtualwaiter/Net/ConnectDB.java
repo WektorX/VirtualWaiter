@@ -118,7 +118,7 @@ public class ConnectDB {
     public static ArrayList<Table> getFreeTables() {
         ArrayList<Table> freeTables = new ArrayList<>();
         try{
-            ResultSet rs = state.executeQuery("SELECT id, numberOfSeats FROM `table`");
+            ResultSet rs = state.executeQuery("SELECT id, numberOfSeats FROM `table` WHERE `waiterId` IS NULL");
             while (rs.next()) {
                 Table temp = new Table(rs.getInt("id"), rs.getInt("numberOfSeats"));
                 freeTables.add(temp);
@@ -217,7 +217,7 @@ public class ConnectDB {
             String queryInser = "" +
                     "INSERT INTO `order` " +
                     "(id, totalPrice, status, splitBillTo, date, Tableid, WaiterId)" +
-                    " VALUES (NULL,"+total+", 'received', NULL,'"+now+"', "+tableId+", "+waiterId+");";
+                    " VALUES (NULL,"+total+", 'placed', NULL,'"+now+"', "+tableId+", "+waiterId+");";
 
 
             Log.d("query", queryInser);
@@ -272,7 +272,7 @@ public class ConnectDB {
 
         try{
             ArrayList<Order> tempOrderList = new ArrayList<>();
-            ResultSet rs = state.executeQuery("SELECT * FROM `order` WHERE Waiterid ="+StaticData.WORKER_ID+" AND status NOT IN ('paid', 'canceled') ");
+            ResultSet rs = state.executeQuery("SELECT * FROM `order` WHERE Waiterid ="+StaticData.WORKER_ID+" AND status NOT IN ('paid', 'canceled') AND DATE(`date`) = CURDATE()");
 
             while (rs.next()) {
                 Order o = new Order();
@@ -299,7 +299,7 @@ public class ConnectDB {
             return  "success";
         }
         catch(Exception e){
-            Log.d("Error place order", e.toString());
+            Log.d("Error get current order", e.toString());
             return "error";
         }
 
@@ -310,7 +310,7 @@ public class ConnectDB {
 
         try{
             ArrayList<Order> tempOrderList = new ArrayList<>();
-            ResultSet rs = state.executeQuery("SELECT * FROM `order` WHERE Waiterid ="+StaticData.WORKER_ID+" AND status IN ('paid', 'canceled') ");
+            ResultSet rs = state.executeQuery("SELECT * FROM `order` WHERE Waiterid ="+StaticData.WORKER_ID+" AND status IN ('paid', 'canceled') AND DATE(`date`) = CURDATE() ");
 
             while (rs.next()) {
                 Order o = new Order();
@@ -337,7 +337,7 @@ public class ConnectDB {
             return  "success";
         }
         catch(Exception e){
-            Log.d("Error place order", e.toString());
+            Log.d("Error get previous order", e.toString());
             return "error";
         }
 
@@ -347,6 +347,13 @@ public class ConnectDB {
     public static String changeStatus(String status, int id){
         try{
             state.executeUpdate("UPDATE `order` SET `status` = '"+status+"' WHERE `order`.`id` = "+id);
+            if(status.equals("canceled")){
+                ResultSet rs = state.executeQuery("SELECT Tableid FROM `order` WHERE `order`.`id` = "+ id);
+                if(rs.next()){
+                    int tableID = rs.getInt("Tableid");
+                    state.executeUpdate("UPDATE `table` SET `WaiterId` = NULL WHERE `table`.`id` =" + tableID);
+                }
+            }
             return "success";
         }
         catch (Exception e){
