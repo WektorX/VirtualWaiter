@@ -129,6 +129,8 @@ public class ChefOrderCardView extends CardView {
                         action = "ready";
                         break;
                 }
+                int i = StaticData.CURRENT_ORDERS.indexOf(o);
+                StaticData.CURRENT_ORDERS.get(i).setStatus(action);
 
                 if(action.equals("ready")){
                     ChefOrderCardView.this.removeAllViews();

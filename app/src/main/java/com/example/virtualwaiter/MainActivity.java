@@ -16,6 +16,8 @@ import static com.example.virtualwaiter.Net.StaticData.DEVICE_HEIGHT;
 import static com.example.virtualwaiter.Net.StaticData.DEVICE_WIDTH;
 import static com.example.virtualwaiter.Net.StaticData.LANGUAGE;
 
+import com.example.virtualwaiter.Net.StaticData;
+
 import java.util.Locale;
 
 

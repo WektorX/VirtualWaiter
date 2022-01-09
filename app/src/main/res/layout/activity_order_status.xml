@@ -8,14 +8,14 @@
     tools:context=".OrderStatusActivity"
     android:layout_gravity="center"
     android:gravity="center"
-    android:weightSum="3"
+    android:weightSum="4"
     >
 
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/status_received"
+        android:id="@+id/status_placed"
         android:text="@string/status_order_placed"
         android:textAlignment="center"
         android:layout_gravity="center"
@@ -23,6 +23,19 @@
         android:layout_weight="1"
         android:textSize="@dimen/order_status_text_size"
         android:background="@color/order_status_ready"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/status_received"
+        android:text="@string/status_order_received"
+        android:textAlignment="center"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_weight="1"
+        android:textSize="@dimen/order_status_text_size"
+        android:background="@color/order_status_await"
         />
 
     <TextView

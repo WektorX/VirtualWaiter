@@ -38,8 +38,8 @@
     <string name="tab_history">History</string>
     <string name="waiter_delivered">Delivered</string>
     <string name="waiter_paid">Paid</string>
-    <string name="notification_title">New order</string>
-    <string name="notification_body">A new order has been placed!</string>
+    <string name="notification_title_new_order">New order</string>
+    <string name="notification_body_new_order">A new order has been placed!</string>
     <string name="status_placed">placed</string>
     <string name="status_received">received</string>
     <string name="status_in_progress">in progress</string>
@@ -49,5 +49,18 @@
     <string name="status_paid">paid</string>
     <string name="status_canceled">canceled</string>
     <string name="order_label">Order</string>
+    <string name="status_order_received">Received</string>
+    <string name="question_split_bill">Do you want to split the bill?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="splitbill_amount_question">How many people do you want to split the bill between?</string>
+    <string name="payment_method_question">Choose your payment method</string>
+    <string name="btn_pay_label">Ask for a bill</string>
+    <string name="toast_fill_split_amount">Please specify the number of people to split the bill!</string>
+    <string name="toast_invalid_split_amount">Invalid split amount!</string>
+    <string name="toast_choose_payment_method">Choose payment method</string>
+    <string name="notification_title_order_changed">"Table "</string>
+    <string name="notification_body_order_changed">Order status changed</string>
+    <string name="bye_message">The waiter has been notified, he will bring you the bill in a moment. Thank you and come back again!</string>
 
 </resources>

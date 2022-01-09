@@ -68,7 +68,6 @@ public class OrderFragment extends Fragment {
     }
 
 
-
     public class placeOrder extends AsyncTask {
 
         @Override

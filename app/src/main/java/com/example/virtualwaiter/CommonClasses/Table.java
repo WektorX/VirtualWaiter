@@ -2,9 +2,9 @@ package com.example.virtualwaiter.CommonClasses;
 
 public class Table {
 
-    private int tableId;
+    private int tableId = -1;
     private int numberOfSeats;
-    private int waiterId;
+    private int waiterId = -1;
 
     public Table(){};
 

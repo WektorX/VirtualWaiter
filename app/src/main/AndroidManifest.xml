@@ -13,6 +13,9 @@
         android:theme="@style/Theme.VirtualWaiter"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".PayActivity"
+            android:exported="false" />
+        <activity
             android:name=".OrderStatusActivity"
             android:exported="false" />
         <activity

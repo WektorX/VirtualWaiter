@@ -123,6 +123,8 @@ public class WaiterOrderCardView extends CardView {
 
             if(o.getStatus().equals("ready")){
                 action = "delivered";
+                int i = StaticData.CURRENT_ORDERS.indexOf(o);
+                StaticData.CURRENT_ORDERS.get(i).setStatus(action);
                 btn.setText(context.getString(R.string.waiter_paid));
                 btn.setEnabled(false);
                 status.setText("Status: " + context.getString(R.string.status_delivered));
@@ -130,6 +132,8 @@ public class WaiterOrderCardView extends CardView {
             }
             if(o.getStatus().equals("ready to pay")){
                 action = "paid";
+                int i = StaticData.CURRENT_ORDERS.indexOf(o);
+                StaticData.CURRENT_ORDERS.get(i).setStatus(action);
                 status.setText("paid");
                 WaiterOrderCardView.this.removeAllViews();
                 cardParams.setMargins(0,0,0,0);

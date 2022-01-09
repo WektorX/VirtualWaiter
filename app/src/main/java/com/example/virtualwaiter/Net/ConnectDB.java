@@ -27,6 +27,7 @@ import java.sql.Types;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -250,7 +251,7 @@ public class ConnectDB {
     public static String getOrderStatus() {
 
         try{
-
+            Log.d("Test", "Poszło");
             ResultSet rs = state.executeQuery("SELECT status FROM `order` WHERE id ="+StaticData.ORDER.getId()+"");
             String status = null;
             while (rs.next()) {
@@ -275,6 +276,11 @@ public class ConnectDB {
         try{
             ArrayList<Order> tempOrderList = new ArrayList<>();
             String query = "SELECT * FROM `order` WHERE";
+
+            if(type.equals("current")){
+                StaticData.CURRENT_ORDERS_COPY = new ArrayList<>();
+                StaticData.CURRENT_ORDERS_COPY.addAll(StaticData.CURRENT_ORDERS);
+            }
 
 
             switch (StaticData.WORKER_TYPE){
@@ -363,7 +369,7 @@ public class ConnectDB {
     public static String changeStatus(String status, int id){
         try{
             state.executeUpdate("UPDATE `order` SET `status` = '"+status+"' WHERE `order`.`id` = "+id);
-            if(status.equals("canceled")){
+            if(status.equals("canceled") || status.equals("paid")){
                 ResultSet rs = state.executeQuery("SELECT Tableid FROM `order` WHERE `order`.`id` = "+ id);
                 if(rs.next()){
                     int tableID = rs.getInt("Tableid");
@@ -376,6 +382,26 @@ public class ConnectDB {
             Log.d("Error", e.toString());
             return "error";
         }
+    }
+
+
+    public static String askForBill(){
+        String message;
+        try{
+
+            Boolean byCard = StaticData.ORDER.getPayByCard();
+            int splitBetween = StaticData.ORDER.getSplitBillBetween();
+            int orderID = StaticData.ORDER.getId();
+            state.executeUpdate("UPDATE `order` SET `status`= 'ready to pay', `payByCard` = "+byCard
+                    +", `splitBillTo`= "+splitBetween +" WHERE `order`.`id`=" + orderID);
+
+            message = "success";
+        }
+        catch (Exception e){
+            Log.d("Ask for bill error", e.toString());
+            message = "Error";
+        }
+        return message;
     }
 
 }

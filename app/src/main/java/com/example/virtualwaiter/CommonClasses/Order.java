@@ -13,10 +13,24 @@ public class Order {
     private ArrayList<OrderItem> itemsList = new ArrayList<>();
     private BigDecimal total = new BigDecimal(0);
     private String status;
-    private int id;
-    private Table table;
+    private int id = -1;
+    private Table table = null;
     private Date date;
     private int splitBillBetween;
+
+    public int getSplitBillBetween() {
+        return splitBillBetween;
+    }
+
+    public Boolean getPayByCard() {
+        return payByCard;
+    }
+
+    public void setPayByCard(Boolean payByCard) {
+        this.payByCard = payByCard;
+    }
+
+    private Boolean payByCard;
 
 
     public Order(){
@@ -40,6 +54,7 @@ public class Order {
     public  void setTable(Table t){
         table = t;
     }
+
     public void setStatus(String s){status = s;};
 
     public String getStatus(){

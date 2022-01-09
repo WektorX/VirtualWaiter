@@ -29,8 +29,8 @@
     <string name="tab_history">Historia</string>
     <string name="waiter_delivered">Dostarczone</string>
     <string name="waiter_paid">Opłacone</string>
-    <string name="notification_title">Nowe zamówienie</string>
-    <string name="notification_body">Złożono nowe zamówienie!</string>
+    <string name="notification_title_new_order">Nowe zamówienie</string>
+    <string name="notification_body_new_order">Złożono nowe zamówienie!</string>
     <string name="status_placed">złożono</string>
     <string name="status_received">przyjęto</string>
     <string name="status_in_progress">w przygotowaniu</string>
@@ -40,4 +40,17 @@
     <string name="status_paid">opłacone</string>
     <string name="status_canceled">anulowane</string>
     <string name="order_label">Zamówienie</string>
+    <string name="status_order_received">Otrzymano</string>
+    <string name="question_split_bill">Czy chcesz podzielić rachunek?</string>
+    <string name="yes">Tak</string>
+    <string name="no">Nie</string>
+    <string name="splitbill_amount_question">Na ile osób podzielić rachunek?</string>
+    <string name="payment_method_question">Wybierz sposób płatności</string>
+    <string name="btn_pay_label">Poproś o rachunek</string>
+    <string name="toast_fill_split_amount">Proszę podać liczbę osób do podziału rachunku!</string>
+    <string name="toast_invalid_split_amount">Nieprawidłowa ilość podziału rachunku!</string>
+    <string name="toast_choose_payment_method">Wybierz metodę płatności</string>
+    <string name="notification_title_order_changed">"Stolik "</string>
+    <string name="notification_body_order_changed">Status zamówienia zmieniony</string>
+    <string name="bye_message">Kelner został powiadomiony, za chwilę przyniesie państwu rachunek. Dziękujemy i zapraszamy ponownie!</string>
 </resources>

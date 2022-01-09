@@ -17,6 +17,7 @@ public class StaticData {
     public static int DEVICE_WIDTH;
     public static int DEVICE_HEIGHT;
     public static ArrayList<Order> CURRENT_ORDERS = new ArrayList<>();
+    public static ArrayList<Order> CURRENT_ORDERS_COPY = new ArrayList<>();
     public static ArrayList<Order> PAST_ORDERS = new ArrayList<>();
     public static ArrayList<Order> HISTORY_ORDERS = new ArrayList<>();
     public static int WORKER_ID = -1;

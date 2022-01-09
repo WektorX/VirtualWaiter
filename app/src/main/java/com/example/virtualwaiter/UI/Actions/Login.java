@@ -8,7 +8,6 @@ import android.widget.Toast;
 
 import com.example.virtualwaiter.ChefMainActivity;
 import com.example.virtualwaiter.Net.ConnectDB;
-import com.example.virtualwaiter.FoodMenuActivity;
 import com.example.virtualwaiter.ManagerMainActivity;
 import com.example.virtualwaiter.Net.StaticData;
 import com.example.virtualwaiter.WaiterMainActivity;
@@ -56,11 +55,6 @@ private void loginResult(String status, Boolean succesfulLogin, String workerTyp
                     break;
                 case "manager":
                     i = new Intent(context, ManagerMainActivity.class);
-                    Log.d("Worker type", workerType);
-                    break;
-                case "table":
-                   // ConnectDB.setWaiterToTable(420);
-                    i = new Intent(context, FoodMenuActivity.class);
                     Log.d("Worker type", workerType);
                     break;
                 default:

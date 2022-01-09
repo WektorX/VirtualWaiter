@@ -84,7 +84,7 @@ public class WaiterMainActivity extends AppCompatActivity {
                                             //put query logic here
                                             new getCurrentOrderList().execute();
                                         }
-                                    }, 10, 10, TimeUnit.SECONDS);
+                                    }, 0, 5, TimeUnit.SECONDS);
                                 }
                             }, 100
                     );
@@ -99,7 +99,7 @@ public class WaiterMainActivity extends AppCompatActivity {
                                             //put query logic here
                                             new getPastOrderList().execute();
                                         }
-                                    }, 10, 10, TimeUnit.SECONDS);
+                                    }, 0, 5, TimeUnit.SECONDS);
                                 }
                             }, 100
                     );
@@ -128,7 +128,7 @@ public class WaiterMainActivity extends AppCompatActivity {
                             //put query logic here
                             new getCurrentOrderList().execute();
                         }
-                    }, 1, 10, TimeUnit.SECONDS);
+                    }, 1, 5, TimeUnit.SECONDS);
                 }
                 else{
                     executorService.scheduleWithFixedDelay(new Runnable() {
@@ -136,7 +136,7 @@ public class WaiterMainActivity extends AppCompatActivity {
                             //put query logic here
                             new getPastOrderList().execute();
                         }
-                    }, 1, 10, TimeUnit.SECONDS);
+                    }, 1, 5, TimeUnit.SECONDS);
                 }
             }
 
