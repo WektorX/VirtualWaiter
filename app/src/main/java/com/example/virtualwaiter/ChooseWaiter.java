@@ -36,8 +36,7 @@ public class ChooseWaiter extends AppCompatActivity {
             ArrayList<Object> waitersId = waiters.get("id");
             for (int i=0;i<waitersName.size();i++) {
                 // Button button = new Button(ChooseTableActivity.this);
-                Button button = new WaiterButton(ChooseWaiter.this);
-                button.setText(waitersName.get(i).toString());
+                LinearLayout button = new WaiterButton(ChooseWaiter.this, waitersName.get(i).toString());
                 button.setId((Integer) waitersId.get(i));
                 button.setOnClickListener(v -> {
 

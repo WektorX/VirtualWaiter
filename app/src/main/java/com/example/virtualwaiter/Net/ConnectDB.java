@@ -327,6 +327,8 @@ public class ConnectDB {
                 o.setTable(new Table(rs.getInt("Tableid")));
                 o.setStatus(rs.getString("status"));
                 o.setDate(rs.getDate("date"));
+                o.setPayByCard(rs.getBoolean("payByCard"));
+                o.setSplitBillBetween(rs.getInt("splitBillTo"));
                 tempOrderList.add(o);
             }
 

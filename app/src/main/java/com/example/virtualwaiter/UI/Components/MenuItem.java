@@ -199,14 +199,14 @@ public class MenuItem  extends CardView {
         addBtn = new Button(context);
         addBtn.setText("+");
         addBtn.setLayoutParams(new LinearLayout.LayoutParams(100, 100));
-        addBtn.setBackgroundColor(context.getColor(R.color.orange));
+        addBtn.setBackgroundColor(context.getColor(R.color.not_really_black));
         addBtn.setTextSize(18);
         addBtn.setOnTouchListener(new OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN: {
-                        v.getBackground().setColorFilter(context.getColor(R.color.orange_light), PorterDuff.Mode.SRC_ATOP);
+                        v.getBackground().setColorFilter(context.getColor(R.color.black), PorterDuff.Mode.SRC_ATOP);
                         v.invalidate();
                         break;
                     }
@@ -236,7 +236,8 @@ public class MenuItem  extends CardView {
         removeBtn = new Button(context);
         removeBtn.setText("-");
         removeBtn.setLayoutParams(new LinearLayout.LayoutParams(100, 100));
-        removeBtn.setBackgroundColor(context.getColor(R.color.remove_btn_color));
+        removeBtn.setBackgroundColor(context.getColor(R.color.white));
+        removeBtn.setTextColor(context.getColor(R.color.black));
         removeBtn.setTextSize(18);
 
         removeBtn.setOnClickListener(v -> {
@@ -257,7 +258,7 @@ public class MenuItem  extends CardView {
             public boolean onTouch(View v, MotionEvent event) {
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN: {
-                        v.getBackground().setColorFilter(context.getColor(R.color.remove_btn_color_dark), PorterDuff.Mode.SRC_ATOP);
+                        v.getBackground().setColorFilter(context.getColor(R.color.dirty_white), PorterDuff.Mode.SRC_ATOP);
                         v.invalidate();
                         break;
                     }
@@ -297,14 +298,14 @@ public class MenuItem  extends CardView {
 
         if(itemAmount == null){
             itemAmount = new TextView(context);
+            itemAmount.setTextColor(context.getColor(R.color.white));
             itemAmount.setBackground(context.getDrawable(R.drawable.amount_stamp));
             itemAmount.setText("x" + amount);
             itemAmount.setTextSize(20);
             itemAmount.setTextAlignment(TEXT_ALIGNMENT_CENTER);
             itemAmount.setGravity(Gravity.CENTER);
-            itemAmount.setTextColor(context.getColor(R.color.black));
-            LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(150,150);
-            p.setMargins(this.getWidth() - 170,(-1 * this.getHeight()) + 20,0,0);
+            LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(200,150);
+            p.setMargins(this.getWidth() - 220,(-1 * this.getHeight()) + 20,0,0);
             itemAmount.setLayoutParams(p);
             ly.addView(itemAmount);
         }

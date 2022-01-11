@@ -70,13 +70,13 @@ public class PayActivity extends AppCompatActivity {
 
         card.setOnClickListener(v->{
             this.payByCard = true;
-            card.setBackgroundColor(getColor(R.color.payment_border));
+            card.setBackgroundColor(getColor(R.color.white));
             cash.setBackgroundColor(getColor(R.color.transparent));
         });
         cash.setOnClickListener(v->{
             this.payByCard = false;
             card.setBackgroundColor(getColor(R.color.transparent));
-            cash.setBackgroundColor(getColor(R.color.payment_border));
+            cash.setBackgroundColor(getColor(R.color.white));
         });
 
         Button btnAskForBill = findViewById(R.id.btnPay);

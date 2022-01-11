@@ -21,8 +21,9 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:layout_weight="1"
-        android:textSize="@dimen/order_status_text_size"
-        android:background="@color/order_status_ready"
+        android:textSize="@dimen/order_status_await_text_size"
+        android:textColor="@color/order_status_ready"
+        android:background="@color/not_really_black"
         />
 
     <TextView
@@ -34,8 +35,8 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:layout_weight="1"
-        android:textSize="@dimen/order_status_text_size"
-        android:background="@color/order_status_await"
+        android:textSize="@dimen/order_status_await_text_size"
+        android:background="@color/not_really_black"
         />
 
     <TextView
@@ -47,8 +48,8 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:layout_weight="1"
-        android:textSize="@dimen/order_status_text_size"
-        android:background="@color/order_status_await"
+        android:textSize="@dimen/order_status_await_text_size"
+        android:background="@color/not_really_black"
 
         />
 
@@ -61,8 +62,8 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:layout_weight="1"
-        android:textSize="@dimen/order_status_text_size"
-        android:background="@color/order_status_await"
+        android:textSize="@dimen/order_status_await_text_size"
+        android:background="@color/not_really_black"
 
         />
 

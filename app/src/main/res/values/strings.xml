@@ -62,5 +62,9 @@
     <string name="notification_title_order_changed">"Table "</string>
     <string name="notification_body_order_changed">Order status changed</string>
     <string name="bye_message">The waiter has been notified, he will bring you the bill in a moment. Thank you and come back again!</string>
+    <string name="paymentMethod_label">Payment method:</string>
+    <string name="payment_byCard">by card</string>
+    <string name="payment_byCash">by cash</string>
+    <string name="split_between_payment">Split bill to:</string>
 
 </resources>

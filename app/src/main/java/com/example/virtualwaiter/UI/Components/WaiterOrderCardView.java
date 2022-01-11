@@ -92,6 +92,33 @@ public class WaiterOrderCardView extends CardView {
         line2.setLayoutParams(lineParams);
         ly.addView(line2);
 
+        if(o.getStatus().equals("ready to pay")){
+            TextView paymentInfo = new TextView(context);
+            paymentInfo.setLayoutParams(componentParams);
+            paymentInfo.setTextColor(context.getColor(R.color.white));
+
+            String message = context.getString(R.string.paymentMethod_label);
+
+            if(o.getPayByCard()){
+                message += " " + context.getString(R.string.payment_byCard);
+            }
+            else{
+                message += " " + context.getString(R.string.payment_byCash);
+            }
+            paymentInfo.setText(message);
+            ly.addView(paymentInfo);
+
+            if(o.getSplitBillBetween() > 1){
+                TextView splitInfo = new TextView(context);
+                splitInfo.setLayoutParams(componentParams);
+                splitInfo.setTextColor(context.getColor(R.color.white));
+                splitInfo.setText(context.getString(R.string.split_between_payment) + " " + o.getSplitBillBetween());
+                ly.addView(splitInfo);
+            }
+
+        }
+
+
         DecimalFormat f = new DecimalFormat("##.00");
         TextView total = new TextView(context);
         total.setText(context.getString(R.string.total_label) + f.format(o.getTotal()) + "zł");

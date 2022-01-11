@@ -2,10 +2,13 @@ package com.example.virtualwaiter;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.animation.ArgbEvaluator;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -25,19 +28,48 @@ public class OrderStatusActivity extends AppCompatActivity {
     private String[] statusArray;
     private Context context;
     private  ScheduledExecutorService executorService;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_status);
         statusArray = new String[]{"placed", "received", "in progress", "ready", "delivered"};
-
         context = this;
+
+
         executorService = Executors.newScheduledThreadPool(1);
         executorService.scheduleWithFixedDelay(new Runnable() {
             public void run() {
                 new getOrderStatus().execute();
             }
         }, 0, requestInterval, intervalTimeUnit);
+    }
+
+    private void animateChangeStatus(TextView tv){
+        ValueAnimator textsizeAnimator = ValueAnimator.ofFloat(40, 50);
+        textsizeAnimator.setDuration(600);
+        textsizeAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                float animatedValue = (float) textsizeAnimator.getAnimatedValue();
+                tv.setTextSize(animatedValue);
+            }
+        });
+
+
+
+        Integer colorFrom = getColor(R.color.white);
+        Integer colorTo = getColor(R.color.order_status_ready);
+        ValueAnimator colorAnimation = ValueAnimator.ofObject(new ArgbEvaluator(), colorFrom, colorTo);
+        colorAnimation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+              tv.setTextColor((Integer)colorAnimation.getAnimatedValue());
+            }
+        });
+
+        textsizeAnimator.start();
+        colorAnimation.start();
     }
 
 
@@ -63,11 +95,20 @@ public class OrderStatusActivity extends AppCompatActivity {
                 }
                 else{
                     int index = Arrays.asList(statusArray).indexOf(status);
-                    Log.d("index", index + "");
                     for(int i= 0; i<= index; i++){
                         int textViewId = getResources().getIdentifier("status_" + statusArray[i].replace(" ","_"), "id", getPackageName());
                         TextView tv = findViewById(textViewId);
-                        tv.setBackgroundColor(getColor(R.color.order_status_ready));
+                        if(tv.getTextSize() <= 130){
+                            Handler h = new Handler();
+                            h.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    animateChangeStatus(tv);
+                                }
+                            }, 200 * i);
+
+
+                        }
                     }
                 }
             }

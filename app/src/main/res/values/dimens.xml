@@ -2,7 +2,8 @@
 <resources>
     <dimen name="AppNameTitle">100px</dimen>
     <dimen name="fab_margin">16dp</dimen>
-    <dimen name="order_status_text_size">100px</dimen>
+    <dimen name="order_status_done_text_size">100px</dimen>
+    <dimen name="order_status_await_text_size">80px</dimen>
     <dimen name="bye_message_text_size">65px</dimen>
     <dimen name="pay_questions_text_size">40px</dimen>
     <!-- Default screen margins, per the Android Design guidelines. -->

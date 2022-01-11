@@ -14,6 +14,7 @@
         android:layout_height="match_parent"
         android:src="@drawable/background_orders"
         android:scaleType="centerCrop"
+        android:id="@+id/currentOrderBackground"
         />
 <ScrollView
     android:layout_width="match_parent"

@@ -53,4 +53,8 @@
     <string name="notification_title_order_changed">"Stolik "</string>
     <string name="notification_body_order_changed">Status zamówienia zmieniony</string>
     <string name="bye_message">Kelner został powiadomiony, za chwilę przyniesie państwu rachunek. Dziękujemy i zapraszamy ponownie!</string>
+    <string name="paymentMethod_label">Spsób płatności:</string>
+    <string name="payment_byCard">kartą</string>
+    <string name="payment_byCash">gotówką</string>
+    <string name="split_between_payment">Podziel rachunek na:</string>
 </resources>
