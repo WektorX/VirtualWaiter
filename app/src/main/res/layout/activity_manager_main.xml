@@ -1,20 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
+    android:gravity="center"
     tools:context=".ManagerMainActivity">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="78dp"
-        android:layout_height="32dp"
+    <GridLayout
+        android:id="@+id/manager_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent"
+        android:columnCount="2"
+        android:textAlignment="center">
 
-        android:layout_marginStart="175dp"
-        android:layout_marginTop="350dp"
-        android:layout_marginEnd="178dp"
-        android:layout_marginBottom="362dp"
-        android:text="Manager view" />
+        <Button
+            android:id="@+id/bt_manageWorkers"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/manage_workers"
+            android:elegantTextHeight="false"
+            android:freezesText="false"
+            android:gravity="bottom|center"
+            android:onClick="moveToManageWorkersActivity"
+            android:text="@string/workers"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/bt_manageOrders"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/manage_menu"
+            android:gravity="bottom|center"
+            android:onClick="moveToManageOrdersActivity"
+            android:text="@string/orders"
+            android:textAllCaps="true"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/bt_manageTables"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/table_icon"
+            android:gravity="bottom|center"
+            android:onClick="moveToManageTablesActivity"
+            android:text="@string/tables"
+            android:textAllCaps="true"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/bt_manageMenu"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/amount_stamp"
+            android:gravity="bottom|center"
+            android:onClick="moveToManageMenuActivity"
+            android:text="@string/menu"
+            android:textAllCaps="true"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </GridLayout>
 </LinearLayout>

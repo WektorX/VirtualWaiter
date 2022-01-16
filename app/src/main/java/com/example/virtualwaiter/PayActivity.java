@@ -1,8 +1,5 @@
 package com.example.virtualwaiter;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -16,12 +13,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+
 import com.example.virtualwaiter.CommonClasses.Order;
 import com.example.virtualwaiter.CommonClasses.Table;
 import com.example.virtualwaiter.Net.ConnectDB;
 import com.example.virtualwaiter.Net.StaticData;
-
-import java.util.Arrays;
 
 public class PayActivity extends AppCompatActivity {
 

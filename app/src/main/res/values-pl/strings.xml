@@ -57,4 +57,51 @@
     <string name="payment_byCard">kartą</string>
     <string name="payment_byCash">gotówką</string>
     <string name="split_between_payment">Podziel rachunek na:</string>
+    <string name="orders">Zamówienia</string>
+    <string name="workers">Pracownicy</string>
+    <string name="tables">Stoliki</string>
+    <string name="add_new_worker">dodaj nowego pracownika</string>
+    <string name="name">Imię i nazwisko</string>
+    <string name="confirm_password">Potwierdź hasło</string>
+    <string name="type">Typ</string>
+    <string name="save">Zapisz</string>
+    <string name="passwords_dont_match">Podane hasła nie zgadzają się!</string>
+    <string name="empty_fields">Wszystkie pola muszą zostać uzupełnione!</string>
+    <string name="add_worker_success">Nowy pracownik został dodany pomyślnie!</string>
+    <string name="add_worker_fail">Coś poszło nie tak… Nowy pracownik nie został dodany. Spróbuj ponownie później!</string>
+    <string name="number_of_seats">Liczba miejsc</string>
+    <string name="update_worker_success">Dane pracownika zaktualizowane pomyślnie!</string>
+    <string name="update_worker_fail">Coś poszło nie tak… Dane pracownika nie zostały zaktualizowane. Spróbuj ponownie później!</string>
+    <string name="add_table_success">Nowy stolik został dodany pomyślnie!</string>
+    <string name="add_table_fail">Coś poszło nie tak… Nowy stolik nie został dodany. Spróbuj ponownie później!</string>
+    <string name="update_table_success">Dane stolika zaktualizowane pomyślnie!</string>
+    <string name="update_table_fail">Coś poszło nie tak… Dane stolika nie zostały zaktualizowane. Spróbuj ponownie później!</string>
+    <string name="add">+</string>
+    <string name="description">Opis</string>
+    <string name="price">Cena</string>
+    <string name="is_it_vegan">Wegańskie?</string>
+    <string name="is_it_gluten_free">Bezglutenowe?</string>
+    <string name="is_it_alcoholic">Alkoholowe?</string>
+    <string name="manage_employee">Zarządzaj pracownikiem</string>
+    <string name="manage_table">Zarządzaj stolikiem</string>
+    <string name="manage_food">Zarządzaj potrawą</string>
+    <string name="english_description">Opis po angielsku</string>
+    <string name="polish_description">Opis po polsku</string>
+    <string name="english_name">Nazwa angielska</string>
+    <string name="polish_name">Nazwa polska</string>
+    <string name="add_food_success">Nowa potrawa została dodana pomyślnie!</string>
+    <string name="add_food_fail">Coś poszło nie tak… Nowa potrawa nie została dodana. Spróbuj ponownie później!</string>
+    <string name="update_food_success">Potrawa została zaktualizowana pomyślnie!</string>
+    <string name="update_food_fail">Coś poszło nie tak… Dane potrawy nie zostały zaktualizowane. Spróbuj ponownie później!</string>
+
+    <string-array name="worker_types">
+        <item>Kucharz</item>
+        <item>Kelner</item>
+        <item>Menadżer</item>
+    </string-array>
+
+    <string-array name="food_types">
+        <item>Danie</item>
+        <item>Napój</item>
+    </string-array>
 </resources>

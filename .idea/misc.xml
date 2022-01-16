@@ -3,24 +3,6 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Projekty/VirtualWaiter/app/src/main/res/layout/activity_chef_main.xml" value="0.13645833333333332" />
-        <entry key="..\:/Projekty/VirtualWaiter/app/src/main/res/layout/activity_choose_table.xml" value="0.2" />
-        <entry key="..\:/Projekty/VirtualWaiter/app/src/main/res/layout/activity_choose_waiter.xml" value="0.17447916666666666" />
-        <entry key="..\:/Projekty/VirtualWaiter/app/src/main/res/layout/activity_food_menu.xml" value="0.17447916666666666" />
-        <entry key="..\:/Projekty/VirtualWaiter/app/src/main/res/layout/activity_login.xml" value="0.13020833333333334" />
-        <entry key="..\:/Projekty/VirtualWaiter/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/Projekty/VirtualWaiter/app/src/main/res/layout/activity_manager_main.xml" value="0.17447916666666666" />
-        <entry key="..\:/Projekty/VirtualWaiter/app/src/main/res/layout/activity_menu_and_order.xml" value="0.176" />
-        <entry key="..\:/Projekty/VirtualWaiter/app/src/main/res/layout/activity_order.xml" value="0.16927083333333334" />
-        <entry key="..\:/Projekty/VirtualWaiter/app/src/main/res/layout/activity_order_menu_acticity.xml" value="0.10416666666666667" />
-        <entry key="..\:/Projekty/VirtualWaiter/app/src/main/res/layout/activity_order_status.xml" value="0.264" />
-        <entry key="..\:/Projekty/VirtualWaiter/app/src/main/res/layout/activity_pay.xml" value="0.17552083333333332" />
-        <entry key="..\:/Projekty/VirtualWaiter/app/src/main/res/layout/activity_waiter_main.xml" value="0.165625" />
-        <entry key="..\:/Projekty/VirtualWaiter/app/src/main/res/layout/fragment_current_orders.xml" value="0.165625" />
-        <entry key="..\:/Projekty/VirtualWaiter/app/src/main/res/layout/fragment_menu.xml" value="0.10416666666666667" />
-        <entry key="..\:/Projekty/VirtualWaiter/app/src/main/res/layout/fragment_order.xml" value="0.2" />
-        <entry key="..\:/Projekty/VirtualWaiter/app/src/main/res/layout/fragment_order_history.xml" value="0.25769927536231885" />
-        <entry key="..\:/Projekty/VirtualWaiter/app/src/main/res/layout/fragment_past_order.xml" value="0.165625" />
         <entry key="..\:/pk/Projekty/VirtualWaiter/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.17604166666666668" />
         <entry key="..\:/pk/Projekty/VirtualWaiter/app/src/main/res/drawable/ic_launcher_background.xml" value="0.17604166666666668" />
         <entry key="..\:/pk/Projekty/VirtualWaiter/app/src/main/res/drawable/shapes.xml" value="0.1796875" />
@@ -31,15 +13,26 @@
         <entry key="..\:/pk/Projekty/VirtualWaiter/app/src/main/res/layout/activity_choose_waiter.xml" value="0.16197916666666667" />
         <entry key="..\:/pk/Projekty/VirtualWaiter/app/src/main/res/layout/activity_login.xml" value="0.264" />
         <entry key="..\:/pk/Projekty/VirtualWaiter/app/src/main/res/layout/activity_main.xml" value="0.264" />
-        <entry key="..\:/pk/Projekty/VirtualWaiter/app/src/main/res/layout/activity_main2.xml" value="0.26510416666666664" />
         <entry key="..\:/pk/Projekty/VirtualWaiter/app/src/main/res/layout/activity_manager_main.xml" value="0.12447916666666667" />
         <entry key="..\:/pk/Projekty/VirtualWaiter/app/src/main/res/layout/activity_order_menu_acticity.xml" value="0.264" />
         <entry key="..\:/pk/Projekty/VirtualWaiter/app/src/main/res/layout/activity_waiter_main.xml" value="0.4" />
-        <entry key="..\:/pk/Projekty/VirtualWaiter/app/src/main/res/layout/content_main.xml" value="0.16354166666666667" />
-        <entry key="..\:/pk/Projekty/VirtualWaiter/app/src/main/res/layout/fragment_first.xml" value="0.16354166666666667" />
-        <entry key="..\:/pk/Projekty/VirtualWaiter/app/src/main/res/layout/fragment_second.xml" value="0.16354166666666667" />
         <entry key="..\:/pk/Projekty/VirtualWaiter/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.203125" />
         <entry key="..\:/pk/Projekty/VirtualWaiter/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.203125" />
+        <entry key="..\:/studia/sem5/technologie_obiektowe/projekt/VirtualWaiter/app/src/main/res/layout/activity_add_edit_food.xml" value="0.37083333333333335" />
+        <entry key="..\:/studia/sem5/technologie_obiektowe/projekt/VirtualWaiter/app/src/main/res/layout/activity_add_edit_table.xml" value="0.5541666666666667" />
+        <entry key="..\:/studia/sem5/technologie_obiektowe/projekt/VirtualWaiter/app/src/main/res/layout/activity_add_edit_worker.xml" value="0.5" />
+        <entry key="..\:/studia/sem5/technologie_obiektowe/projekt/VirtualWaiter/app/src/main/res/layout/activity_chef_main.xml" value="0.17" />
+        <entry key="..\:/studia/sem5/technologie_obiektowe/projekt/VirtualWaiter/app/src/main/res/layout/activity_choose_table.xml" value="0.4234375" />
+        <entry key="..\:/studia/sem5/technologie_obiektowe/projekt/VirtualWaiter/app/src/main/res/layout/activity_food_menu.xml" value="0.44427083333333334" />
+        <entry key="..\:/studia/sem5/technologie_obiektowe/projekt/VirtualWaiter/app/src/main/res/layout/activity_login.xml" value="0.5541666666666667" />
+        <entry key="..\:/studia/sem5/technologie_obiektowe/projekt/VirtualWaiter/app/src/main/res/layout/activity_manage_menu.xml" value="0.33" />
+        <entry key="..\:/studia/sem5/technologie_obiektowe/projekt/VirtualWaiter/app/src/main/res/layout/activity_manage_orders.xml" value="0.44427083333333334" />
+        <entry key="..\:/studia/sem5/technologie_obiektowe/projekt/VirtualWaiter/app/src/main/res/layout/activity_manage_orders2.xml" value="0.44427083333333334" />
+        <entry key="..\:/studia/sem5/technologie_obiektowe/projekt/VirtualWaiter/app/src/main/res/layout/activity_manage_tables.xml" value="0.44427083333333334" />
+        <entry key="..\:/studia/sem5/technologie_obiektowe/projekt/VirtualWaiter/app/src/main/res/layout/activity_manage_workers.xml" value="0.33" />
+        <entry key="..\:/studia/sem5/technologie_obiektowe/projekt/VirtualWaiter/app/src/main/res/layout/activity_manager_main.xml" value="0.4234375" />
+        <entry key="..\:/studia/sem5/technologie_obiektowe/projekt/VirtualWaiter/app/src/main/res/layout/activity_menu_and_order.xml" value="0.44427083333333334" />
+        <entry key="..\:/studia/sem5/technologie_obiektowe/projekt/VirtualWaiter/app/src/main/res/layout/fragment_first.xml" value="0.44427083333333334" />
       </map>
     </option>
   </component>

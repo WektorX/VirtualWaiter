@@ -19,6 +19,9 @@
     <string name="menu_dish_label">Dishes</string>
     <string name="menu_drink_label">Drinks</string>
     <string name="title_activity_main2" translatable="false">MainActivity2</string>
+    <string name="title_activity_manage_menu" translatable="false"></string>
+    <string name="title_activity_manage_tables" translatable="false"></string>
+    <string name="title_activity_manage_workers" translatable="false"></string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label" translatable="false">First Fragment</string>
     <string name="second_fragment_label" translatable="false">Second Fragment</string>
@@ -66,5 +69,52 @@
     <string name="payment_byCard">by card</string>
     <string name="payment_byCash">by cash</string>
     <string name="split_between_payment">Split bill to:</string>
+    <string name="orders">Orders</string>
+    <string name="workers">Employees</string>
+    <string name="tables">Tables</string>
+    <string name="add_new_worker">add new employee</string>
+    <string name="name">Name</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="type">Type</string>
+    <string name="save">Save</string>
+    <string name="passwords_dont_match">Passwords don\'t match!</string>
+    <string name="empty_fields">All fields must be filled!</string>
+    <string name="add_worker_success">New employee added successfully!</string>
+    <string name="add_worker_fail">Something went wrong... New employee couldn\'t be added. Try again later!</string>
+    <string name="update_worker_success">The employee updated successfully!</string>
+    <string name="update_worker_fail">Something went wrong… The employee couldn\'t be updated. Try again later!</string>
+    <string name="number_of_seats">Number of seats</string>
+    <string name="add_table_success">New table added successfully!</string>
+    <string name="add_table_fail">Something went wrong… New table couldn\'t be added. Try again later!</string>
+    <string name="update_table_success">The table updated successfully!</string>
+    <string name="update_table_fail">Something went wrong… The table couldn\'t be updated. Try again later!</string>
+    <string name="add">+</string>
+    <string name="description">Description</string>
+    <string name="price">Price</string>
+    <string name="is_it_vegan">Is it vegan?</string>
+    <string name="is_it_gluten_free">Is it gluten free?</string>
+    <string name="is_it_alcoholic">Is it alcoholic?</string>
+    <string name="manage_employee">Manage Employee</string>
+    <string name="manage_table">Manage Table</string>
+    <string name="manage_food">Manage Food</string>
+    <string name="english_description">English Description</string>
+    <string name="polish_description">Polish Description</string>
+    <string name="english_name">English Name</string>
+    <string name="polish_name">Polish Name</string>
+    <string name="add_food_success">New food added successfully!</string>
+    <string name="add_food_fail">Something went wrong… New food couldn\'t be added. Try again later!</string>
+    <string name="update_food_success">The food updated successfully!</string>
+    <string name="update_food_fail">Something went wrong… The food couldn\'t be updated. Try again later!</string>
+
+    <string-array name="worker_types">
+        <item>Chef</item>
+        <item>Waiter</item>
+        <item>Manager</item>
+    </string-array>
+
+    <string-array name="food_types">
+        <item>Dish</item>
+        <item>Drink</item>
+    </string-array>
 
 </resources>

@@ -7,7 +7,6 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,7 +33,6 @@ public class ChooseTableActivity extends AppCompatActivity {
         pb.setVisibility(View.GONE);
         GridLayout l = findViewById(R.id.tables_gallery);
         for (Table t : tables) {
-           // Button button = new Button(ChooseTableActivity.this);
             Button button = new TableButton(ChooseTableActivity.this);
             button.setText(getString(R.string.btnTableLabel)+" "+t.getTableId() +"\n"+ t.getNumberOfSeats()+ " - " +getString(R.string.table_capacity));
             button.setId(t.getTableId());

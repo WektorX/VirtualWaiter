@@ -16,6 +16,7 @@ public class Table {
         this.tableId = id;
         this.numberOfSeats = number;
     }
+
     public int getTableId() {
         return tableId;
     }

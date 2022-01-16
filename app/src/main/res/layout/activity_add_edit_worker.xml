@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="@color/black"
+tools:context=".AddEditWorkerActivity">
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="25dp"
+        android:fontFamily="@font/courgette"
+        android:text="@string/manage_employee"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        android:visibility="visible" />
+
+    <EditText
+        android:id="@+id/etWorkerLogin"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="91dp"
+        android:layout_marginTop="244dp"
+        android:layout_marginEnd="91dp"
+        android:layout_marginBottom="5dp"
+        android:backgroundTint="@color/white"
+        android:ems="10"
+        android:hint="@string/login_placeholder"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white" />
+
+    <Spinner
+        android:id="@+id/spinnerWorkerType"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="91dp"
+        android:layout_marginTop="186dp"
+        android:layout_marginEnd="91dp"
+        android:dropDownWidth="400dp"
+        android:entries="@array/worker_types"
+        android:gravity="center"
+        android:minHeight="48dp"
+        android:prompt="@string/type"
+        android:spinnerMode="dropdown"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <EditText
+        android:id="@+id/etWorkerName"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="91dp"
+        android:layout_marginTop="128dp"
+        android:layout_marginEnd="91dp"
+        android:layout_marginBottom="5dp"
+        android:backgroundTint="@color/white"
+        android:ems="10"
+        android:hint="@string/name"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white" />
+
+    <EditText
+        android:id="@+id/etWorkerPassword"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etWorkerLogin"
+        android:layout_alignStart="@+id/etWorkerLogin"
+        android:layout_alignEnd="@+id/etWorkerLogin"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="15dp"
+        android:backgroundTint="@color/white"
+        android:ems="10"
+        android:hint="@string/password_placeholder"
+        android:importantForAutofill="no"
+        android:inputType="textPassword"
+        android:minHeight="48dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white" />
+
+    <EditText
+        android:id="@+id/etWorkerConfirmPassword"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etWorkerLogin"
+        android:layout_alignStart="@+id/etWorkerLogin"
+        android:layout_alignEnd="@+id/etWorkerLogin"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="65dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="15dp"
+        android:backgroundTint="@color/white"
+        android:ems="10"
+        android:hint="@string/confirm_password"
+        android:importantForAutofill="no"
+        android:inputType="textPassword"
+        android:minHeight="48dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white" />
+
+    <Button
+        android:id="@+id/btSaveWorker"
+        android:layout_width="300dp"
+        android:layout_height="48dp"
+        android:layout_below="@+id/etWorkerPassword"
+        android:layout_alignStart="@+id/etWorkerPassword"
+        android:layout_alignEnd="@+id/etWorkerPassword"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="128dp"
+        android:layout_marginEnd="32dp"
+        android:background="@color/transparent"
+        android:text="@string/save" />
+
+
+</RelativeLayout>

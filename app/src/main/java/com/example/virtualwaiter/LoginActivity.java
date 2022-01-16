@@ -31,10 +31,10 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
-        btnLogin = findViewById(R.id.btnLogin);
+        btnLogin = findViewById(R.id.btLogin);
         btnTable = findViewById(R.id.btnTable);
-        etlogin = findViewById(R.id.etLogin);
-        etPassword = findViewById(R.id.etPassword);
+        etlogin = findViewById(R.id.etWorkerLogin);
+        etPassword = findViewById(R.id.etWorkerPassword);
         btnPl = findViewById(R.id.btnPl);
         btnEn = findViewById(R.id.btnEn);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);

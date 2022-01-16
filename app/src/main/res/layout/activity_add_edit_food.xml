@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black"
+        tools:context=".AddEditFoodActivity">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/btSaveFood"
+                android:layout_width="300dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="91dp"
+                android:layout_marginTop="650dp"
+                android:layout_marginEnd="91dp"
+                android:background="@color/transparent"
+                android:text="@string/save" />
+
+            <CheckBox
+                android:id="@+id/checkBoxAlcoholicFood"
+                android:layout_width="400dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="91dp"
+                android:layout_marginTop="576dp"
+                android:layout_marginEnd="91dp"
+                android:text="@string/is_it_alcoholic" />
+
+            <CheckBox
+                android:id="@+id/checkBoxGlutenFreeFood"
+                android:layout_width="400dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="91dp"
+                android:layout_marginTop="520dp"
+                android:layout_marginEnd="91dp"
+                android:text="@string/is_it_gluten_free" />
+
+            <CheckBox
+                android:id="@+id/checkBoxVeganFood"
+                android:layout_width="400dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="91dp"
+                android:layout_marginTop="465dp"
+                android:layout_marginEnd="91dp"
+                android:text="@string/is_it_vegan" />
+
+            <EditText
+                android:id="@+id/etFoodPrice"
+                android:layout_width="400dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/etFoodDescription"
+                android:layout_alignStart="@+id/etFoodDescription"
+                android:layout_alignEnd="@+id/etFoodDescription"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="68dp"
+                android:layout_marginEnd="0dp"
+                android:layout_marginBottom="15dp"
+                android:backgroundTint="@color/white"
+                android:ems="10"
+                android:hint="@string/price"
+                android:importantForAutofill="no"
+                android:inputType="numberDecimal"
+                android:minHeight="48dp"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white" />
+
+            <EditText
+                android:id="@+id/etFoodNamePL"
+                android:layout_width="400dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="91dp"
+                android:layout_marginTop="168dp"
+                android:layout_marginEnd="91dp"
+                android:layout_marginBottom="5dp"
+                android:backgroundTint="@color/white"
+                android:ems="10"
+                android:hint="@string/polish_name"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:minHeight="48dp"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white" />
+
+            <EditText
+                android:id="@+id/etFoodName"
+                android:layout_width="400dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="91dp"
+                android:layout_marginTop="112dp"
+                android:layout_marginEnd="91dp"
+                android:layout_marginBottom="5dp"
+                android:backgroundTint="@color/white"
+                android:ems="10"
+                android:hint="@string/english_name"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:minHeight="48dp"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white" />
+
+            <Spinner
+                android:id="@+id/spinnerFoodType"
+                android:layout_width="400dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="91dp"
+                android:layout_marginTop="226dp"
+                android:layout_marginEnd="91dp"
+                android:dropDownWidth="400dp"
+                android:entries="@array/food_types"
+                android:gravity="center"
+                android:minHeight="48dp"
+                android:prompt="@string/type"
+                android:spinnerMode="dropdown"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <EditText
+                android:id="@+id/etFoodDescriptionPL"
+                android:layout_width="400dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="91dp"
+                android:layout_marginTop="344dp"
+                android:layout_marginEnd="91dp"
+                android:layout_marginBottom="5dp"
+                android:backgroundTint="@color/white"
+                android:ems="10"
+                android:hint="@string/polish_description"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:minHeight="48dp"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white" />
+
+            <EditText
+                android:id="@+id/etFoodDescription"
+                android:layout_width="400dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="91dp"
+                android:layout_marginTop="284dp"
+                android:layout_marginEnd="91dp"
+                android:layout_marginBottom="5dp"
+                android:backgroundTint="@color/white"
+                android:ems="10"
+                android:hint="@string/english_description"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:minHeight="48dp"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="25dp"
+                android:fontFamily="@font/courgette"
+                android:text="@string/manage_food"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                android:visibility="visible" />
+        </RelativeLayout>
+    </ScrollView>

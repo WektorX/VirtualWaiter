@@ -1,9 +1,6 @@
 package com.example.virtualwaiter.UI.Components;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.media.Image;
-import android.widget.Button;
 import android.widget.RelativeLayout;
 
 import com.example.virtualwaiter.Net.StaticData;

@@ -10,10 +10,12 @@ import android.util.Log;
 import com.example.virtualwaiter.CommonClasses.Dish;
 import com.example.virtualwaiter.CommonClasses.Drink;
 import com.example.virtualwaiter.CommonClasses.Food;
+import com.example.virtualwaiter.CommonClasses.FoodToAdd;
 import com.example.virtualwaiter.CommonClasses.Menu;
 import com.example.virtualwaiter.CommonClasses.Order;
 import com.example.virtualwaiter.CommonClasses.OrderItem;
 import com.example.virtualwaiter.CommonClasses.Table;
+import com.example.virtualwaiter.CommonClasses.Worker;
 
 import java.math.BigDecimal;
 import java.sql.Connection;
@@ -404,6 +406,110 @@ public class ConnectDB {
             message = "Error";
         }
         return message;
+    }
+
+
+    public static String addWorker() {
+        try{
+            String workerType = StaticData.WORKER.getType();
+            String login = StaticData.WORKER.getLogin();
+            String pass = StaticData.WORKER.getPassword();
+            String name = StaticData.WORKER.getName();
+
+
+            Log.d("Add new worker", StaticData.WORKER.toString());
+            state.executeUpdate("INSERT INTO `worker` (id, type, login, password, name) " +
+                                    "VALUES (null,'"+workerType+"','"+login+"','" +pass+"','"+name+"');");
+            return  "success";
+        }
+        catch(Exception e){
+            Log.d("Error add new Worker", e.toString());
+            return "error";
+        }
+    }
+
+    public static String updateWorker() {
+        try{
+            Worker worker = StaticData.WORKER;
+            Log.d("Update worker", worker.toString());
+            state.executeUpdate("UPDATE `worker` SET `type` = '" + worker.getType() + "', `login` = '" + worker.getLogin() + "', `password` = '" + worker.getPassword() + "', `name` = '" + worker.getName() +
+                    "' WHERE id = " + worker.getId() + ";");
+            return  "success";
+        }
+        catch(Exception e){
+            Log.d("Error update Worker", e.toString());
+            return "error";
+        }
+    }
+
+    public static String getWorkers() {
+        return "";
+    }
+
+    public static String addTable() {
+        try{
+            Table table = StaticData.TABLE;
+
+            Log.d("Add new table", StaticData.TABLE.toString());
+            state.executeUpdate("INSERT INTO `table` (`id`, `numberOfSeats`, `numberOfSeatsOccupied`, `WaiterId`) " +
+                    "VALUES (null,'"+table.getNumberOfSeats()+"', 0, null);");
+            return  "success";
+        }
+        catch(Exception e){
+            Log.d("Error add new Table", e.toString());
+            return "error";
+        }
+    }
+
+    public static String updateTable() {
+        try{
+            Table table = StaticData.TABLE;
+            Log.d("Update table", table.toString());
+            state.executeUpdate("UPDATE `table` SET `numberOfSeats` = '" + table.getNumberOfSeats() +
+                    "' WHERE id = " + table.getTableId() + ";");
+            return  "success";
+        }
+        catch(Exception e){
+            Log.d("Error update Table", e.toString());
+            return "error";
+        }
+    }
+
+    public static String getTables() {
+        return "";
+    }
+
+    public static String addFood() {
+        try{
+            FoodToAdd food = StaticData.FOOD;
+
+            Log.d("Add new food", StaticData.FOOD.toString());
+            state.executeUpdate("INSERT INTO `food` (id, name_pl, name_en, price, type, description_pl, description_en, isGlutenFree, isVegan, isAlcoholic, photoName) " +
+                    "VALUES (null,'"+food.getNamePL()+"','" + food.getName() + "', " + food.getPrice() + ", '"+ food.getType() + "', '" +
+                    food.getDescriptionPL() + "', '"+ food.getDescription() +"', "+ (food.getIsGlutenFree() ? 1 : 0) +", "+ (food.getIsVegan() ? 1 : 0) + ", "+(food.getIsAlcoholic() ? 1 : 0) +", null);");
+            return  "success";
+        }
+        catch(Exception e){
+            Log.d("Error add new Food", e.toString());
+            return "error";
+        }
+    }
+
+    public static String updateFood() {
+        try{
+            FoodToAdd food = StaticData.FOOD;
+            Log.d("Update food", food.toString());
+
+            state.executeUpdate("UPDATE `food` SET `name_pl` = '" + food.getNamePL() + "', `name_en` = '" + food.getName() + "', `price` = " + food.getPrice() +
+                            ", `type` = " + food.getType() + ", `description_pl` = '" + food.getDescriptionPL() + "', `description_en` ='" + food.getDescription() +
+                            "', `isGlutenFree` = " + (food.getIsGlutenFree() ? 1 : 0) + ", `isVegan` = " + (food.getIsVegan() ? 1 : 0) + ", `isAlcoholic` = " + (food.getIsAlcoholic() ? 1 : 0) + ", `photoName` = null" +
+                    " WHERE id = " + food.getId() + ";");
+            return  "success";
+        }
+        catch(Exception e){
+            Log.d("Error update Food", e.toString());
+            return "error";
+        }
     }
 
 }

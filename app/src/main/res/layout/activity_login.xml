@@ -16,7 +16,7 @@
         android:src="@drawable/login_background" />
 
     <EditText
-        android:id="@+id/etLogin"
+        android:id="@+id/etWorkerLogin"
         android:layout_width="400dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -36,12 +36,12 @@
         android:importantForAutofill="no" />
 
     <EditText
-        android:id="@+id/etPassword"
+        android:id="@+id/etWorkerPassword"
         android:layout_width="400dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/etLogin"
-        android:layout_alignStart="@+id/etLogin"
-        android:layout_alignEnd="@+id/etLogin"
+        android:layout_below="@+id/etWorkerLogin"
+        android:layout_alignStart="@+id/etWorkerLogin"
+        android:layout_alignEnd="@+id/etWorkerLogin"
         android:layout_marginStart="-1dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="1dp"
@@ -56,12 +56,12 @@
         android:importantForAutofill="no" />
 
     <Button
-        android:id="@+id/btnLogin"
+        android:id="@+id/btLogin"
         android:layout_width="300dp"
         android:layout_height="48dp"
-        android:layout_below="@+id/etPassword"
-        android:layout_alignStart="@+id/etPassword"
-        android:layout_alignEnd="@+id/etPassword"
+        android:layout_below="@+id/etWorkerPassword"
+        android:layout_alignStart="@+id/etWorkerPassword"
+        android:layout_alignEnd="@+id/etWorkerPassword"
         android:layout_marginStart="32dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="32dp"
@@ -72,9 +72,9 @@
         android:id="@+id/btnTable"
         android:layout_width="300dp"
         android:layout_height="48dp"
-        android:layout_below="@+id/btnLogin"
-        android:layout_alignStart="@+id/etPassword"
-        android:layout_alignEnd="@+id/etPassword"
+        android:layout_below="@+id/btLogin"
+        android:layout_alignStart="@+id/etWorkerPassword"
+        android:layout_alignEnd="@+id/etWorkerPassword"
         android:layout_marginStart="32dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="32dp"

@@ -13,6 +13,30 @@
         android:theme="@style/Theme.VirtualWaiter"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".AddEditFoodActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AddEditTableActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AddEditWorkerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ManageMenuActivity"
+            android:exported="false"
+            android:label="@string/title_activity_manage_menu"
+            android:theme="@style/Theme.VirtualWaiter.NoActionBar" />
+        <activity
+            android:name=".ManageTablesActivity"
+            android:exported="false"
+            android:label="@string/title_activity_manage_tables"
+            android:theme="@style/Theme.VirtualWaiter.NoActionBar" />
+        <activity
+            android:name=".ManageWorkersActivity"
+            android:exported="false"
+            android:label="@string/title_activity_manage_workers"
+            android:theme="@style/Theme.VirtualWaiter.NoActionBar" />
+        <activity
             android:name=".PayActivity"
             android:exported="false" />
         <activity

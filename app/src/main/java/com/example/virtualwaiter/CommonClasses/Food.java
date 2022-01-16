@@ -1,7 +1,5 @@
 package com.example.virtualwaiter.CommonClasses;
 
-import android.util.Log;
-
 import java.math.BigDecimal;
 
 public class Food extends Object{
