@@ -369,6 +369,46 @@ public class ConnectDB {
 
     }
 
+    public static String getAllOrders() {
+        try {
+            String query = "SELECT o.*, w.name FROM `order` o INNER JOIN `worker` w ON o.WaiterId = w.id";
+            ResultSet rs = state.executeQuery(query);
+            ArrayList<Order> tempOrderList = new ArrayList<>();
+
+            while (rs.next()) {
+                Order o = new Order();
+                o.setId(rs.getInt("id"));
+                o.setTable(new Table(rs.getInt("Tableid")));
+                o.setStatus(rs.getString("status"));
+                o.setDate(rs.getDate("date"));
+                o.setPayByCard(rs.getBoolean("payByCard"));
+                o.setSplitBillBetween(rs.getInt("splitBillTo"));
+                o.setWaiterName(rs.getString("name"));
+                tempOrderList.add(o);
+            }
+
+            for(Order o : tempOrderList){
+                ResultSet rs2 = state.executeQuery("SELECT `order item`.*, `food`.* FROM `order item` JOIN food ON(food.id = `order item`.`Foodid`) WHERE Orderid = "+ o.getId());
+                while (rs2.next()){
+                    OrderItem tempItem = new OrderItem(
+                            new Food(rs2.getString("name_"+ LANGUAGE),
+                                    rs2.getString("photoName"),
+                                    rs2.getDouble("price"),
+                                    rs2.getInt("id") ), rs2.getInt("amount"));
+                    o.addToOrder(tempItem);
+                }
+            }
+
+            StaticData.ALL_ORDERS.clear();
+            StaticData.ALL_ORDERS = tempOrderList;
+            return "success";
+        }
+        catch (Exception e) {
+            Log.d("Error get all orders list", e.toString());
+            return "error";
+        }
+    }
+
 
     public static String changeStatus(String status, int id){
         try{
@@ -431,9 +471,8 @@ public class ConnectDB {
     public static String updateWorker() {
         try{
             Worker worker = StaticData.WORKER;
-            Log.d("Update worker", worker.toString());
-            state.executeUpdate("UPDATE `worker` SET `type` = '" + worker.getType() + "', `login` = '" + worker.getLogin() + "', `password` = '" + worker.getPassword() + "', `name` = '" + worker.getName() +
-                    "' WHERE id = " + worker.getId() + ";");
+            Log.d("Update worker", Integer.toString(worker.getId()) + ", " + worker.getType() + ", " + worker.getLogin() + ", " + worker.getPassword() + ", " + worker.getName());
+            state.executeUpdate("UPDATE `worker` SET `type` = '" + worker.getType() + "', `login` = '" + worker.getLogin() + "', `password` = '" + worker.getPassword() + "', `name` = '" + worker.getName() + "' WHERE id = " + worker.getId());
             return  "success";
         }
         catch(Exception e){
@@ -442,8 +481,36 @@ public class ConnectDB {
         }
     }
 
+    public static String deleteWorker() {
+        try{
+            Worker worker = StaticData.WORKER;
+            Log.d("Delete worker", worker.toString());
+            state.executeUpdate("DELETE FROM `worker` WHERE id = " + worker.getId() + ";");
+            return  "success";
+        }
+        catch(Exception e){
+            Log.d("Error delete Worker", e.toString());
+            return "error";
+        }
+    }
+
     public static String getWorkers() {
-        return "";
+        try {
+            String query = "SELECT * FROM `worker`";
+            ResultSet rs = state.executeQuery(query);
+            StaticData.EMPLOYEES.clear();
+
+            while (rs.next()) {
+                Worker w = new Worker(Integer.parseInt(rs.getString("id")), rs.getString("name"), rs.getString("login"), rs.getString("password"), rs.getString("type"));
+                StaticData.EMPLOYEES.add(w);
+            }
+
+            return "success";
+        }
+        catch (Exception e) {
+            Log.d("Error get all workers list", e.toString());
+            return "error";
+        }
     }
 
     public static String addTable() {
@@ -476,7 +543,36 @@ public class ConnectDB {
     }
 
     public static String getTables() {
-        return "";
+        try {
+            String query = "SELECT * FROM `table`";
+            ResultSet rs = state.executeQuery(query);
+            StaticData.TABLES.clear();
+
+            while (rs.next()) {
+                Table t = new Table(Integer.parseInt(rs.getString("id")), Integer.parseInt(rs.getString("numberOfSeats")));
+                StaticData.TABLES.add(t);
+            }
+
+            return "success";
+        }
+        catch (Exception e) {
+            Log.d("Error get all tables list", e.toString());
+            return "error";
+        }
+
+    }
+
+    public static String deleteTable() {
+        try{
+            Table table = StaticData.TABLE;
+            Log.d("Delete table", table.toString());
+            state.executeUpdate("DELETE FROM `table` WHERE id = " + table.getTableId() + ";");
+            return  "success";
+        }
+        catch(Exception e){
+            Log.d("Error delete table", e.toString());
+            return "error";
+        }
     }
 
     public static String addFood() {
@@ -486,7 +582,7 @@ public class ConnectDB {
             Log.d("Add new food", StaticData.FOOD.toString());
             state.executeUpdate("INSERT INTO `food` (id, name_pl, name_en, price, type, description_pl, description_en, isGlutenFree, isVegan, isAlcoholic, photoName) " +
                     "VALUES (null,'"+food.getNamePL()+"','" + food.getName() + "', " + food.getPrice() + ", '"+ food.getType() + "', '" +
-                    food.getDescriptionPL() + "', '"+ food.getDescription() +"', "+ (food.getIsGlutenFree() ? 1 : 0) +", "+ (food.getIsVegan() ? 1 : 0) + ", "+(food.getIsAlcoholic() ? 1 : 0) +", null);");
+                    food.getDescriptionPL() + "', '"+ food.getDescription() +"', "+ (food.getIsGlutenFree() ? 1 : 0) +", "+ (food.getIsVegan() ? 1 : 0) + ", "+(food.getIsAlcoholic() ? 1 : 0) +", '"+food.getPhotoName()+"');");
             return  "success";
         }
         catch(Exception e){
@@ -501,13 +597,56 @@ public class ConnectDB {
             Log.d("Update food", food.toString());
 
             state.executeUpdate("UPDATE `food` SET `name_pl` = '" + food.getNamePL() + "', `name_en` = '" + food.getName() + "', `price` = " + food.getPrice() +
-                            ", `type` = " + food.getType() + ", `description_pl` = '" + food.getDescriptionPL() + "', `description_en` ='" + food.getDescription() +
-                            "', `isGlutenFree` = " + (food.getIsGlutenFree() ? 1 : 0) + ", `isVegan` = " + (food.getIsVegan() ? 1 : 0) + ", `isAlcoholic` = " + (food.getIsAlcoholic() ? 1 : 0) + ", `photoName` = null" +
+                            ", `type` = '" + food.getType() + "', `description_pl` = '" + food.getDescriptionPL() + "', `description_en` ='" + food.getDescription() +
+                            "', `isGlutenFree` = " + (food.getIsGlutenFree() ? 1 : 0) + ", `isVegan` = " + (food.getIsVegan() ? 1 : 0) + ", `isAlcoholic` = " + (food.getIsAlcoholic() ? 1 : 0) + ", `photoName` = '" + food.getPhotoName() + "'" +
                     " WHERE id = " + food.getId() + ";");
             return  "success";
         }
         catch(Exception e){
             Log.d("Error update Food", e.toString());
+            return "error";
+        }
+    }
+
+    public static String getFoodFull() {
+        try {
+            String query = "SELECT * FROM `food`";
+            ResultSet rs = state.executeQuery(query);
+            StaticData.ALL_FOOD.clear();
+
+            while (rs.next()) {
+                FoodToAdd f = new FoodToAdd(rs.getInt("id"),
+                        rs.getString("name_en"),
+                        rs.getString("name_pl"),
+                        rs.getString("description_en"),
+                        rs.getString("description_pl"),
+                        rs.getString("type"),
+                        rs.getDouble("price"),
+                        rs.getBoolean("isAlcoholic"),
+                        rs.getBoolean("isGlutenFree"),
+                        rs.getBoolean("isVegan"),
+                        rs.getString("photoName")
+                );
+                StaticData.ALL_FOOD.add(f);
+            }
+
+            return "success";
+        }
+        catch (Exception e) {
+            Log.d("Error get all food list", e.toString());
+            return "error";
+        }
+    }
+
+    public static String deleteFood() {
+        try{
+            FoodToAdd food = StaticData.FOOD;
+            Log.d("Delete food", food.toString());
+            state.executeUpdate("DELETE FROM `food` WHERE id = " + food.getId() + ";");
+            return  "success";
+        }
+        catch(Exception e){
+            Log.d("Error delete food", e.toString());
             return "error";
         }
     }

@@ -14,7 +14,6 @@ import com.example.virtualwaiter.UI.Components.ChefOrderCardView;
 import com.example.virtualwaiter.UI.Components.WaiterOrderCardView;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class ShowOrdersList {
 

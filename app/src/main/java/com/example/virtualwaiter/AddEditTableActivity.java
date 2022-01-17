@@ -34,7 +34,7 @@ public class AddEditTableActivity extends AppCompatActivity {
             editTable = b.getBoolean("editTable");
         if (editTable) {
             table = StaticData.TABLE;
-            etSeats.setText(table.getNumberOfSeats());
+            etSeats.setText(Integer.toString(table.getNumberOfSeats()));
         }
         addListenerOnSaveButton();
     }
@@ -51,6 +51,8 @@ public class AddEditTableActivity extends AppCompatActivity {
                 }
                 else {
                     if (editTable) {
+                        Integer tableId = StaticData.TABLE.getTableId();
+                        StaticData.TABLE = new Table(tableId, Integer.parseInt(etSeats.getText().toString()));
                         new AddEditTableActivity.updateTable().execute();
                     }
                     else {

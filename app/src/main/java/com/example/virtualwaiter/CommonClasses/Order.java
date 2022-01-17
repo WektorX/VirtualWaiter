@@ -2,8 +2,6 @@ package com.example.virtualwaiter.CommonClasses;
 
 import android.util.Log;
 
-import com.google.android.material.tabs.TabLayout;
-
 import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.ArrayList;
@@ -17,6 +15,7 @@ public class Order {
     private Table table = null;
     private Date date;
     private int splitBillBetween;
+    private String waiterName = "";
 
     public int getSplitBillBetween() {
         return splitBillBetween;
@@ -124,5 +123,13 @@ public class Order {
 
     public BigDecimal getTotal(){
         return  total;
+    }
+
+    public void setWaiterName(String name) {
+        this.waiterName = name;
+    }
+
+    public String getWaiterName() {
+        return waiterName;
     }
 }

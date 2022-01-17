@@ -105,6 +105,24 @@
     <string name="add_food_fail">Something went wrong… New food couldn\'t be added. Try again later!</string>
     <string name="update_food_success">The food updated successfully!</string>
     <string name="update_food_fail">Something went wrong… The food couldn\'t be updated. Try again later!</string>
+    <string name="photo_name">Photo name</string>
+    <string name="date">Date: </string>
+    <string name="get_orders_success">Orders pulled successfully!</string>
+    <string name="get_orders_fail">Something went wrong… The list of orders couldn\'t be pulled from server. Try again later!</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="delete_question">Are you sure you want to delete this?</string>
+    <string name="delete_worker_success" >Employee deleted successfully!</string>
+    <string name="delete_worker_fail" >Something went wrong… The employee couldn\'t be deleted. Try again later!</string>
+    <string name="get_workers_fail">Something went wrong... Try again later!</string>
+    <string name="chef">Chef</string>
+    <string name="manager">Manager</string>
+    <string name="delete_table_success">Table deleted successfully!</string>
+    <string name="delete_table_fail">"Couldn't delete table. Try again later! "</string>
+    <string name="get_tables_fail">Tables couldn\'t be pulled from server. Try again later!</string>
+    <string name="table">Table</string>
+    <string name="delete_food_success">Food deleted successfully!</string>
+    <string name="delete_food_fail">Couldn\'t delete food. Try again later!</string>
 
     <string-array name="worker_types">
         <item>Chef</item>

@@ -22,7 +22,7 @@ public class AddEditFoodActivity extends AppCompatActivity {
 
     private Spinner foodTypeDropdown;
     private Button btSave;
-    private EditText etName, etDescription, etNamePL, etDescriptionPL, etPrice;
+    private EditText etName, etDescription, etNamePL, etDescriptionPL, etPrice, etPhoto;
     private CheckBox cbVegan, cbGlutenFree, cbAlcoholic;
     private FoodToAdd food;
     private boolean editFood = false;
@@ -38,13 +38,14 @@ public class AddEditFoodActivity extends AppCompatActivity {
         etDescription = (EditText) findViewById(R.id.etFoodDescription);
         etDescriptionPL = (EditText) findViewById(R.id.etFoodDescriptionPL);
         etPrice = (EditText) findViewById(R.id.etFoodPrice);
+        etPhoto = (EditText) findViewById(R.id.etFoodPhotoName);
         cbVegan = (CheckBox) findViewById(R.id.checkBoxVeganFood);
         cbGlutenFree = (CheckBox) findViewById(R.id.checkBoxGlutenFreeFood);
         cbAlcoholic = (CheckBox) findViewById(R.id.checkBoxAlcoholicFood);
 
         Bundle b = getIntent().getExtras();
         if(b != null)
-            editFood = b.getBoolean("editWorker");
+            editFood = b.getBoolean("editFood");
         if (editFood) {
             food = StaticData.FOOD;
             etName.setText(food.getName());
@@ -52,6 +53,7 @@ public class AddEditFoodActivity extends AppCompatActivity {
             etDescription.setText(food.getDescription());
             etDescriptionPL.setText(food.getDescriptionPL());
             etPrice.setText(Double.toString(food.getPrice()));
+            etPhoto.setText(food.getPhotoName());
 
             cbAlcoholic.setChecked(food.getIsAlcoholic());
             cbVegan.setChecked(food.getIsVegan());
@@ -75,8 +77,6 @@ public class AddEditFoodActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (etNamePL.getText().toString().isEmpty()
                         || etName.getText().toString().isEmpty()
-                        || etDescription.getText().toString().isEmpty()
-                        || etDescriptionPL.getText().toString().isEmpty()
                         || etPrice.getText().toString().isEmpty()
                 )
                 {
@@ -98,6 +98,19 @@ public class AddEditFoodActivity extends AppCompatActivity {
                     }
 
                     if (editFood) {
+                        Integer foodId = StaticData.FOOD.getId();
+                        StaticData.FOOD = new FoodToAdd(foodId,
+                                etName.getText().toString(),
+                                etNamePL.getText().toString(),
+                                etDescription.getText().toString(),
+                                etDescriptionPL.getText().toString(),
+                                foodType,
+                                Double.parseDouble(etPrice.getText().toString()),
+                                cbAlcoholic.isChecked(),
+                                cbGlutenFree.isChecked(),
+                                cbVegan.isChecked(),
+                                etPhoto.getText().toString()
+                        );
                         new AddEditFoodActivity.updateFood().execute();
                     }
                     else {
@@ -109,7 +122,9 @@ public class AddEditFoodActivity extends AppCompatActivity {
                                 Double.parseDouble(etPrice.getText().toString()),
                                 cbAlcoholic.isChecked(),
                                 cbGlutenFree.isChecked(),
-                                cbVegan.isChecked());
+                                cbVegan.isChecked(),
+                                etPhoto.getText().toString()
+                                );
                         new AddEditFoodActivity.addFood().execute();
                     }
                 }

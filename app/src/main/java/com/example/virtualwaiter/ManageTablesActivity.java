@@ -1,13 +1,20 @@
 package com.example.virtualwaiter;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.virtualwaiter.CommonClasses.Table;
+import com.example.virtualwaiter.Net.ConnectDB;
+import com.example.virtualwaiter.Net.StaticData;
+import com.example.virtualwaiter.UI.Components.ManagerTableCardView;
 import com.example.virtualwaiter.databinding.ActivityManageTablesBinding;
-import com.google.android.material.snackbar.Snackbar;
 
 public class ManageTablesActivity extends AppCompatActivity {
 
@@ -32,5 +39,39 @@ public class ManageTablesActivity extends AppCompatActivity {
                 ManageTablesActivity.this.startActivity(i);
             }
         });
+
+        new getTables().execute();
+    }
+    public void showAllTables() {
+        LinearLayout allTablesLinearLayout = (LinearLayout) findViewById(R.id.tablesList);
+        allTablesLinearLayout.removeAllViews();
+
+        for (Table t: StaticData.TABLES
+        ) {
+            allTablesLinearLayout.addView(new ManagerTableCardView(ManageTablesActivity.this, t));
+        }
+    }
+
+    public class getTables extends AsyncTask {
+        @Override
+        protected String doInBackground(Object... objects) {
+            return ConnectDB.getTables();
+        }
+
+        @Override
+        protected void onPostExecute(Object o) {
+            String status = (String) o;
+            Log.d("Status" , status);
+            if(status.equals("success")){
+                showAllTables();
+            }
+            else {
+                Toast.makeText(ManageTablesActivity.this,
+                        getString(R.string.get_tables_fail),
+                        Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(ManageTablesActivity.this, ManagerMainActivity.class);
+                ManageTablesActivity.this.startActivity(i);
+            }
+        }
     }
 }

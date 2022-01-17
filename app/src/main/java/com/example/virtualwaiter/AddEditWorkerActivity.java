@@ -97,6 +97,8 @@ public class AddEditWorkerActivity extends AppCompatActivity {
                     }
 
                     if (editWorker) {
+                        Integer workerId = StaticData.WORKER.getId();
+                        StaticData.WORKER = new Worker(workerId, etName.getText().toString(), etLogin.getText().toString(), etPassword.getText().toString(), workerType);
                         new updateWorker().execute();
                     }
                     else {

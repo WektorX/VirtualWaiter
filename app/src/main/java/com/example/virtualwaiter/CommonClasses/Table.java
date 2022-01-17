@@ -1,8 +1,10 @@
 package com.example.virtualwaiter.CommonClasses;
 
+import com.example.virtualwaiter.Net.StaticData;
+
 public class Table {
 
-    private int tableId = -1;
+    private Integer tableId = -1;
     private int numberOfSeats;
     private int waiterId = -1;
 
@@ -17,7 +19,7 @@ public class Table {
         this.numberOfSeats = number;
     }
 
-    public int getTableId() {
+    public Integer getTableId() {
         return tableId;
     }
 
@@ -39,5 +41,15 @@ public class Table {
 
     public void setWaiterId(int waiterId) {
         this.waiterId = waiterId;
+    }
+
+    public static Table findTable(Integer id) {
+        for (Table t: StaticData.TABLES
+        ) {
+            if (t.getTableId().equals(id)) {
+                return t;
+            }
+        }
+        return null;
     }
 }

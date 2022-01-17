@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class StaticData {
     public static Boolean LOGGED_IN;
-    public static String IP = "192.168.55.103";
+    public static String IP = "192.168.55.104";
     public static String DB_NAME = "projekt";
     public static String LANGUAGE;
     public static Menu MENU = new Menu();
@@ -26,4 +26,8 @@ public class StaticData {
     public static String WORKER_TYPE = "";
     public static Worker WORKER;
     public static FoodToAdd FOOD;
+    public static ArrayList<Worker> EMPLOYEES = new ArrayList<>();
+    public static ArrayList<Table> TABLES = new ArrayList<>();
+    public static ArrayList<Order> ALL_ORDERS = new ArrayList<>();
+    public static ArrayList<FoodToAdd> ALL_FOOD = new ArrayList<>();
 }

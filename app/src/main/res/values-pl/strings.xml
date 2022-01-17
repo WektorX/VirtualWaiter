@@ -93,6 +93,24 @@
     <string name="add_food_fail">Coś poszło nie tak… Nowa potrawa nie została dodana. Spróbuj ponownie później!</string>
     <string name="update_food_success">Potrawa została zaktualizowana pomyślnie!</string>
     <string name="update_food_fail">Coś poszło nie tak… Dane potrawy nie zostały zaktualizowane. Spróbuj ponownie później!</string>
+    <string name="photo_name">Nazwa zdjęcia</string>
+    <string name="date">Data: </string>
+    <string name="get_orders_success">Lista zamówień pobrana pomyślnie!</string>
+    <string name="get_orders_fail">Coś poszło nie tak… Dane zamówień nie zostały pobrane z serwera. Spróbuj ponownie później!</string>
+    <string name="edit">Edytuj</string>
+    <string name="delete">Usuń</string>
+    <string name="delete_question">Czy jesteś pewien, że chcesz to usunąć?</string>
+    <string name="delete_worker_success" >Dane pracownika usunięte!</string>
+    <string name="delete_worker_fail" >Coś poszło nie tak… Dane pracownika nie zostały usunięte. Spróbuj ponownie później!</string>
+    <string name="get_workers_fail">Coś poszło nie tak… Spróbuj ponownie później!</string>
+    <string name="chef">Kucharz</string>
+    <string name="manager">Menadżer</string>
+    <string name="delete_table_success">Dane stolika usunięte!</string>
+    <string name="delete_table_fail">"Stolik nie został usunięty. Spróbuj ponownie później!"</string>
+    <string name="get_tables_fail">Stoliki nie zostały pobrane z serwera. Spróbuj ponownie później!</string>
+    <string name="table">Stolik</string>
+    <string name="delete_food_success">Potrawa usunięta poprawnie!</string>
+    <string name="delete_food_fail">Potrawa nie została usunięta. Spróbuj ponownie później!</string>
 
     <string-array name="worker_types">
         <item>Kucharz</item>

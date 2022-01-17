@@ -1,7 +1,11 @@
 package com.example.virtualwaiter.CommonClasses;
 
+import android.util.Log;
+
+import com.example.virtualwaiter.Net.StaticData;
+
 public class Worker {
-    private int id;
+    private Integer id;
     private String name;
     private String login;
     private String password;
@@ -14,7 +18,7 @@ public class Worker {
         this.type = type;
     }
 
-    public Worker(int id, String name, String login, String password, String type) {
+    public Worker(Integer id, String name, String login, String password, String type) {
         this.id = id;
         this.name = name;
         this.login = login;
@@ -22,7 +26,7 @@ public class Worker {
         this.type = type;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -56,5 +60,15 @@ public class Worker {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public static Worker findWorker(Integer id) {
+        for (Worker w: StaticData.EMPLOYEES
+             ) {
+            if (w.getId().equals(id)) {
+                return w;
+            }
+        }
+        return null;
     }
 }

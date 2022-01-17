@@ -37,6 +37,9 @@
             android:label="@string/title_activity_manage_workers"
             android:theme="@style/Theme.VirtualWaiter.NoActionBar" />
         <activity
+            android:name=".ManageOrdersActivity"
+            android:exported="false" />
+        <activity
             android:name=".PayActivity"
             android:exported="false" />
         <activity

@@ -1,7 +1,9 @@
 package com.example.virtualwaiter.CommonClasses;
 
+import com.example.virtualwaiter.Net.StaticData;
+
 public class FoodToAdd{
-    private int id;
+    private Integer id;
     private String name;
     private String namePL;
     private String description;
@@ -11,8 +13,9 @@ public class FoodToAdd{
     private boolean isGlutenFree;
     private boolean isAlcoholic;
     private double price;
+    private String photoName;
 
-    public FoodToAdd(String name, String namePL, String description, String descriptionPL, String type, double price, boolean isAlcoholic, boolean isGlutenFree, boolean isVegan) {
+    public FoodToAdd(String name, String namePL, String description, String descriptionPL, String type, double price, boolean isAlcoholic, boolean isGlutenFree, boolean isVegan, String photoName) {
         this.name = name;
         this.namePL = namePL;
         this.description = description;
@@ -22,9 +25,10 @@ public class FoodToAdd{
         this.isVegan = isVegan;
         this.isGlutenFree = isGlutenFree;
         this.price = price;
+        this.photoName = photoName;
     }
 
-    public FoodToAdd(int id, String name, String namePL, String description, String descriptionPL, String type, double price, boolean isAlcoholic, boolean isGlutenFree, boolean isVegan) {
+    public FoodToAdd(int id, String name, String namePL, String description, String descriptionPL, String type, double price, boolean isAlcoholic, boolean isGlutenFree, boolean isVegan, String photoName) {
         this.id = id;
         this.name = name;
         this.namePL = namePL;
@@ -35,9 +39,10 @@ public class FoodToAdd{
         this.isVegan = isVegan;
         this.isGlutenFree = isGlutenFree;
         this.price = price;
+        this.photoName = photoName;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -75,5 +80,19 @@ public class FoodToAdd{
 
     public boolean getIsGlutenFree() {
         return isGlutenFree;
+    }
+
+    public String getPhotoName() {
+        return photoName;
+    }
+
+    public static FoodToAdd findFood(Integer id) {
+        for (FoodToAdd f: StaticData.ALL_FOOD
+        ) {
+            if (f.getId().equals(id)) {
+                return f;
+            }
+        }
+        return null;
     }
 }
