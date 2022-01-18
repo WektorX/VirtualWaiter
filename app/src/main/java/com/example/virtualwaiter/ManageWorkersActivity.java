@@ -37,6 +37,7 @@ public class ManageWorkersActivity extends AppCompatActivity {
                 b.putBoolean("editWorker", false);
                 i.putExtras(b);
                 ManageWorkersActivity.this.startActivity(i);
+                finish();
             }
         });
 

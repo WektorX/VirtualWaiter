@@ -154,6 +154,7 @@ public class AddEditFoodActivity extends AppCompatActivity {
             }
             Intent i = new Intent(AddEditFoodActivity.this, ManageMenuActivity.class);
             AddEditFoodActivity.this.startActivity(i);
+            finish();
         }
     }
 
@@ -179,6 +180,7 @@ public class AddEditFoodActivity extends AppCompatActivity {
             }
             Intent i = new Intent(AddEditFoodActivity.this, ManageMenuActivity.class);
             AddEditFoodActivity.this.startActivity(i);
+            finish();
         }
     }
 }

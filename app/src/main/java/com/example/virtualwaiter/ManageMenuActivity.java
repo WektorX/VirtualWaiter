@@ -39,6 +39,7 @@ public class ManageMenuActivity extends AppCompatActivity {
                 b.putBoolean("editFood", false);
                 i.putExtras(b);
                 ManageMenuActivity.this.startActivity(i);
+                finish();
             }
         });
 

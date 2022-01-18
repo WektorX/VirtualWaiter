@@ -98,7 +98,7 @@ public class MenuAndOrderActivity extends AppCompatActivity {
         GridLayout glt = null;
         gl = findViewById(R.id.order_list);
         glt = findViewById(R.id.order_list_total);
-        if(gl != null && glt != null){
+        if(gl != null && glt != null && StaticData.ORDER.getList().size() > 0){
             gl.removeAllViews();
             glt.removeAllViews();
             ArrayList<OrderItem> list = StaticData.ORDER.getList();

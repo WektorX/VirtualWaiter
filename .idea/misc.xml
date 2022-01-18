@@ -3,6 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Projekty/VirtualWaiter/app/src/main/res/layout/activity_add_edit_food.xml" value="0.13854166666666667" />
+        <entry key="..\:/Projekty/VirtualWaiter/app/src/main/res/layout/activity_manage_menu.xml" value="0.13854166666666667" />
+        <entry key="..\:/Projekty/VirtualWaiter/app/src/main/res/layout/activity_manage_orders.xml" value="0.13854166666666667" />
+        <entry key="..\:/Projekty/VirtualWaiter/app/src/main/res/layout/activity_manage_tables.xml" value="0.13854166666666667" />
+        <entry key="..\:/Projekty/VirtualWaiter/app/src/main/res/layout/activity_manage_workers.xml" value="0.13854166666666667" />
+        <entry key="..\:/Projekty/VirtualWaiter/app/src/main/res/layout/activity_manager_main.xml" value="0.18206521739130435" />
+        <entry key="..\:/Projekty/VirtualWaiter/app/src/main/res/layout/fragment_order.xml" value="0.18206521739130435" />
+        <entry key="..\:/Projekty/VirtualWaiter/app/src/main/res/layout/fragment_order_history.xml" value="0.18206521739130435" />
         <entry key="..\:/pk/Projekty/VirtualWaiter/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.17604166666666668" />
         <entry key="..\:/pk/Projekty/VirtualWaiter/app/src/main/res/drawable/ic_launcher_background.xml" value="0.17604166666666668" />
         <entry key="..\:/pk/Projekty/VirtualWaiter/app/src/main/res/drawable/shapes.xml" value="0.1796875" />

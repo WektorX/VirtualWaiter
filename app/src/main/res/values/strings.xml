@@ -123,6 +123,7 @@
     <string name="table">Table</string>
     <string name="delete_food_success">Food deleted successfully!</string>
     <string name="delete_food_fail">Couldn\'t delete food. Try again later!</string>
+    <string name="no_items_in_order">The order is empty!</string>
 
     <string-array name="worker_types">
         <item>Chef</item>

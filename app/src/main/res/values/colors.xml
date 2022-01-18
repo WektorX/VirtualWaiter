@@ -16,7 +16,7 @@
     <color name="order_card_background">#47000000</color>
     <color name="order_status_ready">#237710</color>
     <color name="order_status_await">#FF9800</color>
-    <color name="almost_transparent">#600F1623</color>
+    <color name="almost_transparent">#4F0F1623</color>
     <color name="payment_border">#2F53D4</color>
     <color name="dirty_white">#C7C7C7</color>
     <color name="not_really_black">#1F2222</color>

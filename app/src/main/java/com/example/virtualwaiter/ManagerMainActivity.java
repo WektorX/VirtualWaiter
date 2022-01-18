@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 
 public class ManagerMainActivity extends AppCompatActivity {
 
@@ -12,25 +13,46 @@ public class ManagerMainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manager_main);
-    }
 
-    public void moveToManageWorkersActivity(View view) {
-        System.out.println(view);
+        LinearLayout employees = findViewById(R.id.employees_manage);
+        employees.setOnClickListener(v->{
+            this.moveToManageWorkersActivity();
+        });
+
+        LinearLayout orders = findViewById(R.id.orders_manage);
+        orders.setOnClickListener(v->{
+            this.moveToManageOrdersActivity();
+        });
+
+        LinearLayout tables = findViewById(R.id.tables_manage);
+        tables.setOnClickListener(v->{
+            this.moveToManageTablesActivity();
+        });
+
+        LinearLayout menu = findViewById(R.id.menu_manage);
+        menu.setOnClickListener(v->{
+            this.moveToManageMenuActivity();
+        });
+
+    }
+    public void moveToManageWorkersActivity() {
         Intent i = new Intent(ManagerMainActivity.this, ManageWorkersActivity.class);
         ManagerMainActivity.this.startActivity(i);
     }
 
-    public void moveToManageOrdersActivity(View view) {
+
+
+    public void moveToManageOrdersActivity() {
         Intent i = new Intent(ManagerMainActivity.this, ManageOrdersActivity.class);
         ManagerMainActivity.this.startActivity(i);
     }
 
-    public void moveToManageTablesActivity(View view) {
+    public void moveToManageTablesActivity() {
         Intent i = new Intent(ManagerMainActivity.this, ManageTablesActivity.class);
         ManagerMainActivity.this.startActivity(i);
     }
 
-    public void moveToManageMenuActivity(View view) {
+    public void moveToManageMenuActivity() {
         Intent i = new Intent(ManagerMainActivity.this, ManageMenuActivity.class);
         ManagerMainActivity.this.startActivity(i);
     }

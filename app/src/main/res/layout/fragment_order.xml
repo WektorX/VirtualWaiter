@@ -50,7 +50,14 @@
                     android:padding="20px"
                     android:background="@color/transparent"
                     android:stretchMode="columnWidth">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:text="@string/no_items_in_order"
+                        />
                 </GridLayout>
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"

@@ -132,6 +132,7 @@ public class AddEditWorkerActivity extends AppCompatActivity {
             }
             Intent i = new Intent(AddEditWorkerActivity.this, ManageWorkersActivity.class);
             AddEditWorkerActivity.this.startActivity(i);
+            finish();
         }
     }
 
@@ -157,6 +158,7 @@ public class AddEditWorkerActivity extends AppCompatActivity {
             }
             Intent i = new Intent(AddEditWorkerActivity.this, ManageWorkersActivity.class);
             AddEditWorkerActivity.this.startActivity(i);
+            finish();
         }
     }
 }

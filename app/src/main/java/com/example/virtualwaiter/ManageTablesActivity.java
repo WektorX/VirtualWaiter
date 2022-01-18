@@ -37,6 +37,7 @@ public class ManageTablesActivity extends AppCompatActivity {
                 b.putBoolean("editTable", false);
                 i.putExtras(b);
                 ManageTablesActivity.this.startActivity(i);
+                finish();
             }
         });
 

@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.virtualwaiter.Net.StaticData;
 import com.example.virtualwaiter.R;
 
 public class WaiterButton extends LinearLayout {
@@ -20,7 +21,7 @@ public class WaiterButton extends LinearLayout {
 
 
         this.setOrientation(HORIZONTAL);
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(StaticData.DEVICE_WIDTH *2 /3, ViewGroup.LayoutParams.WRAP_CONTENT);
         this.setGravity(Gravity.CENTER);
         this.setLayoutParams(params);
 
@@ -30,13 +31,14 @@ public class WaiterButton extends LinearLayout {
         LinearLayout.LayoutParams imgParams = new LinearLayout.LayoutParams(200, 200);
         imgParams.setMargins(0,20,300,20);
         img.setLayoutParams(imgParams);
+        img.setScaleType(ImageView.ScaleType.FIT_CENTER);
         this.addView(img);
 
         TextView name = new TextView(context);
         name.setText(value);
         name.setTextColor(context.getColor(R.color.black));
         name.setTextAlignment(TEXT_ALIGNMENT_CENTER);
-        LinearLayout.LayoutParams nameParams = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        LinearLayout.LayoutParams nameParams = new LayoutParams(StaticData.DEVICE_WIDTH / 3, ViewGroup.LayoutParams.MATCH_PARENT);
         nameParams.setMargins(-100,75,0,20);
         name.setLayoutParams(nameParams);
         this.addView(name);

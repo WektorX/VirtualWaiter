@@ -86,6 +86,7 @@ public class AddEditTableActivity extends AppCompatActivity {
             }
             Intent i = new Intent(AddEditTableActivity.this, ManageTablesActivity.class);
             AddEditTableActivity.this.startActivity(i);
+            finish();
         }
     }
 
@@ -111,6 +112,7 @@ public class AddEditTableActivity extends AppCompatActivity {
             }
             Intent i = new Intent(AddEditTableActivity.this, ManageTablesActivity.class);
             AddEditTableActivity.this.startActivity(i);
+            finish();
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.example.virtualwaiter.UI.Components;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -82,6 +83,7 @@ public class ManagerFoodCardView extends CardView {
 
         Button btEdit = new Button(context);
         btEdit.setText(context.getString(R.string.edit));
+        btEdit.setBackgroundColor(context.getColor(R.color.almost_transparent));
         btEdit.setTag(f.getId());
         ly.addView(btEdit);
         btEdit.setOnClickListener(new OnClickListener() {
@@ -94,12 +96,13 @@ public class ManagerFoodCardView extends CardView {
                 b.putBoolean("editFood", true);
                 i.putExtras(b);
                 context.startActivity(i);
+                ((Activity)context).finish();
             }
         });
 
         Button btDelete = new Button(context);
         btDelete.setText(context.getString(R.string.delete));
-        btDelete.setBackgroundColor(R.color.remove_btn_color);
+        btDelete.setBackgroundColor(context.getColor(R.color.remove_btn_color_dark));
         btDelete.setTag(f.getId());
         ly.addView(btDelete);
         btDelete.setOnClickListener(new OnClickListener() {
@@ -151,6 +154,9 @@ public class ManagerFoodCardView extends CardView {
                 Log.d("delete table success", status);
                 Intent i = new Intent(context, ManageTablesActivity.class);
                 context.startActivity(i);
+                ((Activity)context).overridePendingTransition(0,0);
+                context.startActivity(i);
+                ((Activity)context).overridePendingTransition(0,0);
             }
             else {
                 Log.d("Delete table fail", status);

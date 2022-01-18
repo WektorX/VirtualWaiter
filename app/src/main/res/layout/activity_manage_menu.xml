@@ -6,24 +6,30 @@
     android:layout_height="match_parent"
     tools:context=".ManageMenuActivity">
 
-    <LinearLayout
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/transparent"
-        android:orientation="vertical">
+        android:src="@drawable/manager_menu"
+        android:scaleType="centerCrop"
+        />
+
+
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:ignore="SpeakableTextPresentCheck">
+            tools:ignore="SpeakableTextPresentCheck"
+            android:layout_marginTop="?attr/actionBarSize">
 
             <LinearLayout
                 android:id="@+id/foodList"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" />
+                android:orientation="vertical"
+                android:gravity="top|center"
+                />
         </ScrollView>
-    </LinearLayout>
+
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"

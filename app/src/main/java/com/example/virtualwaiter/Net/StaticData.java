@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class StaticData {
     public static Boolean LOGGED_IN;
-    public static String IP = "192.168.55.104";
+    public static String IP = "192.168.1.108";
     public static String DB_NAME = "projekt";
     public static String LANGUAGE;
     public static Menu MENU = new Menu();

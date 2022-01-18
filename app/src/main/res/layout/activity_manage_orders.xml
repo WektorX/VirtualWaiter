@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,6 +9,13 @@
     android:orientation="vertical"
     tools:context=".ManageOrdersActivity"
     tools:ignore="SpeakableTextPresentCheck">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/manager_orders"
+        android:scaleType="centerCrop"
+        />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -19,8 +26,9 @@
             android:id="@+id/llManageOrdersList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/black"
-            android:orientation="vertical" />
+            android:orientation="vertical"
+            android:gravity="top|center"
+            />
     </ScrollView>
 
-</LinearLayout>
+</FrameLayout>

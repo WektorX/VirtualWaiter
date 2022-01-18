@@ -1,5 +1,6 @@
 package com.example.virtualwaiter.UI.Actions;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -10,6 +11,7 @@ import com.example.virtualwaiter.ChefMainActivity;
 import com.example.virtualwaiter.Net.ConnectDB;
 import com.example.virtualwaiter.ManagerMainActivity;
 import com.example.virtualwaiter.Net.StaticData;
+import com.example.virtualwaiter.OrderStatusActivity;
 import com.example.virtualwaiter.WaiterMainActivity;
 
 import java.sql.SQLException;
@@ -61,6 +63,11 @@ private void loginResult(String status, Boolean succesfulLogin, String workerTyp
                     Log.d("Worker type", "Error");
                     break;
             }
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            i.putExtra("EXIT", true);
+            ((Activity)context).finish();
             context.startActivity(i);
         }
         else{

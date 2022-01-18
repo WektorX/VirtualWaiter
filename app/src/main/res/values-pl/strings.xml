@@ -111,6 +111,7 @@
     <string name="table">Stolik</string>
     <string name="delete_food_success">Potrawa usunięta poprawnie!</string>
     <string name="delete_food_fail">Potrawa nie została usunięta. Spróbuj ponownie później!</string>
+    <string name="no_items_in_order">Zamówienie jest puste!</string>
 
     <string-array name="worker_types">
         <item>Kucharz</item>
